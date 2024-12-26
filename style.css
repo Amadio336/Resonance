@@ -1,0 +1,113 @@
+/* base css */
+.bd{
+    border: 1px solid red;
+}
+
+.centra{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+/* phase 1 */
+
+#container-phase1{
+    min-height: 100vh;
+}
+
+#input-gtx{
+    width: 500px;
+    height: 500px;
+}
+
+
+
+
+/*------------ end phase1 ---------------------------- */
+
+
+
+
+/* phase2 */
+#container-phase2{
+    min-height: 100vh;
+    background-color: green;
+}
+
+
+/*------------ end phase 2 ---------------------------- */
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* phase3 */
+
+#container-phase3{
+    min-height: 100vh;
+    background-color: yellow;
+}
+
+#main-sidebar{
+    min-height: 100vh;
+
+}
+
+
+
+/* resonance elements */
+
+.resonance-element{
+    background-color: violet;
+    border: 1px solid purple;
+    border-radius: 5px;
+    margin: 10px 0;
+    text-align: center;
+    word-wrap: break-word;
+    padding: 10px;
+    display: inline-block;
+
+
+}
+
+/* word area */
+
+#work-area{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* table  */
+
+tr,th,td{
+    border: 1px solid red;
+}
+
+table{
+    min-width: 600px ;
+    min-height: 300px;
+}
+
+td{
+    max-width: 200px;
+}
+
+
+
+
+/* class "used", that says the resonant element is used  */
+.already-used{
+   background-color: slateblue;
+}
