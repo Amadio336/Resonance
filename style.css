@@ -9,6 +9,10 @@
     justify-content: center;
 }
 
+.hide{
+    display: none;
+}
+
 
 
 /* phase 1 */
@@ -36,11 +40,21 @@
     background-color: green;
 }
 
+#col-greek-text{
+    background-color: orange;
+    min-height: 100vh;
+    padding: 50px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
 
 /*------------ end phase 2 ---------------------------- */
 
 
-
+.highlighted{
+    background-color: yellow;
+}
 
 
 
