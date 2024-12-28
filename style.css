@@ -77,6 +77,11 @@
 
 }
 
+#toolbar{
+    display: flex; 
+    justify-content: end;
+}
+
 
 
 /* resonance elements */
@@ -94,28 +99,80 @@
 
 }
 
-/* word area */
+/* work area */
 
 #work-area{
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 
-/* table  */
 
-tr,th,td{
+
+
+
+
+
+/* table tool */
+
+.maincontainer-table-tool{
     border: 1px solid red;
 }
 
-table{
-    min-width: 600px ;
-    min-height: 300px;
+#table-tool-subcontainer{
+    width: 300px;
+    height: 250px;
+    border: 1px solid red;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    
 }
 
+
+.cell{
+    border: 1px solid blue;
+    width: 0px;
+    height: 30px;
+    padding: 20px;
+    margin: 5px;
+    border-radius: 7px;
+    background-color: blue;
+
+}
+
+.cell-mouseover{
+    background-color: lightblue;
+}
+
+
+
+
+
+
+
+/* table diagraph */
+
+tr,th,td{
+    border: 1px solid red;
+
+}
+
+table{
+min-width: 1000px;
+min-height: 500px;
+
+   }
+
+
+
 td{
-    max-width: 200px;
+    max-width: 10px;
+    max-height: 10px;
 }
 
 
