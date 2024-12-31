@@ -15,8 +15,9 @@ const makeDiagraph = document.getElementById("make-diagraph")
 
 
 const sidebarResonanceElements = document.getElementById("main-sidebar")
-
 const tableDiagraph = document.getElementById("table-diagraph")
+const mainContainerTableTool = document.getElementById("maincontainer-table-tool")
+const chooseTableButton = document.getElementById("choose-table-button")
 
 
 
@@ -100,7 +101,6 @@ function createElementForDiagraph() {
 
 
 
-
 function handleDragStart(){
     console.log("funziona")
     this.classList.add("already-used")
@@ -112,6 +112,13 @@ function handleDragStart(){
 
 
 
+
+/* button that makes table tool appear */
+
+chooseTableButton.addEventListener("click", () => {
+   mainContainerTableTool.classList.remove("hide")
+    
+})
 
 
 
@@ -132,13 +139,35 @@ cells.forEach(cell => {
        console.log(row + columnsPerRow)
 
 
-    
+       /* hide table toll once clicked */
+       mainContainerTableTool.classList.add("hide")
+
+
+    /* creation of main row (category columns) */
+
+        const mainRow = document.createElement("tr")
+        mainRow.classList.add("main-row")
+        tableDiagraph.appendChild(mainRow)
+
+        for (let i = 0; i < columnsPerRow; i++) {
+           const categoryColumn = document.createElement("td")
+           const CategoryInput = document.createElement("input")
+           CategoryInput.setAttribute("type", "text")
+           mainRow.appendChild(categoryColumn)
+           categoryColumn.appendChild(CategoryInput)
+        }
+
+
+
+
+
+
 
        
-       for (let i = 0; i < row; i++) {   // loops that create table
+       for (let i = 0; i < row; i++) {   // loops that create drag-area table
+
         tr = document.createElement("tr")
         tableDiagraph.appendChild(tr)
-
      
         for (let i = 0; i < columnsPerRow; i++) {
             const td = document.createElement("td")
@@ -147,6 +176,8 @@ cells.forEach(cell => {
             resonanceElementPlacheHolder.textContent = ""
             tr.appendChild(td)
             td.appendChild(resonanceElementPlacheHolder)
+
+
 
 
 
@@ -171,25 +202,28 @@ cells.forEach(cell => {
   
                       function handleDrop() {
                           this.append(dragItem)
-                      } 
+                      }
+                    
+                    }
+                
+        /* creation of speakers columns */
+         const speakerColumn = document.createElement("td")
+         speakerColumn.classList.add("prova")
+         const speakerInput = document.createElement("input")
+         speakerInput.setAttribute("type", "text")
+         tr.appendChild(speakerColumn) 
+         speakerColumn.appendChild(speakerInput)
+                
         
+                
+                }
+
+
+
+      
+       
         
-        
-        
-        }
-
-          
-    }
-        
-    
-
-
-
-
-})
-
-
-    
+}) 
 })
 
 
@@ -231,7 +265,6 @@ cells.forEach(cell => {
 
 
 })
-
 
 
 
