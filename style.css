@@ -157,25 +157,39 @@
 
 /* table diagraph */
 
+#container-table{
+    border: 1px solid red;
+    width: 100%;
+    height: 100%;
+    overflow-x: scroll;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
 tr,th,td{
     border: 1px solid red;
 
 }
 
 #table-diagraph{
-min-width: 900px;
-min-height: 700px;
+min-width: 600px;
+min-height: 400px;
+overflow-x: hidden;
+
 }
 
 .main-row{
     height: 50px;
 }
 
+/* 
+
 td{
     max-width: 10px;
     max-height: 10px;
 }
-
+ */
 
 
 

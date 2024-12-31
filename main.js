@@ -18,6 +18,23 @@ const sidebarResonanceElements = document.getElementById("main-sidebar")
 const tableDiagraph = document.getElementById("table-diagraph")
 const mainContainerTableTool = document.getElementById("maincontainer-table-tool")
 const chooseTableButton = document.getElementById("choose-table-button")
+const addRowButton =document.getElementById("add-row")
+const addColButton =document.getElementById("add-col")
+
+
+function handleDragEnter(e) {
+    e.preventDefault()
+    console.log("element entered") 
+}
+
+function handleDragOver(e) {
+    e.preventDefault()
+    console.log("dragover") 
+}
+
+function handleDrop() {
+    this.append(dragItem)
+}
 
 
 
@@ -167,6 +184,7 @@ cells.forEach(cell => {
        for (let i = 0; i < row; i++) {   // loops that create drag-area table
 
         tr = document.createElement("tr")
+        tr.classList.add("diagraph-row")
         tableDiagraph.appendChild(tr)
      
         for (let i = 0; i < columnsPerRow; i++) {
@@ -190,7 +208,7 @@ cells.forEach(cell => {
                       dragArea.addEventListener("drop", handleDrop)
                   })
   
-                      function handleDragEnter(e) {
+                     /*  function handleDragEnter(e) {
                           e.preventDefault()
                           console.log("element entered") 
                       }
@@ -203,8 +221,8 @@ cells.forEach(cell => {
                       function handleDrop() {
                           this.append(dragItem)
                       }
-                    
-                    }
+                    */
+                    } 
                 
         /* creation of speakers columns */
          const speakerColumn = document.createElement("td")
@@ -268,3 +286,71 @@ cells.forEach(cell => {
 
 
 
+
+/* adding new speaker */
+
+addRowButton.addEventListener("click", function(){
+    const newRow = document.createElement("tr")
+    newRow.classList.add("diagraph-row")
+    tableDiagraph.appendChild(newRow)
+
+
+    for (let i = 0; i < columnsPerRow; i++) {
+        const newCol = document.createElement("td")
+        newCol.classList.add("drag-area")
+        newRow.appendChild(newCol)  
+
+       
+    }
+
+    const dragAreas = document.querySelectorAll(".drag-area")
+
+    dragAreas.forEach(dragArea => {
+            dragArea.addEventListener("dragenter", handleDragEnter)
+            dragArea.addEventListener("dragover", handleDragOver)
+            dragArea.addEventListener("drop", handleDrop)
+        })
+
+
+    const inputSpeakerCol = document.createElement("td")
+    inputSpeakerCol.classList.add("prova")
+    const newCategoryInput = document.createElement("input")
+    newCategoryInput.setAttribute("type", "text")
+    inputSpeakerCol.appendChild(newCategoryInput)
+    newRow.insertAdjacentElement("beforeend", inputSpeakerCol)
+
+})
+
+
+/* adding new category */
+
+let diagraphRows = null
+
+addColButton.addEventListener("click", () => {
+    const mainRow = document.querySelector(".main-row")
+    diagraphRows = document.querySelectorAll(".diagraph-row")
+
+    /* aggiunge una colonna alla main row */
+    const newCateogryCol = document.createElement("td")
+    const newCategoryInput = document.createElement("input")
+    newCategoryInput.setAttribute("type", "text")
+    newCateogryCol.appendChild(newCategoryInput)
+    mainRow.appendChild(newCateogryCol)
+    
+
+    diagraphRows.forEach(diagraphRow => {
+        const newCol1 = document.createElement("td")
+        newCol1.classList.add("drag-area")
+        diagraphRow.insertAdjacentElement("afterbegin", newCol1)
+    })
+
+
+    const dragAreas = document.querySelectorAll(".drag-area")
+
+    dragAreas.forEach(dragArea => {
+            dragArea.addEventListener("dragenter", handleDragEnter)
+            dragArea.addEventListener("dragover", handleDragOver)
+            dragArea.addEventListener("drop", handleDrop)
+        })
+
+})
