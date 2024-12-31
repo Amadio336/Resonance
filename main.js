@@ -22,6 +22,7 @@ const addRowButton =document.getElementById("add-row")
 const addColButton =document.getElementById("add-col")
 
 
+/* drang and drop of the cells of diagraph - pahse 3 */
 function handleDragEnter(e) {
     e.preventDefault()
     console.log("element entered") 
@@ -38,9 +39,11 @@ function handleDrop() {
 
 
 
+
 let dragItem = null
 
-/* creation of El on buttonSubmit. it creates a function that cleans the greek text */
+/* cleaning greek text  */
+
 buttonSubmit.addEventListener("click", handleGtx)
 
 
@@ -49,20 +52,25 @@ let arrayCleaned = []
 /* function handleGtx */
 function handleGtx(e) {
     e.preventDefault()
-    let arrayGtx = inputGtx.value.split(" ")
+
+
+    let arrayGtxImperfected = inputGtx.value.split("\n")
+    let GtxRecomposed = arrayGtxImperfected.join(" ")
+    let arrayGtx = GtxRecomposed.split(" ")
+    
     arrayGtx.forEach(greekWord => {
         let cleanedNumber = greekWord.replace(/[1234567890]/, "")
         let cleanedParagraphSign = cleanedNumber.replace(/\[\]/, "")
         arrayCleaned.push(cleanedParagraphSign)
        
-    })
+    }) 
 
     console.log(arrayCleaned)
 
 
     arrayCleaned.forEach(greekWord => {
         let wordInserted = document.createElement("p")
-        wordInserted.style.display ="inline-block"
+    /*     wordInserted.style.display ="inline-block" */
         wordInserted.style.margin = "5px"
         wordInserted.classList.add("highlightable")
         wordInserted.innerHTML = greekWord
@@ -88,7 +96,6 @@ let highlightedGreekWords = null
 
 selectionButton.addEventListener("click", select)
 
-
 function select() {
     highlightableGreekWords = document.querySelectorAll(".highlightable")
     
@@ -102,24 +109,32 @@ function select() {
 
 makeDiagraph.addEventListener("click", createElementForDiagraph)
 
+
+resonanceElements = [] // !!!! array with all the resonance elements
+
 function createElementForDiagraph() {
     highlightedGreekWords = document.querySelectorAll(".highlighted")
-    for (const highlightedWord of highlightedGreekWords) {
+    for (const highlightedWord of highlightedGreekWords) {        
         highlightedWord.classList.add("resonance-element")
         highlightedWord.setAttribute("draggable", true)
         sidebarResonanceElements.appendChild(highlightedWord)
-        
-
         highlightedWord.addEventListener("dragstart", handleDragStart)
+        resonanceElements.push(highlightedWord)
     }
 
-    
+    resonanceElements.forEach(resonanceElement => {
+        resonanceElement.addEventListener("dblclick", () =>{
+            resonanceElement.classList.toggle("disp-block")
+        })
+
+    })
+
+    console.log(resonanceElements)
 }
 
 
 
 function handleDragStart(){
-    console.log("funziona")
     this.classList.add("already-used")
     dragItem = this
     console.log(dragItem)
@@ -285,6 +300,53 @@ cells.forEach(cell => {
 })
 
 
+/* adding new category */
+
+let diagraphRows = null
+let equalizerNewSpeaker = 0
+
+addColButton.addEventListener("click", () => {
+
+    /* equalizer */
+    equalizerNewSpeaker++
+    
+
+
+
+    const mainRow = document.querySelector(".main-row")
+    diagraphRows = document.querySelectorAll(".diagraph-row")
+
+    /* add a column to main row */
+    const newCateogryCol = document.createElement("td")
+    const newCategoryInput = document.createElement("input")
+    newCategoryInput.setAttribute("type", "text")
+    newCateogryCol.appendChild(newCategoryInput)
+    mainRow.appendChild(newCateogryCol)
+    
+
+
+
+    /* creation of new category script */
+    diagraphRows.forEach(diagraphRow => {
+        const newCol1 = document.createElement("td")
+        newCol1.classList.add("drag-area")
+        diagraphRow.insertAdjacentElement("afterbegin", newCol1)
+    })
+
+
+    const dragAreas = document.querySelectorAll(".drag-area")
+
+    dragAreas.forEach(dragArea => {
+            dragArea.addEventListener("dragenter", handleDragEnter)
+            dragArea.addEventListener("dragover", handleDragOver)
+            dragArea.addEventListener("drop", handleDrop)
+        })
+
+    
+
+})
+
+
 
 
 /* adding new speaker */
@@ -295,7 +357,7 @@ addRowButton.addEventListener("click", function(){
     tableDiagraph.appendChild(newRow)
 
 
-    for (let i = 0; i < columnsPerRow; i++) {
+    for (let i = 0; i < (Number(columnsPerRow) + equalizerNewSpeaker); i++) {
         const newCol = document.createElement("td")
         newCol.classList.add("drag-area")
         newRow.appendChild(newCol)  
@@ -322,35 +384,3 @@ addRowButton.addEventListener("click", function(){
 })
 
 
-/* adding new category */
-
-let diagraphRows = null
-
-addColButton.addEventListener("click", () => {
-    const mainRow = document.querySelector(".main-row")
-    diagraphRows = document.querySelectorAll(".diagraph-row")
-
-    /* aggiunge una colonna alla main row */
-    const newCateogryCol = document.createElement("td")
-    const newCategoryInput = document.createElement("input")
-    newCategoryInput.setAttribute("type", "text")
-    newCateogryCol.appendChild(newCategoryInput)
-    mainRow.appendChild(newCateogryCol)
-    
-
-    diagraphRows.forEach(diagraphRow => {
-        const newCol1 = document.createElement("td")
-        newCol1.classList.add("drag-area")
-        diagraphRow.insertAdjacentElement("afterbegin", newCol1)
-    })
-
-
-    const dragAreas = document.querySelectorAll(".drag-area")
-
-    dragAreas.forEach(dragArea => {
-            dragArea.addEventListener("dragenter", handleDragEnter)
-            dragArea.addEventListener("dragover", handleDragOver)
-            dragArea.addEventListener("drop", handleDrop)
-        })
-
-})

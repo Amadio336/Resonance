@@ -69,7 +69,7 @@
 
 #container-phase3{
     min-height: 100vh;
-    background-color: yellow;
+   
 }
 
 #main-sidebar{
@@ -86,6 +86,8 @@
 
 /* resonance elements */
 
+
+
 .resonance-element{
     background-color: violet;
     border: 1px solid purple;
@@ -95,9 +97,16 @@
     word-wrap: break-word;
     padding: 10px;
     display: inline-block;
-
-
+    
 }
+
+.disp-block{
+    display: block;
+}
+
+
+
+
 
 /* work area */
 
@@ -174,7 +183,7 @@ tr,th,td{
 
 #table-diagraph{
 min-width: 600px;
-min-height: 400px;
+min-height: 550px;
 overflow-x: hidden;
 
 }
