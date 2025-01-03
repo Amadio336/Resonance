@@ -11,7 +11,9 @@ const buttonSubmit = document.getElementById("button-submit") /* button that cle
 const containerPhase2 = document.getElementById("container-phase2")
 const visualizedText = document.getElementById("col-greek-text")
 const selectionButton = document.getElementById("selection-button")
+const selectionAllButton = document.getElementById("selection-all-button")
 const makeDiagraph = document.getElementById("make-diagraph")
+
 
 
 const sidebarResonanceElements = document.getElementById("main-sidebar")
@@ -20,10 +22,11 @@ const mainContainerTableTool = document.getElementById("maincontainer-table-tool
 const chooseTableButton = document.getElementById("choose-table-button")
 const addRowButton =document.getElementById("add-row")
 const addColButton =document.getElementById("add-col")
+const addSeparatorButton = document.getElementById("add-separator")
 
 
 /* drang and drop of the cells of diagraph - pahse 3 */
-function handleDragEnter(e) {
+/* function handleDragEnter(e) {
     e.preventDefault()
     console.log("element entered") 
 }
@@ -34,9 +37,19 @@ function handleDragOver(e) {
 }
 
 function handleDrop() {
+    dragItem.classList.remove("resonance-element", "already-used", "highlightable", "highlighted",)
+    dragItem.classList.add("on-table")
     this.append(dragItem)
-}
 
+    if (dragItem.getAttribute("data-separator") =="separator") {
+        newSeparator.classList.add("separator")
+        
+        
+    }
+
+    
+}
+ */
 
 
 
@@ -89,7 +102,7 @@ function handleGtx(e) {
 /* phase 2*/
 
 
-/* making greek words highlightable  */
+/* making greek words highlightable > action on the button SelectionButton  */
 
 let highlightableGreekWords = null
 let highlightedGreekWords = null
@@ -105,26 +118,55 @@ function select() {
 }
 
 
-/* making the resonance elements for the diagraph */
 
-makeDiagraph.addEventListener("click", createElementForDiagraph)
+/* button to select all elements in phase2 > action on the button selectAllButton */
+selectionAllButton.addEventListener("click", selectAllElements)
+
+function selectAllElements() {
+    highlightableGreekWords = document.querySelectorAll(".highlightable")
+
+    highlightableGreekWords.forEach((highlightableGreekWord) =>{
+        highlightableGreekWord.classList.add("highlighted")
+    })
+
+    
+}
+
+
 
 
 resonanceElements = [] // !!!! array with all the resonance elements
 
+
+
+
+
+/* making the resonance elements for the diagraph > action on button CreateDiagraph */
+
+makeDiagraph.addEventListener("click", createElementForDiagraph)
+
 function createElementForDiagraph() {
     highlightedGreekWords = document.querySelectorAll(".highlighted")
     for (const highlightedWord of highlightedGreekWords) {        
-        highlightedWord.classList.add("resonance-element")
-        highlightedWord.setAttribute("draggable", true)
-        sidebarResonanceElements.appendChild(highlightedWord)
-        highlightedWord.addEventListener("dragstart", handleDragStart)
+        highlightedWord.classList.add("selected")
+/*         highlightedWord.setAttribute("draggable", true)  se vuoi rendere draggabile anche gli elementi nella phase 2 riparti da qui*/
         resonanceElements.push(highlightedWord)
     }
 
+
+
     resonanceElements.forEach(resonanceElement => {
-        resonanceElement.addEventListener("dblclick", () =>{
-            resonanceElement.classList.toggle("disp-block")
+
+        const elementOnSidebar = document.createElement("p")
+        elementOnSidebar.textContent = resonanceElement.textContent
+        elementOnSidebar.classList.add("resonance-element")
+        elementOnSidebar.setAttribute("draggable", true)
+        elementOnSidebar.addEventListener("dragstart", handleDragStart)
+        sidebarResonanceElements.appendChild(elementOnSidebar)
+      
+
+        elementOnSidebar.addEventListener("dblclick", () =>{
+            elementOnSidebar.classList.toggle("disp-block")
         })
 
     })
@@ -137,10 +179,28 @@ function createElementForDiagraph() {
 function handleDragStart(){
     this.classList.add("already-used")
     dragItem = this
-    console.log(dragItem)
 
 }
 
+
+
+
+/* --------------------------------------------- */
+/* add separator function */
+
+addSeparatorButton.addEventListener("click", addSeparatorFunction)
+
+let newSeparator = null
+
+function addSeparatorFunction() {
+    newSeparator = document.createElement("div")
+    newSeparator.classList.add("resonance-element")
+    newSeparator.setAttribute("draggable", true)
+    newSeparator.setAttribute("data-separator", "separator")
+    newSeparator.addEventListener("dragstart", handleDragStart)
+    sidebarResonanceElements.appendChild(newSeparator)  
+}
+/* --------------------------------------------- */
 
 
 
@@ -223,20 +283,34 @@ cells.forEach(cell => {
                       dragArea.addEventListener("drop", handleDrop)
                   })
   
-                     /*  function handleDragEnter(e) {
-                          e.preventDefault()
-                          console.log("element entered") 
-                      }
+                  
+                        /* drang and drop of the cells of diagraph - pahse 3 */
+                        function handleDragEnter(e) {
+                            e.preventDefault()
+                            console.log("element entered") 
+                        }
+
+                        function handleDragOver(e) {
+                            e.preventDefault()
+                            console.log("dragover") 
+                        }
+
+                        function handleDrop() {
+                            dragItem.classList.remove("resonance-element", "already-used", "highlightable", "highlighted",)
+                            dragItem.classList.add("on-table")
+                            this.append(dragItem)
+
+                            if (dragItem.getAttribute("data-separator") =="separator") {
+                                newSeparator.classList.add("separator")
+                                
+                                
+                            }
+
+                            
+                        }
   
-                      function handleDragOver(e) {
-                          e.preventDefault()
-                          console.log("dragover") 
-                      }
-  
-                      function handleDrop() {
-                          this.append(dragItem)
-                      }
-                    */
+
+
                     } 
                 
         /* creation of speakers columns */
