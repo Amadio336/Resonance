@@ -194,13 +194,18 @@
 
 tr,th,td{
     border: 1px solid red;
+    
 
 }
 
+
+
+
 #table-diagraph{
-min-width: 600px;
-min-height: 550px;
-overflow-x: hidden;
+width: 100%;
+min-height: 600px;
+overflow-x: scroll;
+overflow-y: scroll;
 
 }
 

@@ -23,10 +23,11 @@ const chooseTableButton = document.getElementById("choose-table-button")
 const addRowButton =document.getElementById("add-row")
 const addColButton =document.getElementById("add-col")
 const addSeparatorButton = document.getElementById("add-separator")
+const sliderSizeTable =  document.getElementById("table-size-slider")
 
 
 /* drang and drop of the cells of diagraph - pahse 3 */
-/* function handleDragEnter(e) {
+ function handleDragEnter(e) {
     e.preventDefault()
     console.log("element entered") 
 }
@@ -49,8 +50,7 @@ function handleDrop() {
 
     
 }
- */
-
+ 
 
 
 let dragItem = null
@@ -202,6 +202,11 @@ function addSeparatorFunction() {
 }
 /* --------------------------------------------- */
 
+
+
+
+
+/* TABLE SECTION */
 
 
 
@@ -458,3 +463,18 @@ addRowButton.addEventListener("click", function(){
 })
 
 
+
+/* handling of slider for table size */
+
+sliderSizeTable.addEventListener("click", () => {
+    const diagraphRows = document.querySelectorAll(".diagraph-row")
+    console.log(diagraphRows)
+    let tableSize = sliderSizeTable.value
+    
+    diagraphRows.forEach((diagraphRow) =>{
+      
+         diagraphRow.style.height = `${tableSize}px`
+    })
+
+
+})
