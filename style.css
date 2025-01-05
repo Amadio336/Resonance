@@ -223,7 +223,11 @@ td{
 
 
 
-/* class "used", that says the resonant element is used  */
-.already-used{
-   background-color: slateblue;
+
+.sortable-selected{   background-color: slateblue;}
+
+
+
+.salmon{
+    background-color: salmon;
 }

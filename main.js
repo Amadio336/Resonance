@@ -48,13 +48,21 @@ function handleDragOver(e) {
 
 
 function handleDrop() {
+
+    console.log("drop")
  
     if (value == 0) {
-        
-        dragItem.classList.remove("resonance-element", "already-used", "highlightable", "highlighted",)
-        dragItem.classList.add("on-table")
-        
+
         this.appendChild(dragItem)
+        
+        const children = this.children
+        console.log(children)
+        Array.from(children).forEach(child => {
+            child.className = "on-table"
+
+        })
+        
+        
 
         if (dragItem.getAttribute("data-separator") =="separator") {
             newSeparator.classList.add("separator")    
@@ -64,6 +72,8 @@ function handleDrop() {
 
         
     }
+
+
 
     
    
@@ -197,9 +207,7 @@ function createElementForDiagraph() {
 
 
 function handleDragStart(){
-    this.classList.add("already-used")
     dragItem = this
-
 }
 
 
@@ -209,12 +217,13 @@ function handleDragStart(){
 
 
 /* make the sidebar resonace element dynamic */
-let SortableSidebar = new Sortable(sidebarResonanceElements, 
-    {  swapThreshold: 1,
-        animation: 150,
-        multiDrag: true,
-	    selectedClass: "sortable-selected",
-	   
+let SortableSidebar = new Sortable(sidebarResonanceElements, {  
+    multiDrag: true,
+    selectedClass: "sortable-selected",
+    animation: 150,
+    group: "shared",
+
+   
     
     })
 
@@ -346,11 +355,13 @@ cells.forEach(cell => {
                    dragArea.addEventListener("dragenter", handleDragEnter)
                    dragArea.addEventListener("dragover", handleDragOver)
                    dragArea.addEventListener("drop", handleDrop)
-                   
+                    
                    
                    const sortableDragArea = new Sortable(dragArea, {
-                     swapThreshold: 1,
-                     animation: 150
+                     group: "shared",
+                     animation: 150,
+
+                    
                    }) 
 
 
@@ -465,12 +476,12 @@ cells.forEach(cell => {
 })
 
 
-/* adding new category */
+
+/* ADDING NEW CATEGORY */
 
 let diagraphRows = null
 let equalizerNewSpeaker = 0
 
-/* ADDING NEW CATEGORY */
 addColButton.addEventListener("click", () => {
 
     /* equalizer */
@@ -503,6 +514,7 @@ addColButton.addEventListener("click", () => {
     dragAreas.forEach(dragArea => {
         
         const sortableDragArea = new Sortable(dragArea, {
+            group: "shared",
             swapThreshold: 1,
             animation: 150
           }) 
@@ -541,11 +553,11 @@ addRowButton.addEventListener("click", function(){
     dragAreas.forEach(dragArea => {
 
         const sortableDragArea = new Sortable(dragArea, {
+            group:"shared",
             swapThreshold: 1,
-            animation: 150
+            animation: 150,
+            
           }) 
-
-
 
 
 
