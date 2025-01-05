@@ -1,3 +1,7 @@
+
+
+
+
 /* phase 1 */
 
 
@@ -155,6 +159,7 @@ function createElementForDiagraph() {
 
 
 
+
     resonanceElements.forEach(resonanceElement => {
 
         const elementOnSidebar = document.createElement("p")
@@ -181,6 +186,24 @@ function handleDragStart(){
     dragItem = this
 
 }
+
+
+
+
+
+
+
+/* make the sidebar resonace element dynamic */
+let SortableSidebar = new Sortable(sidebarResonanceElements, 
+    {  swapThreshold: 1,
+        animation: 150,
+        multiDrag: true,
+	    selectedClass: "sortable-selected",
+	   
+    
+    })
+
+
 
 
 
@@ -281,29 +304,47 @@ cells.forEach(cell => {
 
                 /* creation of El on all the drag areas and related functions */
                const dragAreas = document.querySelectorAll(".drag-area")
+               dragAreas.addEventListener("dragenter", handleDragEnter)
+               dragAreas.addEventListener("dragover", handleDragOver)
+               dragAreas.addEventListener("drop", handleDrop)
+               
+               
 
-              dragAreas.forEach(dragArea => {
+             /*  dragAreas.forEach(dragArea => {
+
+                      const sortableDragArea = new Sortable(dragArea, {
+                        swapThreshold: 1,
+                        animation: 150
+                      }) 
+
                       dragArea.addEventListener("dragenter", handleDragEnter)
                       dragArea.addEventListener("dragover", handleDragOver)
                       dragArea.addEventListener("drop", handleDrop)
-                  })
+                      
+
+
+
+                  }) */
   
                   
                         /* drang and drop of the cells of diagraph - pahse 3 */
                         function handleDragEnter(e) {
                             e.preventDefault()
-                            console.log("element entered") 
+                           
                         }
 
                         function handleDragOver(e) {
                             e.preventDefault()
-                            console.log("dragover") 
+                            
                         }
 
+                      
                         function handleDrop() {
+
                             dragItem.classList.remove("resonance-element", "already-used", "highlightable", "highlighted",)
                             dragItem.classList.add("on-table")
-                            this.append(dragItem)
+                            this.appendChild(dragItem)
+                   
 
                             if (dragItem.getAttribute("data-separator") =="separator") {
                                 newSeparator.classList.add("separator")
@@ -324,7 +365,7 @@ cells.forEach(cell => {
          const speakerInput = document.createElement("input")
          speakerInput.setAttribute("type", "text")
          tr.appendChild(speakerColumn) 
-         speakerColumn.appendChild(speakerInput)
+         speakerColumn.appendChild(speakerInput) 
                 
         
                 
@@ -416,6 +457,14 @@ addColButton.addEventListener("click", () => {
     const dragAreas = document.querySelectorAll(".drag-area")
 
     dragAreas.forEach(dragArea => {
+
+
+        const sortableDragArea = new Sortable(dragArea, {
+            swapThreshold: 1,
+            animation: 150
+          }) 
+
+
             dragArea.addEventListener("dragenter", handleDragEnter)
             dragArea.addEventListener("dragover", handleDragOver)
             dragArea.addEventListener("drop", handleDrop)
@@ -447,6 +496,16 @@ addRowButton.addEventListener("click", function(){
     const dragAreas = document.querySelectorAll(".drag-area")
 
     dragAreas.forEach(dragArea => {
+
+        const sortableDragArea = new Sortable(dragArea, {
+            swapThreshold: 1,
+            animation: 150
+          }) 
+
+
+
+
+
             dragArea.addEventListener("dragenter", handleDragEnter)
             dragArea.addEventListener("dragover", handleDragOver)
             dragArea.addEventListener("drop", handleDrop)
