@@ -31,27 +31,42 @@ const sliderSizeTable =  document.getElementById("table-size-slider")
 
 
 /* drang and drop of the cells of diagraph - pahse 3 */
- function handleDragEnter(e) {
+
+
+
+
+function handleDragEnter(e) {
     e.preventDefault()
-    console.log("element entered") 
+   
 }
 
 function handleDragOver(e) {
     e.preventDefault()
-    console.log("dragover") 
+    
 }
 
-function handleDrop() {
-    dragItem.classList.remove("resonance-element", "already-used", "highlightable", "highlighted",)
-    dragItem.classList.add("on-table")
-    this.append(dragItem)
 
-    if (dragItem.getAttribute("data-separator") =="separator") {
-        newSeparator.classList.add("separator")
+
+function handleDrop() {
+ 
+    if (value == 0) {
         
+        dragItem.classList.remove("resonance-element", "already-used", "highlightable", "highlighted",)
+        dragItem.classList.add("on-table")
+        
+        this.appendChild(dragItem)
+
+        if (dragItem.getAttribute("data-separator") =="separator") {
+            newSeparator.classList.add("separator")    
+        }
+
+    } else {
+
         
     }
 
+    
+   
     
 }
  
@@ -246,6 +261,23 @@ chooseTableButton.addEventListener("click", () => {
 let row = null
 let columnsPerRow = null
 
+const modifier = document.getElementById("modifier")
+const unlockButton = document.getElementById("unlock-diagraph")
+
+
+let value = 0
+
+
+modifier.addEventListener("click", ()=> {
+    value = 1
+    console.log("bloocato")
+
+})
+unlockButton.addEventListener("click", ()=>{
+    value= 0
+    console.log("accessibile")
+})
+
 
 
 //  table tool and costruction of table
@@ -276,11 +308,12 @@ cells.forEach(cell => {
            mainRow.appendChild(categoryColumn)
            categoryColumn.appendChild(CategoryInput)
         }
-
-
-
-
-
+        
+        
+        
+        
+        
+       
 
 
        
@@ -303,32 +336,30 @@ cells.forEach(cell => {
 
 
                 /* creation of El on all the drag areas and related functions */
-               const dragAreas = document.querySelectorAll(".drag-area")
-               dragAreas.addEventListener("dragenter", handleDragEnter)
-               dragAreas.addEventListener("dragover", handleDragOver)
-               dragAreas.addEventListener("drop", handleDrop)
-               
+              
+                let dragAreas = document.querySelectorAll(".drag-area")
                
 
-             /*  dragAreas.forEach(dragArea => {
+               dragAreas.forEach(dragArea => {
 
-                      const sortableDragArea = new Sortable(dragArea, {
-                        swapThreshold: 1,
-                        animation: 150
-                      }) 
+                   
+                   dragArea.addEventListener("dragenter", handleDragEnter)
+                   dragArea.addEventListener("dragover", handleDragOver)
+                   dragArea.addEventListener("drop", handleDrop)
+                   
+                   
+                   const sortableDragArea = new Sortable(dragArea, {
+                     swapThreshold: 1,
+                     animation: 150
+                   }) 
 
-                      dragArea.addEventListener("dragenter", handleDragEnter)
-                      dragArea.addEventListener("dragover", handleDragOver)
-                      dragArea.addEventListener("drop", handleDrop)
-                      
 
 
-
-                  }) */
+                  }) 
   
                   
                         /* drang and drop of the cells of diagraph - pahse 3 */
-                        function handleDragEnter(e) {
+                     /*    function handleDragEnter(e) {
                             e.preventDefault()
                            
                         }
@@ -338,46 +369,60 @@ cells.forEach(cell => {
                             
                         }
 
-                      
+                     
+
                         function handleDrop() {
-
-                            dragItem.classList.remove("resonance-element", "already-used", "highlightable", "highlighted",)
-                            dragItem.classList.add("on-table")
-                            this.appendChild(dragItem)
-                   
-
-                            if (dragItem.getAttribute("data-separator") =="separator") {
-                                newSeparator.classList.add("separator")
+                         
+                            if (value == 0) {
                                 
+                                dragItem.classList.remove("resonance-element", "already-used", "highlightable", "highlighted",)
+                                dragItem.classList.add("on-table")
                                 
+                                this.appendChild(dragItem)
+    
+                                if (dragItem.getAttribute("data-separator") =="separator") {
+                                    newSeparator.classList.add("separator")    
+                                }
+
+                            } else {
+
                             }
 
                             
-                        }
-  
-
-
+                           
+                            
+                        } */
+                        
+                        
+                        
                     } 
-                
-        /* creation of speakers columns */
-         const speakerColumn = document.createElement("td")
-         speakerColumn.classList.add("prova")
-         const speakerInput = document.createElement("input")
-         speakerInput.setAttribute("type", "text")
-         tr.appendChild(speakerColumn) 
-         speakerColumn.appendChild(speakerInput) 
-                
-        
-                
+                    
+                    /* creation of speakers columns */
+                    const speakerColumn = document.createElement("td")
+                    speakerColumn.classList.add("prova")
+                    const speakerInput = document.createElement("input")
+                    speakerInput.setAttribute("type", "text")
+                    tr.appendChild(speakerColumn) 
+                    speakerColumn.appendChild(speakerInput)  
+                    
+
+                 
+                    
+                    
                 }
-
-
-
-      
-       
+                
+                
+                
+                
+                
+                
+            }) 
+        })
         
-}) 
-})
+        
+      
+
+ 
 
 
 
@@ -425,13 +470,12 @@ cells.forEach(cell => {
 let diagraphRows = null
 let equalizerNewSpeaker = 0
 
+/* ADDING NEW CATEGORY */
 addColButton.addEventListener("click", () => {
 
     /* equalizer */
     equalizerNewSpeaker++
     
-
-
 
     const mainRow = document.querySelector(".main-row")
     diagraphRows = document.querySelectorAll(".diagraph-row")
@@ -452,25 +496,24 @@ addColButton.addEventListener("click", () => {
         newCol1.classList.add("drag-area")
         diagraphRow.insertAdjacentElement("afterbegin", newCol1)
     })
-
-
+    
     const dragAreas = document.querySelectorAll(".drag-area")
-
+    
+    
     dragAreas.forEach(dragArea => {
-
-
+        
         const sortableDragArea = new Sortable(dragArea, {
             swapThreshold: 1,
             animation: 150
           }) 
-
-
+            
             dragArea.addEventListener("dragenter", handleDragEnter)
             dragArea.addEventListener("dragover", handleDragOver)
             dragArea.addEventListener("drop", handleDrop)
-        })
+        
+        
 
-    
+        })
 
 })
 
