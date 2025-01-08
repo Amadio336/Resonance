@@ -1,2 +1,2 @@
 # Resonance
-an app that help individuate dialogic syntax in ancient greek texts
+an app that helps individuate dialogic syntax in ancient greek texts
