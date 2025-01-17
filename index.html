@@ -43,15 +43,16 @@
 
     <div id="container-phase2" class="container-fluid hide">
       <div class="row" style="border: 5px blue solid">
+      
         <!-- column with greek text selectable -->
         <div id="col-greek-text" class="col-9 bd"></div>
 
         <!-- column with toolbar -->
-        <div class="col-3 bd">
+        <div id="toolbar-phase2" class="col-3 bd">
+      
           <!-- column with features to analyze text  -->
           <div class="col-12 bd">
             <p>Toolbar</p>
-
             <button id="selection-button">Passa alla selezione</button>
             <button id="selection-all-button">Seleziona tutti</button>
           </div>
@@ -60,6 +61,15 @@
           <div class="col-12 bd">
             <button id="make-diagraph">Crea un diagrafo</button>
           </div>
+
+        
+          <!-- area to look and modify values of greek words -->
+           <div id="gkw-values-area" class="gkw-values-area"> 
+              <h5 id="beginning-values"> Clicca sulle parole e modifica i tag</h5>
+              <button id="save-gkw-values"> Salva</button>
+            </div>
+
+
         </div>
       </div>
     </div>
