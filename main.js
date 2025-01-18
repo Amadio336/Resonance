@@ -186,25 +186,28 @@ closeGkwValuesButton.addEventListener("click", ()=>{
 
 SearchBarTag.addEventListener("keyup", handleSearchByTag)
 
- function handleSearchByTag(){
+ function handleSearchByTag(event){
     let searchBarTagValue = SearchBarTag.value
 
-    objectArraygGkwWithValues.forEach((objectArraygGkwWithValue) =>{
-        if (!searchBarTagValue == "") {
-          
-            if (objectArraygGkwWithValue.matrice.includes(searchBarTagValue)) {
-                const indexWordBold = objectArraygGkwWithValues.indexOf(objectArraygGkwWithValue)
-                console.log(indexWordBold)
-                highlightableGreekWords[indexWordBold].classList.add("bold")
-            } 
+    if (event.key === "Enter") {
+      objectArraygGkwWithValues.forEach((objectArraygGkwWithValue) =>{
+          if (!searchBarTagValue == "") {
             
-        } else if (searchBarTagValue == ""){
-           highlightableGreekWords.forEach((highlightableGreekWord) => {
-            highlightableGreekWord.classList.remove("bold")
-           })
-
-        }
-    })
+              if (objectArraygGkwWithValue.matrice.includes(searchBarTagValue)) {
+                  const indexWordBold = objectArraygGkwWithValues.indexOf(objectArraygGkwWithValue)
+                  console.log(indexWordBold)
+                  highlightableGreekWords[indexWordBold].classList.add("bold")
+              } 
+              
+          } else if (searchBarTagValue == ""){
+             highlightableGreekWords.forEach((highlightableGreekWord) => {
+              highlightableGreekWord.classList.remove("bold")
+             })
+  
+          }
+      })
+      
+    }
 
 
  }
