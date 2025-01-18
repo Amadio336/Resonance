@@ -15,13 +15,13 @@ const selectionAllButton = document.getElementById("selection-all-button");
 const gkwValuesArea = document.getElementById("gkw-values-area");
 const beginningValues = document.getElementById("beginning-values");
 const saveGkwValuesButton = document.getElementById("save-gkw-values");
+const closeGkwValuesButton = document.getElementById("close-gkw-values")
+const SearchBarTag = document.getElementById("search-by-tag")
 const makeDiagraph = document.getElementById("make-diagraph");
 
 const sidebarResonanceElements = document.getElementById("main-sidebar");
 const tableDiagraph = document.getElementById("table-diagraph");
-const mainContainerTableTool = document.getElementById(
-  "maincontainer-table-tool"
-);
+const mainContainerTableTool = document.getElementById("maincontainer-table-tool");
 const chooseTableButton = document.getElementById("choose-table-button");
 const addRowButton = document.getElementById("add-row");
 const addColButton = document.getElementById("add-col");
@@ -63,10 +63,10 @@ let dragItem = null;
 
 buttonSubmit.addEventListener("click", handleGtx);
 
-/* class greekword */
+/* OOP class greekword ------------------------------------ */
 
 class GreekWord {
-  constructor(word, matrice = "non specificato") {
+  constructor(word, matrice = "") {
     this.word = word;
     this.matrice = matrice;
   }
@@ -80,13 +80,19 @@ class GreekWord {
   }
 }
 
+
+/* --------------------------- */
+
 let arrayCleaned = [];
 let objectArraygGkwWithValues = [];
 
 let highlightableGreekWords = null;
 let highlightedGreekWords = null;
 
-/* function handleGtx */
+
+
+
+/* function handleGtx > cleans greek-text*/
 function handleGtx(e) {
   e.preventDefault();
 
@@ -119,47 +125,9 @@ function handleGtx(e) {
     highlightableGreekWord.addEventListener("click", handleGkwValues);
   });
 
-  function handleGkwValues() {
-
-    gkwValuesArea.classList.add("gkw-values-area-appear")
-
-
-
-    beginningValues.innerHTML = "";
-    indexgkw = Array.from(highlightableGreekWords).indexOf(this);
-    beginningValues.insertAdjacentHTML(
-      "beforeend",
-      `<p class="values"> 
-             
-                Parola: ${objectArraygGkwWithValues[indexgkw].word} </br>
-                Matrice: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" />
-
-
-    
-                
-                
-                </p>`
-    );
-
-    inputMatrice = document.getElementById("input-matrice");
-  }
-
-  /* button to save greek words values */
-  saveGkwValuesButton.addEventListener("click", () => {
-    highlightableGreekWords.forEach((highlightableGreekWord) => {
-      let matriceValue = inputMatrice.value;
-      objectArraygGkwWithValues[indexgkw].matrice = matriceValue;
-
-
-   
-    
-  });
  
-  console.log(objectArraygGkwWithValues);
 
 
-
-  });
 
 
 
@@ -168,6 +136,78 @@ function handleGtx(e) {
   containerPhase2.style.display = "block";
 }
 
+
+/* sava in objects the values of the greek words given by the user */
+
+function handleGkwValues() {
+    gkwValuesArea.classList.add("gkw-values-area-appear")
+    beginningValues.innerHTML = "";
+    indexgkw = Array.from(highlightableGreekWords).indexOf(this);
+    beginningValues.insertAdjacentHTML(
+      "beforeend",  
+      `<p class="values"> 
+             
+                Parola: ${objectArraygGkwWithValues[indexgkw].word} </br>
+                Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" />
+                </p>`
+    );            
+
+    inputMatrice = document.getElementById("input-matrice");
+
+    saveGkwValuesButton.addEventListener("click", () => {
+        highlightableGreekWords.forEach((highlightableGreekWord) => {
+          let matriceValue = inputMatrice.value;  
+          objectArraygGkwWithValues[indexgkw].matrice = matriceValue;
+    
+    
+       
+        
+      });    
+     
+      console.log(objectArraygGkwWithValues);
+    
+      });
+    
+  }    
+  
+
+
+
+/* close the gkws values area */
+
+closeGkwValuesButton.addEventListener("click", ()=>{
+    gkwValuesArea.classList.remove("gkw-values-area-appear")
+})
+
+
+
+
+/* searchbar by tag */
+
+SearchBarTag.addEventListener("keyup", handleSearchByTag)
+
+ function handleSearchByTag(){
+    let searchBarTagValue = SearchBarTag.value
+
+    objectArraygGkwWithValues.forEach((objectArraygGkwWithValue) =>{
+        if (!searchBarTagValue == "") {
+          
+            if (objectArraygGkwWithValue.matrice.includes(searchBarTagValue)) {
+                const indexWordBold = objectArraygGkwWithValues.indexOf(objectArraygGkwWithValue)
+                console.log(indexWordBold)
+                highlightableGreekWords[indexWordBold].classList.add("bold")
+            } 
+            
+        } else if (searchBarTagValue == ""){
+           highlightableGreekWords.forEach((highlightableGreekWord) => {
+            highlightableGreekWord.classList.remove("bold")
+           })
+
+        }
+    })
+
+
+ }
 
 
 
@@ -181,6 +221,12 @@ function handleGtx(e) {
 selectionButton.addEventListener("click", select);
 
 function select() {
+
+   highlightableGreekWords.forEach((highlightableGreekWord) =>{
+    highlightableGreekWord.removeEventListener("click", handleGkwValues)
+   }) 
+
+
   for (const highlightableGreekWord of highlightableGreekWords) {
     highlightableGreekWord.addEventListener("click", () => {
       highlightableGreekWord.classList.add("highlighted");
