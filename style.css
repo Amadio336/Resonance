@@ -40,12 +40,26 @@
     background-color: green;
 }
 
+#wrapper-greek-text{
+    min-height: 100vh;
+    background-color: orange;
+
+}
+
+
 #col-greek-text{
     background-color: orange;
-    min-height: 100vh;
     padding: 50px;
-    display: flex;
-    flex-wrap: wrap;
+    overflow: scroll;
+    resize: both;
+
+}
+
+
+.highlightable{
+    max-height: 20px;
+    display: inline-block;
+    
 }
 
 

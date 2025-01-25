@@ -96,6 +96,7 @@ let highlightedGreekWords = null;
 function handleGtx(e) {
   e.preventDefault();
 
+
   let arrayGtxImperfected = inputGtx.value.split("\n");
   let GtxRecomposed = arrayGtxImperfected.join(" ");
   let arrayGtx = GtxRecomposed.split(" ");
