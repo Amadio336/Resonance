@@ -3,10 +3,12 @@
 /*  take the elements */
 
 const inputGtx = document.getElementById("input-gtx"); /* input of greek text */
-const buttonSubmit =
-  document.getElementById(
-    "button-submit"
-  ); /* button that cleans text e create selectable text */
+const buttonSubmit = document.getElementById("button-submit");
+const poetryCheckbox = document.getElementById("switch-poetry")
+const proseCheckbox = document.getElementById("switch-prose")
+const specifierMode = document.getElementById("specifier-mode")
+
+
 
 const containerPhase2 = document.getElementById("container-phase2");
 const visualizedText = document.getElementById("col-greek-text");
@@ -59,6 +61,38 @@ function handleDrop() {
 
 let dragItem = null;
 
+let poesiaValue = 0
+
+/* verifier poetry mode */
+
+function specifierProseOrPoetry() {
+  if (poesiaValue == 0) {
+    specifierMode.textContent = "Modalità Prosa"
+    
+  } else {
+    specifierMode.textContent = "Modalità Poesia"
+    
+  }
+  
+}
+
+specifierProseOrPoetry()
+
+
+poetryCheckbox.addEventListener("click", ()=> {
+  poesiaValue = 1
+  specifierProseOrPoetry()
+})
+
+proseCheckbox.addEventListener("click", ()=>{
+  poesiaValue = 0
+  specifierProseOrPoetry()
+})
+
+
+
+
+
 /* cleaning greek text  */
 
 buttonSubmit.addEventListener("click", handleGtx);
@@ -93,7 +127,7 @@ let highlightedGreekWords = null;
 let indexgkw;
 let inputMatrice;
 
-let poesiaValue = 1
+
 
 
 /* function handleGtx > cleans greek-text*/
