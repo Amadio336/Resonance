@@ -90,42 +90,74 @@ let highlightableGreekWords = null;
 let highlightedGreekWords = null;
 
 
+let indexgkw;
+let inputMatrice;
+
+let poesiaValue = 1
 
 
 /* function handleGtx > cleans greek-text*/
 function handleGtx(e) {
   e.preventDefault();
+  
+  if (poesiaValue == 0) {
+    
+    let arrayGtxImperfected = inputGtx.value.split("\n");
+    let GtxRecomposed = arrayGtxImperfected.join(" ");
+    let arrayGtx = GtxRecomposed.split(" ");
+    
+    arrayGtx.forEach((greekWord) => {
+      let cleanedNumber = greekWord.replace(/[1234567890]/, "");
+      let cleanedParagraphSign = cleanedNumber.replace(/\[\]/, "");
+      arrayCleaned.push(cleanedParagraphSign);
+    });
+    
+    /* adding words in orange container of the phase 2 */
+    arrayCleaned.forEach((greekWord) => {
+      let newWord = new GreekWord(greekWord);
+      newWord.createWordInserted();
+      objectArraygGkwWithValues.push(newWord);
+    });
+    
+    console.log(objectArraygGkwWithValues);
+    
+    /* showing gkws values clicking on a sigle greek word in orange container */
+    
+    highlightableGreekWords = document.querySelectorAll(".highlightable");
+    highlightableGreekWords.forEach((highlightableGreekWord) => {
+      highlightableGreekWord.addEventListener("click", handleGkwValues);
+    });
+    
+  } else if(poesiaValue == 1) {
 
+    let arrayPoetry = inputGtx.value.split("\n"); //arrayPoetry is an array in which every element is a line of the poetry
 
-  let arrayGtxImperfected = inputGtx.value.split("\n");
-  let GtxRecomposed = arrayGtxImperfected.join(" ");
-  let arrayGtx = GtxRecomposed.split(" ");
+    arrayPoetry.forEach((line) =>{
+      const lineSpace = document.createElement("div") // div containing the whole line
+      lineSpace.style.display = "block"
+      const singleLines = line.split(" ") // array containing every word of a line
+     
+      singleLines.forEach((singleLine) => {
+        const newLine = document.createElement("p")
+        newLine.textContent = singleLine
+        newLine.style.display = "inline-block"
+        newLine.classList.add("highlightable")
+        lineSpace.appendChild(newLine)
+      })
 
-  arrayGtx.forEach((greekWord) => {
-    let cleanedNumber = greekWord.replace(/[1234567890]/, "");
-    let cleanedParagraphSign = cleanedNumber.replace(/\[\]/, "");
-    arrayCleaned.push(cleanedParagraphSign);
-  });
+      visualizedText.appendChild(lineSpace)
 
-  /* adding words in orange container of the phase 2 */
-  arrayCleaned.forEach((greekWord) => {
-    let newWord = new GreekWord(greekWord);
-    newWord.createWordInserted();
-    objectArraygGkwWithValues.push(newWord);
-  });
+    })
 
-  console.log(objectArraygGkwWithValues);
-
-  /* showing gkws values clicking on a sigle greek word in orange container */
-
-  highlightableGreekWords = document.querySelectorAll(".highlightable");
-  let indexgkw;
-  let inputMatrice;
-
-  highlightableGreekWords.forEach((highlightableGreekWord) => {
+    highlightableGreekWords = document.querySelectorAll(".highlightable");
+   
+   
+/*     highlightableGreekWords.forEach((highlightableGreekWord) => {
     highlightableGreekWord.addEventListener("click", handleGkwValues);
-  });
+    }); */
+    
 
+  }
  
 
 
@@ -141,6 +173,7 @@ function handleGtx(e) {
 /* sava in objects the values of the greek words given by the user */
 
 function handleGkwValues() {
+  
     gkwValuesArea.classList.add("gkw-values-area-appear")
     beginningValues.innerHTML = "";
     indexgkw = Array.from(highlightableGreekWords).indexOf(this);
@@ -168,7 +201,7 @@ function handleGkwValues() {
       console.log(objectArraygGkwWithValues);
     
       });
-    
+     
   }    
   
 
