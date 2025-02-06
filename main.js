@@ -1,3 +1,8 @@
+import { sortedArr } from "./APIs.js"
+
+
+
+
 /* phase 1 */
 
 /*  take the elements */
@@ -130,7 +135,7 @@ let inputMatrice;
 
 
 
-/* function handleGtx > cleans greek-text*/
+/* function handleGtx > this function cleans greek text and creates element for the phase 2  */
 function handleGtx(e) {
   e.preventDefault();
   
@@ -152,6 +157,8 @@ function handleGtx(e) {
       newWord.createWordInserted();
       objectArraygGkwWithValues.push(newWord);
     });
+
+
     
     console.log(objectArraygGkwWithValues);
     
@@ -204,7 +211,7 @@ function handleGtx(e) {
 }
 
 
-/* sava in objects the values of the greek words given by the user */
+/* savae in an object the values of the greek words given by the user */
 
 function handleGkwValues() {
   
@@ -213,11 +220,16 @@ function handleGkwValues() {
     indexgkw = Array.from(highlightableGreekWords).indexOf(this);
     beginningValues.insertAdjacentHTML(
       "beforeend",  
-      `<p class="values"> 
+      `<div class="values"> 
              
-                Parola: ${objectArraygGkwWithValues[indexgkw].word} </br>
-                Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" />
-                </p>`
+              <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+              <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+              <p> Category: ${sortedArr[indexgkw].category} </p>
+              <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+
+
+      </div>`
+
     );            
 
     inputMatrice = document.getElementById("input-matrice");
@@ -226,6 +238,7 @@ function handleGkwValues() {
         highlightableGreekWords.forEach((highlightableGreekWord) => {
           let matriceValue = inputMatrice.value;  
           objectArraygGkwWithValues[indexgkw].matrice = matriceValue;
+          
     
     
        
@@ -315,8 +328,7 @@ function selectAllElements() {
     highlightableGreekWord.classList.add("highlighted");
   });
 }
-
-resonanceElements = []; // !!!! array with all the resonance elements
+ let resonanceElements = []; // !!!! array with all the resonance elements
 
 /* making the resonance elements for the diagraph > action on button CreateDiagraph */
 
@@ -402,7 +414,7 @@ unlockButton.addEventListener("click", () => {
 
 //  table tool and costruction of table
 
-cells = document.querySelectorAll(".cell"); // selection of the cells
+let cells = document.querySelectorAll(".cell"); // selection of the cells
 
 cells.forEach((cell) => {
   cell.addEventListener("click", () => {
@@ -624,3 +636,7 @@ sliderSizeTable.addEventListener("click", () => {
     diagraphRow.style.height = `${tableSize}px`;
   });
 });
+
+
+
+
