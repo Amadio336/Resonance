@@ -230,9 +230,9 @@ function handleGkwValues() {
        <p> Categoria: ${sortedArr[indexgkw].category} </p>
        <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
        <p> Declinazione</p>
-       <p> Caso:  </p>
-       <p> Genere </p>
-       <p> Numero </p>
+       <p> Caso: </p>
+       <p> Genere:  ${sortedArr[indexgkw].gend} </p>
+       <p> Numero:  ${sortedArr[indexgkw].num}  </p>
 
        
        
@@ -240,17 +240,7 @@ function handleGkwValues() {
        
       );            
       
-/*       inputMatrice = document.getElementById("input-matrice");
-      
-      saveGkwValuesButton.addEventListener("click", () => {
-        highlightableGreekWords.forEach((highlightableGreekWord) => {
-          let matriceValue = inputMatrice.value;  
-          objectArraygGkwWithValues[indexgkw].matrice = matriceValue; 
-        })
-     
-      console.log(objectArraygGkwWithValues);
-    
-      }); */
+
      
   } else if(sortedArr[indexgkw].category == "verb"){
 
