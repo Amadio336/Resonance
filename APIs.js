@@ -44,19 +44,31 @@ cleanedGText.forEach((gkw) => {
     .then((data) => {
       const jsonFIle = JSON.parse(data);
 
-      console.log(jsonFIle) 
+  /*     console.log(jsonFIle)  */
+   let objLenght = jsonFIle.RDF.Annotation.Body.length
 
-     
+   if (objLenght === undefined) {
+    const notSortedObj = {
+      SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
+      category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
+      id: gkw.id,
+    };
+    sortedArr.push(notSortedObj);
+    sortedArr.sort((a, b) => a.id - b.id);
+
+   } else if(objLenght > 1){
+
+    const notSortedObj = {
+      SubVoce: jsonFIle.RDF.Annotation.Body[0].rest.entry.dict.hdwd.$ ,
+      category: jsonFIle.RDF.Annotation.Body[0].rest.entry.dict.pofs.$,
+      id: gkw.id,
+    };
+    sortedArr.push(notSortedObj);
+    sortedArr.sort((a, b) => a.id - b.id);
    
-        const notSortedObj = {
-          SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
-          category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
-          id: gkw.id,
-        };
-        sortedArr.push(notSortedObj);
-        sortedArr.sort((a, b) => a.id - b.id);
 
-        
+   }
+
 
  
     })
