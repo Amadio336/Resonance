@@ -31,7 +31,7 @@ splittedGtext.forEach((gkw) => { // prendere gli elementi di arr1, ci mette un i
   
   index++; // incrementa l'indice
 
- console.log(cleanedGText) 
+/*  console.log(cleanedGText)  */
 });
 
 
@@ -44,7 +44,7 @@ cleanedGText.forEach((gkw) => {
     .then((data) => {
       const jsonFIle = JSON.parse(data);
 
-      console.log(jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$,jsonFIle)
+      console.log(jsonFIle)
 
   /*     console.log(jsonFIle)  */
 
@@ -63,12 +63,38 @@ cleanedGText.forEach((gkw) => {
         SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
         category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
         gend:  jsonFIle.RDF.Annotation.Body.rest.entry.dict.gend.$,
+        decl: jsonFIle.RDF.Annotation.Body.rest.entry.dict.decl.$,
         id: gkw.id,
       };
    
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id);
     } else if (jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "verb"){  /* altrimenti, se la parola non omonima è un verbo */
+
+      const notSortedObj = {
+        SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
+        category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
+        tense : jsonFIle.RDF.Annotation.Body.rest.entry.infl.tense.$, 
+        mood: jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$,
+        id: gkw.id,
+      };
+   
+      sortedArr.push(notSortedObj);
+      sortedArr.sort((a, b) => a.id - b.id);
+
+
+    } else if (jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "pronoun"){ /* se la parola non ominima è un pronome */
+
+      const notSortedObj = {
+        SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
+        category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
+        id: gkw.id,
+      };
+   
+      sortedArr.push(notSortedObj);
+      sortedArr.sort((a, b) => a.id - b.id);
+
+    } else if(jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "particle"){  // particella
 
       const notSortedObj = {
         SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
@@ -80,7 +106,40 @@ cleanedGText.forEach((gkw) => {
       sortedArr.sort((a, b) => a.id - b.id);
 
 
-    } /* se vuoi implementare aggettivi else if(JsonFile.... == "adjective") */   else { /* , serve a dire tutto quello che non è nome né verbo non lo contare, lo hai inserito solo per mantenere bene l'ordine di Sorted Array */
+
+    }  else if(jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "preposition"){ // preposizioni
+      const notSortedObj = {
+        SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
+        category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
+        id: gkw.id,
+      };
+   
+      sortedArr.push(notSortedObj);
+      sortedArr.sort((a, b) => a.id - b.id);
+
+
+
+
+    }   else if(jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "adjective"){
+
+      const notSortedObj = {
+        SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
+        category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
+        decl: jsonFIle.RDF.Annotation.Body.rest.entry.dict.decl.$,
+        id: gkw.id,
+      };
+   
+      sortedArr.push(notSortedObj);
+      sortedArr.sort((a, b) => a.id - b.id);
+
+
+
+
+
+    }
+    
+    
+    else { /* , serve a dire tutto quello che non è nome né verbo non lo contare, lo hai inserito solo per mantenere bene l'ordine di Sorted Array */
 
       const notSortedObj = {
         id: gkw.id,
@@ -92,7 +151,7 @@ cleanedGText.forEach((gkw) => {
 
     }
       
-    } else if(objLenght > 1){ /* se il body ha più oggetti, quindi è una parola omonima, quindi prende arbitrariamente la prima occorrenza */
+    } else if(objLenght > 1){ /* se il body ha più oggetti, quindi è una parola omonima, prende arbitrariamente la prima occorrenza */
       
       const notSortedObj = {
         SubVoce: jsonFIle.RDF.Annotation.Body[0].rest.entry.dict.hdwd.$ ,
@@ -111,7 +170,7 @@ cleanedGText.forEach((gkw) => {
     })
      .catch((error) => {
      
-      console.log("Errore nel recupero dati:", error)
+      console.error("Errore nel recupero dati:", error)
 
       const notSortedObj = {
         id: gkw.id,
