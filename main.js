@@ -122,7 +122,7 @@ class GreekWord {
 
 /* --------------------------- */
 
-let arrayCleaned = [];
+export let arrayCleaned = [];
 let objectArraygGkwWithValues = [];
 
 let highlightableGreekWords = null;
@@ -160,7 +160,7 @@ function handleGtx(e) {
 
 
     
-    console.log(objectArraygGkwWithValues);
+ /*    console.log(objectArraygGkwWithValues); */
     
     /* showing gkws values clicking on a sigle greek word in orange container */
     
@@ -199,16 +199,16 @@ function handleGtx(e) {
     
 
   }
- 
-
-
-
-
 
 
   /* makes appear phase 2. By default phase 2 is setted like display:none */
   containerPhase2.style.display = "block";
+
+
+
 }
+
+
 
 
 /* savae in an object the values of the greek words given by the user */
@@ -218,38 +218,94 @@ function handleGkwValues() {
     gkwValuesArea.classList.add("gkw-values-area-appear")
     beginningValues.innerHTML = "";
     indexgkw = Array.from(highlightableGreekWords).indexOf(this);
-    beginningValues.insertAdjacentHTML(
-      "beforeend",  
-      `<div class="values"> 
-             
-              <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
-              <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
-              <p> Category: ${sortedArr[indexgkw].category} </p>
-              <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+   
+   if (sortedArr[indexgkw].category == "noun") {
+    
+     beginningValues.insertAdjacentHTML(
+       "beforeend",  
+       `<div class="values"> 
+       
+       <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+       <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+       <p> Categoria: ${sortedArr[indexgkw].category} </p>
+       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+       <p> Declinazione</p>
+       <p> Caso:  </p>
+       <p> Genere </p>
+       <p> Numero </p>
 
-
-      </div>`
-
-    );            
-
-    inputMatrice = document.getElementById("input-matrice");
-
-    saveGkwValuesButton.addEventListener("click", () => {
+       
+       
+       </div>`
+       
+      );            
+      
+/*       inputMatrice = document.getElementById("input-matrice");
+      
+      saveGkwValuesButton.addEventListener("click", () => {
         highlightableGreekWords.forEach((highlightableGreekWord) => {
           let matriceValue = inputMatrice.value;  
-          objectArraygGkwWithValues[indexgkw].matrice = matriceValue;
-          
-    
-    
-       
-        
-      });    
+          objectArraygGkwWithValues[indexgkw].matrice = matriceValue; 
+        })
      
       console.log(objectArraygGkwWithValues);
     
-      });
+      }); */
      
-  }    
+  } else if(sortedArr[indexgkw].category == "verb"){
+
+    beginningValues.insertAdjacentHTML(
+      "beforeend",  
+      `<div class="values"> 
+      
+      <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+      <p> Categoria: ${sortedArr[indexgkw].category} </p>
+      <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+      <p> Modo: </p>
+      <p> Tempo: </p>
+      <p> Persona: </p>
+      <p> Radice: </p>
+      
+      
+      </div>`
+            
+     );
+  } else if (sortedArr[indexgkw].category == "adjective"){
+
+    beginningValues.insertAdjacentHTML(
+      "beforeend",  
+      `<div class="values"> 
+      
+      <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+      <p> Categoria: ${sortedArr[indexgkw].category} </p>
+      <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+      <p> Caso : </p>
+      <p> Genere: </p>
+      <p>: </p>
+      <p> : </p>
+      
+      
+      </div>`)
+
+
+  }
+
+
+  inputMatrice = document.getElementById("input-matrice");
+      
+  saveGkwValuesButton.addEventListener("click", () => {
+    highlightableGreekWords.forEach((highlightableGreekWord) => {
+      let matriceValue = inputMatrice.value;  
+      objectArraygGkwWithValues[indexgkw].matrice = matriceValue; 
+    })
+ 
+/*   console.log(objectArraygGkwWithValues); */
+
+  });
+
+}
   
 
 
@@ -636,6 +692,7 @@ sliderSizeTable.addEventListener("click", () => {
     diagraphRow.style.height = `${tableSize}px`;
   });
 });
+
 
 
 
