@@ -359,8 +359,12 @@ function completeResearch() {
   objectArraygGkwWithValues.forEach((value) => {
 
     objectArraygGkwWithValues[syncIndex].category = sortedArr[syncIndex].category
+    objectArraygGkwWithValues[syncIndex].SubVoce = sortedArr[syncIndex].SubVoce
+    sortedArr[syncIndex].mood != undefined ? objectArraygGkwWithValues[syncIndex].mood = sortedArr[syncIndex].mood : console.log("no verb")
+    sortedArr[syncIndex].tense != undefined ? objectArraygGkwWithValues[syncIndex].tense = sortedArr[syncIndex].tense : console.log("no verb")
 
-
+    sortedArr[syncIndex].decl != undefined ? objectArraygGkwWithValues[syncIndex].decl = sortedArr[syncIndex].decl : console.log("no noun")
+    sortedArr[syncIndex].gend != undefined ? objectArraygGkwWithValues[syncIndex].gend = sortedArr[syncIndex].gend : console.log("no noun")
 
     syncIndex++
   }
