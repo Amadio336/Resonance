@@ -46,6 +46,8 @@ cleanedGText.forEach((gkw) => {
 
       console.log(jsonFIle)
 
+/* jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ */
+
   /*     console.log(jsonFIle)  */
 
   /* variabile che contiene la lunghezza della chiave Body  */
