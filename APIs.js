@@ -76,10 +76,15 @@ cleanedGText.forEach((gkw) => {
       const notSortedObj = {
         SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
         category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
-        tense : jsonFIle.RDF.Annotation.Body.rest.entry.infl.tense.$, 
-        mood: jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$,
+        tense : undefined, 
+        mood: undefined,
         id: gkw.id,
       };
+
+
+      /* these two lines manage the problem infl has more than only one object. If infl has only one object, it takes normally the value of verb.tense and verb.mood, otherwise it takes the first result */
+      jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl.tense.$ : notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].tense.$
+      jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.mood = jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$ : notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].mood.$
    
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id);
@@ -138,10 +143,46 @@ cleanedGText.forEach((gkw) => {
 
 
 
+    } else if(jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "article"){
+
+      const notSortedObj = {
+        SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
+        category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
+        id: gkw.id,
+      };
+   
+      sortedArr.push(notSortedObj);
+      sortedArr.sort((a, b) => a.id - b.id);
+
+
+    } else if(jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "conjunction"){
+
+      const notSortedObj = {
+        SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
+        category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
+        id: gkw.id,
+      };
+   
+      sortedArr.push(notSortedObj);
+      sortedArr.sort((a, b) => a.id - b.id);
+
+
+    } else if(jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "adverb"){
+
+      const notSortedObj = {
+        SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
+        category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
+        id: gkw.id,
+      };
+   
+      sortedArr.push(notSortedObj);
+      sortedArr.sort((a, b) => a.id - b.id);
     }
+
+
+ 
     
-    
-    else { /* , serve a dire tutto quello che non è nome né verbo non lo contare, lo hai inserito solo per mantenere bene l'ordine di Sorted Array */
+    else { /* , serve a dire tutto quello che non è nome né verbo né altro sopra non lo contare, lo hai inserito solo per mantenere bene l'ordine di Sorted Array */
 
       const notSortedObj = {
         id: gkw.id,

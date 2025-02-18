@@ -330,7 +330,50 @@ function handleGkwValues() {
 
 
 
-  }
+  }  else if(sortedArr[indexgkw].category == "article"){
+
+    beginningValues.insertAdjacentHTML(
+      "beforeend",  
+      `<div class="values"> 
+      
+      <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+      <p> Categoria: ${sortedArr[indexgkw].category} </p>
+      <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+   
+      
+      </div>`)
+
+    } else if(sortedArr[indexgkw].category == "conjunction"){
+
+      beginningValues.insertAdjacentHTML(
+        "beforeend",  
+        `<div class="values"> 
+        
+        <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+        <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+        <p> Categoria: ${sortedArr[indexgkw].category} </p>
+        <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+     
+        
+        </div>`)
+  
+      } else if(sortedArr[indexgkw].category == "adverb"){
+
+        beginningValues.insertAdjacentHTML(
+          "beforeend",  
+          `<div class="values"> 
+          
+          <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+          <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+          <p> Categoria: ${sortedArr[indexgkw].category} </p>
+          <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+       
+          
+          </div>`)
+    
+        }
+  
 
 
   inputMatrice = document.getElementById("input-matrice");
@@ -354,12 +397,14 @@ allowCompleteResearchButton.addEventListener("click", completeResearch)
   
 let syncIndex = 0
 
-function completeResearch() {
+function completeResearch() { // this function is fundamental, it associates to the object with all the values of a single words the values themselves
 
   objectArraygGkwWithValues.forEach((value) => {
-
+/* adding values of dict */
     objectArraygGkwWithValues[syncIndex].category = sortedArr[syncIndex].category
     objectArraygGkwWithValues[syncIndex].SubVoce = sortedArr[syncIndex].SubVoce
+
+/* adding values of infl*/
     sortedArr[syncIndex].mood != undefined ? objectArraygGkwWithValues[syncIndex].mood = sortedArr[syncIndex].mood : console.log("no verb")
     sortedArr[syncIndex].tense != undefined ? objectArraygGkwWithValues[syncIndex].tense = sortedArr[syncIndex].tense : console.log("no verb")
 
