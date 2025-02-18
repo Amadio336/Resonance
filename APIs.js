@@ -38,7 +38,7 @@ splittedGtext.forEach((gkw) => { // prendere gli elementi di arr1, ci mette un i
 cleanedGText.forEach((gkw) => {
  
   fetch(
-    `http://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc&word=${gkw.word}`  // viene fatta una richiesta per la flessione di una parola
+    `https://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc&word=${gkw.word}`  // viene fatta una richiesta per la flessione di una parola
   )
     .then((response) => response.text())
     .then((data) => {
