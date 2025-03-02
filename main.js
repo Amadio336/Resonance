@@ -597,6 +597,7 @@ unlockButton.addEventListener("click", () => {
 
 let cells = document.querySelectorAll(".cell"); // selection of the cells
 
+
 cells.forEach((cell) => {
   cell.addEventListener("click", () => {
     //function that takes the data value
@@ -624,7 +625,7 @@ cells.forEach((cell) => {
     for (let i = 0; i < row; i++) {
       // loops that create drag-area table
 
-      tr = document.createElement("tr");
+     let tr = document.createElement("tr");
       tr.classList.add("diagraph-row");
       tableDiagraph.appendChild(tr);
 
@@ -700,10 +701,13 @@ cells.forEach((cell) => {
 
 /* mouse effects on table tool */
 
+let dataRow = null;
+let dataColumnsPerRow = null;
+
 cells.forEach((cell) => {
   cell.addEventListener("mouseover", () => {
-    dataRow = cell.getAttribute("data-row");
-    dataColumnsPerRow = cell.getAttribute("data-column-per-row");
+     dataRow = cell.getAttribute("data-row");
+     dataColumnsPerRow = cell.getAttribute("data-column-per-row");
 
     for (const cell of cells) {
       if (
