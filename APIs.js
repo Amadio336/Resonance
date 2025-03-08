@@ -8,6 +8,7 @@ const buttonSubmit = document.getElementById("button-submit")
 let index = 0;
 let cleanedGText = []; // viene creato un array dove ogni elemento di arr1 viene trasformato in un oggetto con il suo indice
 let sortedArr = [];
+let conflictedWords;
 
 
 buttonSubmit.addEventListener("click", searchFlection)
@@ -31,7 +32,6 @@ splittedGtext.forEach((gkw) => { // prendere gli elementi di arr1, ci mette un i
   
   index++; // incrementa l'indice
 
-/*  console.log(cleanedGText)  */
 });
 
 
@@ -46,9 +46,6 @@ cleanedGText.forEach((gkw) => {
 
       console.log(jsonFIle)
 
-/* jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ */
-
-  /*     console.log(jsonFIle)  */
 
   /* variabile che contiene la lunghezza della chiave Body  */
    let objLenght = jsonFIle.RDF.Annotation.Body.length
@@ -195,14 +192,24 @@ cleanedGText.forEach((gkw) => {
     }
       
     } else if(objLenght > 1){ /* se il body ha più oggetti, quindi è una parola omonima, prende arbitrariamente la prima occorrenza */
+
       
       const notSortedObj = {
-        SubVoce: jsonFIle.RDF.Annotation.Body[0].rest.entry.dict.hdwd.$ ,
-        category: jsonFIle.RDF.Annotation.Body[0].rest.entry.dict.pofs.$,
         id: gkw.id,
       };
-       sortedArr.push(notSortedObj);
+      
+      sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id); 
+      
+      const wordsHiligtable = document.querySelectorAll(".highlightable")
+      const conflictedWord = Array.from(wordsHiligtable)[notSortedObj.id]
+      conflictedWord.classList.add("conflicted")
+      conflictedWords = document.querySelectorAll(".conflicted")
+
+
+      addElConflictedWords(conflictedWords)
+     
+
 
     
 
@@ -228,6 +235,27 @@ cleanedGText.forEach((gkw) => {
  
     console.log("sorted Arr", sortedArr)  
   
+}
+
+
+
+
+/* function to handle conflicted words */
+
+function addElConflictedWords(words) {
+  
+  words.forEach(word => {
+    word.addEventListener("click", handleConflictedWords)
+})
+  
+}
+
+
+function handleConflictedWords() {
+
+ /*  const conflictInterface = document.createElement("div")
+   */
+  console.log("ciao")
 }
 
 
