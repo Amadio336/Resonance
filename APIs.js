@@ -9,6 +9,7 @@ let index = 0;
 let cleanedGText = []; // viene creato un array dove ogni elemento di arr1 viene trasformato in un oggetto con il suo indice
 let sortedArr = [];
 let conflictedWordsArray = []
+let jsonFIleArray = []
 
 
 
@@ -44,6 +45,10 @@ cleanedGText.forEach((gkw) => {
     .then((response) => response.text())
     .then((data) => {
       const jsonFIle = JSON.parse(data);
+
+
+      jsonFIleArray.push(jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$)
+      console.log(jsonFIleArray)
 
    
 
@@ -251,6 +256,10 @@ function handleConflict() {
  const conflictInterface = document.createElement("div")
  conflictInterface.classList.add("conflict-interface")
  document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
+
+
+
+
 
 
 
