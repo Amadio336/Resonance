@@ -8,13 +8,14 @@ const buttonSubmit = document.getElementById("button-submit")
 let index = 0;
 let cleanedGText = []; // viene creato un array dove ogni elemento di arr1 viene trasformato in un oggetto con il suo indice
 let sortedArr = [];
-let conflictedWords;
+let conflictedWordsArray = []
+
 
 
 buttonSubmit.addEventListener("click", searchFlection)
 
 
-function searchFlection() {
+ async function searchFlection() {
   
 
  let rowGText = inputGtx.value;
@@ -44,7 +45,7 @@ cleanedGText.forEach((gkw) => {
     .then((data) => {
       const jsonFIle = JSON.parse(data);
 
-      console.log(jsonFIle)
+   
 
 
   /* variabile che contiene la lunghezza della chiave Body  */
@@ -201,22 +202,19 @@ cleanedGText.forEach((gkw) => {
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id); 
       
+      /* this part of code hilights with red conflicted words */
       const wordsHiligtable = document.querySelectorAll(".highlightable")
       const conflictedWord = Array.from(wordsHiligtable)[notSortedObj.id]
+      conflictedWordsArray.push(conflictedWord)
       conflictedWord.classList.add("conflicted")
-      conflictedWords = document.querySelectorAll(".conflicted")
+
+      
+   
 
 
-      addElConflictedWords(conflictedWords)
-     
 
-
-    
 
    }
-
-
- 
     })
      .catch((error) => {
      
@@ -240,23 +238,44 @@ cleanedGText.forEach((gkw) => {
 
 
 
-/* function to handle conflicted words */
+const resolveConflictButton = document.getElementById("resolve-conflict")
 
-function addElConflictedWords(words) {
+/* button to resolve conflict */
+resolveConflictButton.addEventListener("click", handleConflict)
+
+
+function handleConflict() {
+
+  const words = document.querySelectorAll(".conflicted")
   
-  words.forEach(word => {
-    word.addEventListener("click", handleConflictedWords)
-})
+ const conflictInterface = document.createElement("div")
+ conflictInterface.classList.add("conflict-interface")
+ document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
+
+
+
+
+
+
+
+
+    
+
+   
+  
   
 }
 
 
-function handleConflictedWords() {
 
- /*  const conflictInterface = document.createElement("div")
-   */
-  console.log("ciao")
-}
+
+
+
+
+
+ 
+
+
 
 
 export { sortedArr }

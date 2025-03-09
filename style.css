@@ -43,6 +43,7 @@
 #wrapper-greek-text{
     min-height: 100vh;
     background-color: orange;
+    position: relative;
 
 }
 
@@ -94,9 +95,26 @@
 }
 
 
+/* handling conflict interface */
+
+
 
 .conflicted{
     background-color: red;
+}
+
+
+.conflict-interface{
+    width: 500px;
+    height: 500px;
+    border: 1px solid red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 
