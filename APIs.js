@@ -240,7 +240,7 @@ cleanedGText.forEach((gkw) => {
 
 
 let arrProva = []
-
+let indexFinal = 0
 
 const resolveConflictButton = document.getElementById("resolve-conflict")
 
@@ -297,7 +297,7 @@ const conflictInterface = document.createElement("div")
    })
 
 
-   let indexFinal =0
+  
 
    option.addEventListener("click",(e) =>{
 
@@ -307,27 +307,29 @@ const conflictInterface = document.createElement("div")
     console.log(resolvedWord)
 
     indexWordConflicted.sort((a, b) => a - b);
-    console.log(indexWordConflicted)
-
-    sortedArr[indexWordConflicted[indexFinal]].subvoce = "ciao"
-    indexFinal++
-
-
-     
-
-      
   
 
+    sortedArr[indexWordConflicted[indexFinal]].subVoce = resolvedWord.rest.entry.dict.hdwd.$
+    
+    console.log("indexFinal", indexFinal)
+
+    indexFinal = indexFinal + 1
+
+    console.log(indexFinal)
+    
+
+
+
+    conflictInterface.style.display = "none"
+
     console.log(sortedArr)
+
+  
+
 
 
 
  
-
-
-    
-    
-   
 
 
 
