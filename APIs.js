@@ -47,8 +47,6 @@ cleanedGText.forEach((gkw) => {
       const jsonFIle = JSON.parse(data);
 
 
-      jsonFIleArray.push(jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$)
-      console.log(jsonFIleArray)
 
    
 
@@ -199,7 +197,8 @@ cleanedGText.forEach((gkw) => {
       
     } else if(objLenght > 1){ /* se il body ha più oggetti, quindi è una parola omonima, prende arbitrariamente la prima occorrenza */
 
-      
+      jsonFIleArray.push(jsonFIle)
+
       const notSortedObj = {
         id: gkw.id,
       };
@@ -212,13 +211,6 @@ cleanedGText.forEach((gkw) => {
       const conflictedWord = Array.from(wordsHiligtable)[notSortedObj.id]
       conflictedWordsArray.push(conflictedWord)
       conflictedWord.classList.add("conflicted")
-
-      
-   
-
-
-
-
    }
     })
      .catch((error) => {
@@ -241,7 +233,7 @@ cleanedGText.forEach((gkw) => {
 }
 
 
-
+let arrProva = []
 
 const resolveConflictButton = document.getElementById("resolve-conflict")
 
@@ -251,28 +243,67 @@ resolveConflictButton.addEventListener("click", handleConflict)
 
 function handleConflict() {
 
-  const words = document.querySelectorAll(".conflicted")
+const words = document.querySelectorAll(".conflicted")
   
- const conflictInterface = document.createElement("div")
+ 
+
+ console.log(jsonFIleArray)
+
+ let dataIndex = 0
+ jsonFIleArray.forEach(element =>{
+
+const conflictInterface = document.createElement("div")
  conflictInterface.classList.add("conflict-interface")
+ conflictInterface.setAttribute("data-index", dataIndex)
  document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
+ 
+
+
+ dataIndex++
+ let dataIndexValue = 0;
+
+ let bodyLenght = element.RDF.Annotation.Body.length
+
+
+ for (let index = 0; index < bodyLenght; index++) {
+  
+   const option = document.createElement("div")
+   option.innerHTML = `<div class="option">${index} ${element.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$}
+   </div>`
+   conflictInterface.appendChild(option)
+
+   conflictInterface.addEventListener("click", ()=>{
+    dataIndexValue = conflictInterface.getAttribute("data-index")
+    console.log(dataIndexValue)
+   })
+
+
+
+   option.addEventListener("click",(e) =>{
+     const optionIndex = e.target.textContent[0]
+    console.log(jsonFIleArray[dataIndexValue].RDF.Annotation.Body[optionIndex])
 
 
 
 
 
-
-
-
-
-
-
-
-    
 
    
+
+    
+   })
+
   
-  
+ }
+
+ 
+ 
+})
+
+
+
+
+       
 }
 
 

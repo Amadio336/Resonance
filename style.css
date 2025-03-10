@@ -108,6 +108,7 @@
     width: 500px;
     height: 500px;
     border: 1px solid red;
+    background-color: red;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -118,6 +119,10 @@
 }
 
 
+.option{
+    background-color: green;
+    margin:10px;
+}
 
 /*------------ end phase 2 ---------------------------- */
 
