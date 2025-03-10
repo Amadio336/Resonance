@@ -271,8 +271,6 @@ function handleConflict() {
  let dataIndex = 0
  jsonFIleArray.forEach(element =>{
 
-
-
 const conflictInterface = document.createElement("div")
  conflictInterface.classList.add("conflict-interface")
  conflictInterface.setAttribute("data-index", dataIndex)
@@ -308,6 +306,7 @@ const conflictInterface = document.createElement("div")
 
     console.log(resolvedWord)
 
+    indexWordConflicted.sort((a, b) => a - b);
     console.log(indexWordConflicted)
 
     sortedArr[indexWordConflicted[indexFinal]].subvoce = "ciao"
