@@ -1,5 +1,5 @@
 
-
+import {handleGkwValues} from "./main.js"
 /* this part aims to provide main.js grammar info about words provided */
 
 const inputGtx = document.getElementById("input-gtx")
@@ -10,6 +10,7 @@ let cleanedGText = []; // viene creato un array dove ogni elemento di arr1 viene
 let sortedArr = [];
 let conflictedWordsArray = []
 let jsonFIleArray = []
+let indexWordConflicted = []
 
 
 
@@ -205,6 +206,9 @@ cleanedGText.forEach((gkw) => {
       
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id); 
+
+      indexWordConflicted.push(gkw.id)
+
       
       /* this part of code hilights with red conflicted words */
       const wordsHiligtable = document.querySelectorAll(".highlightable")
@@ -224,6 +228,8 @@ cleanedGText.forEach((gkw) => {
       sortedArr.push(notSortedObj)
       sortedArr.sort((a, b) => a.id - b.id);
 
+
+
     });    
   });
   
@@ -235,22 +241,37 @@ cleanedGText.forEach((gkw) => {
 
 let arrProva = []
 
+
 const resolveConflictButton = document.getElementById("resolve-conflict")
 
 /* button to resolve conflict */
+
+
+
 resolveConflictButton.addEventListener("click", handleConflict)
 
-
 function handleConflict() {
-
-const words = document.querySelectorAll(".conflicted")
   
- 
+  
+  const words = document.querySelectorAll(".conflicted")
+
+
+  const highlightableGreekWords = document.querySelectorAll(".highlightable")
+
+  let index = 0
+
+  highlightableGreekWords.forEach(word =>{
+    word.setAttribute("data-index-word", index)
+    index++
+  })
+
 
  console.log(jsonFIleArray)
 
  let dataIndex = 0
  jsonFIleArray.forEach(element =>{
+
+
 
 const conflictInterface = document.createElement("div")
  conflictInterface.classList.add("conflict-interface")
@@ -268,7 +289,7 @@ const conflictInterface = document.createElement("div")
  for (let index = 0; index < bodyLenght; index++) {
   
    const option = document.createElement("div")
-   option.innerHTML = `<div class="option">${index} ${element.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$}
+   option.innerHTML = `<div class="option">${index} </br> ${element.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.RDF.Annotation.Body[index].rest.entry.dict.pofs.$}
    </div>`
    conflictInterface.appendChild(option)
 
@@ -278,33 +299,48 @@ const conflictInterface = document.createElement("div")
    })
 
 
+   let indexFinal =0
 
    option.addEventListener("click",(e) =>{
+
      const optionIndex = e.target.textContent[0]
-    console.log(jsonFIleArray[dataIndexValue].RDF.Annotation.Body[optionIndex])
+    const resolvedWord = jsonFIleArray[dataIndexValue].RDF.Annotation.Body[optionIndex]
+
+    console.log(resolvedWord)
+
+    console.log(indexWordConflicted)
+
+    sortedArr[indexWordConflicted[indexFinal]].subvoce = "ciao"
+    indexFinal++
+
+
+     
+
+      
+  
+
+    console.log(sortedArr)
 
 
 
+ 
 
 
-
+    
+    
    
+
+
 
     
    })
 
   
- }
+ } /*  */
 
  
  
-})
-
-
-
-
-       
-}
+})}
 
 
 

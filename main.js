@@ -161,6 +161,7 @@ function handleGtx(e) {
 
 
     
+    
  /*    console.log(objectArraygGkwWithValues); */
     
     /* showing gkws values clicking on a sigle greek word in orange container */
@@ -826,3 +827,4 @@ sliderSizeTable.addEventListener("click", () => {
 
 
 
+export {handleGkwValues}
