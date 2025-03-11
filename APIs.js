@@ -245,6 +245,7 @@ cleanedGText.forEach((gkw) => {
 let indexZindex = 0
 let arrProva = []
 let indexFinal = 0
+let words = []
 
 
 /* button to resolve conflict */
@@ -254,7 +255,7 @@ const resolveConflictButton = document.getElementById("resolve-conflict")
 
 resolveConflictButton.addEventListener("click", ()=>{
   
-  const words = document.querySelectorAll(".conflicted")
+   words = document.querySelectorAll(".conflicted")
   
   console.log(words)
 
@@ -296,7 +297,7 @@ words.forEach(word =>{
      
         const option = document.createElement("div")
         option.classList.add("option")
-        option.innerHTML = `<p>${index} </br>${element.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$}</p>`
+        option.innerHTML = `<p>${index} </br>${element.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.RDF.Annotation.Body[index].rest.entry.dict.pofs.$} </p>`
         conflictInterface.appendChild(option)
       }
     }
@@ -319,19 +320,21 @@ words.forEach(word =>{
         if (URNCleaned == word.textContent) {
           
           sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
-          console.log("indexFinal",indexFinal)  
+          sortedArr[indexWordConflicted[indexFinal]].category = element.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
+
           indexFinal++
     
           
-          
           conflictInterface.remove()
+          
           console.log(sortedArr)
         }
-
-
-
+        
+        
+        
       })
-   
+      
+ 
 
     })
 
