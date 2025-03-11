@@ -201,6 +201,7 @@ cleanedGText.forEach((gkw) => {
       jsonFIleArray.push(jsonFIle)
 
       const notSortedObj = {
+        word: gkw.word,
         id: gkw.id,
       };
       
