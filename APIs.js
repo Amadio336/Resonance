@@ -238,7 +238,7 @@ cleanedGText.forEach((gkw) => {
   
 }
 
-
+let indexZindex = 0
 let arrProva = []
 let indexFinal = 0
 
@@ -269,12 +269,21 @@ function handleConflict() {
  console.log(jsonFIleArray)
 
  let dataIndex = 0
+ let ArrContainerInterface = []
  jsonFIleArray.forEach(element =>{
 
 const conflictInterface = document.createElement("div")
  conflictInterface.classList.add("conflict-interface")
  conflictInterface.setAttribute("data-index", dataIndex)
+ ArrContainerInterface.push(conflictInterface)
  document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
+
+let ArrContainerInterfaceLength = ArrContainerInterface.length
+
+ArrContainerInterface.forEach(int =>{
+  int.style.zIndex = ArrContainerInterfaceLength
+  ArrContainerInterfaceLength--
+})
  
 
 
