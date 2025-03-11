@@ -37,7 +37,9 @@ splittedGtext.forEach((gkw) => { // prendere gli elementi di arr1, ci mette un i
 
 });
 
-
+let allJsonFiles = []
+let indexJsonReturned =0
+ 
 cleanedGText.forEach((gkw) => {
  
   fetch(
@@ -47,6 +49,7 @@ cleanedGText.forEach((gkw) => {
     .then((data) => {
       const jsonFIle = JSON.parse(data);
 
+      console.log(jsonFIle)
 
 
    
@@ -243,118 +246,116 @@ let indexZindex = 0
 let arrProva = []
 let indexFinal = 0
 
-const resolveConflictButton = document.getElementById("resolve-conflict")
 
 /* button to resolve conflict */
 
+const resolveConflictButton = document.getElementById("resolve-conflict")
 
 
-resolveConflictButton.addEventListener("click", handleConflict)
-
-function handleConflict() {
-  
+resolveConflictButton.addEventListener("click", ()=>{
   
   const words = document.querySelectorAll(".conflicted")
+  
+  console.log(words)
 
 
-  const highlightableGreekWords = document.querySelectorAll(".highlightable")
+  
+  
+words.forEach(word =>{
+  word.addEventListener("click", ()=>{     
 
-  let index = 0
+    
+    
+    
+    console.log(jsonFIleArray)
+    
+    
+    const highlightableGreekWords = document.querySelectorAll(".highlightable")
+    
+    let index = 0
+    
+    highlightableGreekWords.forEach(word =>{
+      word.setAttribute("data-index-word", index)
+      index++
+    })
+    
+    
+  const conflictInterface = document.createElement("div")
+  conflictInterface.classList.add("conflict-interface")
+  document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
+  
+  jsonFIleArray.forEach(element =>{
+    const URNCleaned = element.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+    console.log(URNCleaned)
+   
+    if (URNCleaned == word.textContent) {
+            
+      const bodyLength = element.RDF.Annotation.Body.length
 
-  highlightableGreekWords.forEach(word =>{
-    word.setAttribute("data-index-word", index)
-    index++
+      for (let index = 0; index < bodyLength; index++) {
+     
+        const option = document.createElement("div")
+        option.classList.add("option")
+        option.innerHTML = `<p>${index} </br>${element.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$}</p>`
+        conflictInterface.appendChild(option)
+      }
+    }
+     
+
+
+    
+    
   })
+  
+  
+  const options = document.querySelectorAll(".option")
+
+  options.forEach((option, indice) =>{
+    option.addEventListener("click", ()=>{
+
+      jsonFIleArray.forEach(element =>{
+        const URNCleaned = element.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+
+        if (URNCleaned == word.textContent) {
+          
+          sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
+          console.log("indexFinal",indexFinal)  
+          indexFinal++
+    
+          
+          
+          conflictInterface.remove()
+          console.log(sortedArr)
+        }
 
 
- console.log(jsonFIleArray)
 
- let dataIndex = 0
- let ArrContainerInterface = []
- jsonFIleArray.forEach(element =>{
+      })
+   
 
-const conflictInterface = document.createElement("div")
- conflictInterface.classList.add("conflict-interface")
- conflictInterface.setAttribute("data-index", dataIndex)
- ArrContainerInterface.push(conflictInterface)
- document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
+    })
 
-let ArrContainerInterfaceLength = ArrContainerInterface.length
 
-ArrContainerInterface.forEach(int =>{
-  int.style.zIndex = ArrContainerInterfaceLength
-  ArrContainerInterfaceLength--
+  })
+    
+
+    
+
+  }) 
+
+
+
+  
+  
+  
+  
+  
+  
+  
 })
- 
 
 
- dataIndex++
- let dataIndexValue = 0;
-
- let bodyLenght = element.RDF.Annotation.Body.length
-
-
- for (let index = 0; index < bodyLenght; index++) {
-  
-   const option = document.createElement("div")
-   option.innerHTML = `<div class="option">${index} </br> ${element.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.RDF.Annotation.Body[index].rest.entry.dict.pofs.$}
-   </div>`
-   conflictInterface.appendChild(option)
-
-   conflictInterface.addEventListener("click", ()=>{
-    dataIndexValue = conflictInterface.getAttribute("data-index")
-    console.log(dataIndexValue)
-   })
-
-
-  
-
-   option.addEventListener("click",(e) =>{
-
-     const optionIndex = e.target.textContent[0]
-    const resolvedWord = jsonFIleArray[dataIndexValue].RDF.Annotation.Body[optionIndex]
-
-    console.log(resolvedWord)
-
-    indexWordConflicted.sort((a, b) => a - b);
-  
-
-    sortedArr[indexWordConflicted[indexFinal]].subVoce = resolvedWord.rest.entry.dict.hdwd.$
-    
-    console.log("indexFinal", indexFinal)
-
-    indexFinal = indexFinal + 1
-
-    console.log(indexFinal)
-    
-
-
-
-    conflictInterface.style.display = "none"
-
-    console.log(sortedArr)
-
-  
-
-
-
-
- 
-
-
-
-    
-   })
-
-  
- } /*  */
-
- 
- 
-})}
-
-
-
+})
 
 
 
