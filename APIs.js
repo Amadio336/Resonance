@@ -268,7 +268,7 @@ words.forEach(word =>{
     
     
     
-    console.log(jsonFIleArray)
+    console.log("jsonFIleArray",jsonFIleArray)
     
     
     const highlightableGreekWords = document.querySelectorAll(".highlightable")
@@ -284,22 +284,30 @@ words.forEach(word =>{
   const conflictInterface = document.createElement("div")
   conflictInterface.classList.add("conflict-interface")
   document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
+
+  
   
   jsonFIleArray.forEach(element =>{
     const URNCleaned = element.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
     console.log(URNCleaned)
+    console.log(word.textContent)
+
+
+
+    
+
    
-    if (URNCleaned == word.textContent) {
+    if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")) {
             
       const bodyLength = element.RDF.Annotation.Body.length
 
       for (let index = 0; index < bodyLength; index++) {
-     
         const option = document.createElement("div")
         option.classList.add("option")
         option.innerHTML = `<p>${index} </br>${element.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.RDF.Annotation.Body[index].rest.entry.dict.pofs.$} </p>`
         conflictInterface.appendChild(option)
       }
+
     }
      
 
@@ -319,7 +327,7 @@ words.forEach(word =>{
       jsonFIleArray.forEach(element =>{
         const URNCleaned = element.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
 
-        if (URNCleaned == word.textContent) {
+        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")) {
           
           sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
           sortedArr[indexWordConflicted[indexFinal]].category = element.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
