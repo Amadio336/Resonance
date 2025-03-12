@@ -11,6 +11,7 @@ let sortedArr = [];
 let conflictedWordsArray = []
 let jsonFIleArray = []
 let indexWordConflicted = []
+let jsonFIleArraySorted = []
 
 
 
@@ -242,56 +243,70 @@ cleanedGText.forEach((gkw) => {
   
 }
 
-let indexZindex = 0
-let arrProva = []
+
 let indexFinal = 0
 let words = []
+let wordsWithUrns = []
+
 
 
 /* button to resolve conflict */
 
 const resolveConflictButton = document.getElementById("resolve-conflict")
 
-
+/* event listner on resolveConflictButton */
 resolveConflictButton.addEventListener("click", ()=>{
   
-   words = document.querySelectorAll(".conflicted")
+  
+  
+  
+  words = document.querySelectorAll(".conflicted")
+  
+  
+  
+  
+  
+  
   
   console.log(words)
-
-
   
   
-words.forEach(word =>{
-  word.addEventListener("click", ()=>{     
-
+  let index = 0
+  
+  words.forEach(word =>{
+    word.setAttribute("data-index-word", index)
+    index++
     
-    
-    
-    console.log("jsonFIleArray",jsonFIleArray)
-    
-    
-    const highlightableGreekWords = document.querySelectorAll(".highlightable")
-    
-    let index = 0
-    
-    highlightableGreekWords.forEach(word =>{
-      word.setAttribute("data-index-word", index)
-      index++
-    })
-    
-    
-  const conflictInterface = document.createElement("div")
-  conflictInterface.classList.add("conflict-interface")
-  document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
-
+    let wordWithUrns =  `urn:word:${word.textContent}`
+    wordsWithUrns.push(wordWithUrns)
+  })
   
   
-  jsonFIleArray.forEach(element =>{
+  jsonFIleArraySorted = wordsWithUrns.map(item => jsonFIleArray.find(x => x.RDF.Annotation.hasTarget.Description.about.normalize("NFC") === item.normalize("NFC")))
+  console.log(wordsWithUrns)
+  console.log("jsonFIleArraySorted",jsonFIleArraySorted)
+  
+  
+  
+  words.forEach(word =>{
+    word.addEventListener("click", ()=>{     
+      
+        
+      const conflictInterface = document.createElement("div")
+      conflictInterface.classList.add("conflict-interface")
+      document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
+
+  let indexJsonFIle = 0
+
+   for (let element of jsonFIleArraySorted)  {
+ 
     const URNCleaned = element.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+    element.id = indexJsonFIle
+    indexJsonFIle++
 
+         
    
-    if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")) {
+    if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC") && element.id == word.getAttribute("data-index-word")) {
             
       const bodyLength = element.RDF.Annotation.Body.length
 
@@ -303,12 +318,12 @@ words.forEach(word =>{
       }
 
     }
-     
+    
+  };
 
 
-    
-    
-  })
+  
+
   
   
   const options = document.querySelectorAll(".option")
@@ -320,10 +335,10 @@ words.forEach(word =>{
 
       console.log(indexWordConflicted)
 
-      jsonFIleArray.forEach(element =>{
+      jsonFIleArraySorted.forEach(element =>{
         const URNCleaned = element.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
 
-        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")) {
+        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.id == word.getAttribute("data-index-word")) {
           
           sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
           sortedArr[indexWordConflicted[indexFinal]].category = element.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
