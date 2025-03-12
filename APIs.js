@@ -314,6 +314,8 @@ words.forEach(word =>{
   options.forEach((option, indice) =>{
     option.addEventListener("click", ()=>{
 
+      indexWordConflicted.sort((a,b) => a -b)
+
       jsonFIleArray.forEach(element =>{
         const URNCleaned = element.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
 
