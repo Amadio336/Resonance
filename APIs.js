@@ -289,12 +289,6 @@ words.forEach(word =>{
   
   jsonFIleArray.forEach(element =>{
     const URNCleaned = element.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
-    console.log(URNCleaned)
-    console.log(word.textContent)
-
-
-
-    
 
    
     if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")) {
@@ -323,6 +317,8 @@ words.forEach(word =>{
     option.addEventListener("click", ()=>{
 
       indexWordConflicted.sort((a,b) => a -b)
+
+      console.log(indexWordConflicted)
 
       jsonFIleArray.forEach(element =>{
         const URNCleaned = element.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
