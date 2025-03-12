@@ -12,6 +12,7 @@ let conflictedWordsArray = []
 let jsonFIleArray = []
 let indexWordConflicted = []
 let jsonFIleArraySorted = []
+let finalArray =[]
 
 
 
@@ -285,7 +286,21 @@ resolveConflictButton.addEventListener("click", ()=>{
   jsonFIleArraySorted = wordsWithUrns.map(item => jsonFIleArray.find(x => x.RDF.Annotation.hasTarget.Description.about.normalize("NFC") === item.normalize("NFC")))
   console.log(wordsWithUrns)
   console.log("jsonFIleArraySorted",jsonFIleArraySorted)
+
+  let indexJsonFIle = 0
+
+  for (let element of jsonFIleArraySorted){
+
+    const obj = {
+      el: element,
+      elId: indexJsonFIle
+    }
+
+    indexJsonFIle++
+    finalArray.push(obj)
+}
   
+console.log("finalArray",finalArray)
   
   
   words.forEach(word =>{
@@ -296,24 +311,24 @@ resolveConflictButton.addEventListener("click", ()=>{
       conflictInterface.classList.add("conflict-interface")
       document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
 
-  let indexJsonFIle = 0
 
-   for (let element of jsonFIleArraySorted)  {
+
+
+   for (let element of finalArray)  {
  
-    const URNCleaned = element.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
-    element.id = indexJsonFIle
-    indexJsonFIle++
+    const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+
 
          
    
-    if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC") && element.id == word.getAttribute("data-index-word")) {
+    if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC") && element.elId == word.getAttribute("data-index-word")) {
             
-      const bodyLength = element.RDF.Annotation.Body.length
+      const bodyLength = element.el.RDF.Annotation.Body.length
 
       for (let index = 0; index < bodyLength; index++) {
         const option = document.createElement("div")
         option.classList.add("option")
-        option.innerHTML = `<p>${index} </br>${element.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.RDF.Annotation.Body[index].rest.entry.dict.pofs.$} </p>`
+        option.innerHTML = `<p>${index} </br>${element.el.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.el.RDF.Annotation.Body[index].rest.entry.dict.pofs.$} </p>`
         conflictInterface.appendChild(option)
       }
 
@@ -335,13 +350,13 @@ resolveConflictButton.addEventListener("click", ()=>{
 
       console.log(indexWordConflicted)
 
-      jsonFIleArraySorted.forEach(element =>{
-        const URNCleaned = element.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+      finalArray.forEach(element =>{
+        const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
 
-        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.id == word.getAttribute("data-index-word")) {
+        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
           
-          sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
-          sortedArr[indexWordConflicted[indexFinal]].category = element.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
+          sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
+          sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
 
           indexFinal++
     
