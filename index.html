@@ -16,6 +16,12 @@
 
 
 
+<!-- inter font -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
+
     <!-- css -->
 
     <link rel="stylesheet" href="style.css" />
@@ -28,6 +34,19 @@
         <div class="row">
 
           <!-- col with the checkbox for the poetry -->
+
+          <div class="col-12 centra">
+             <img class="logo" src="resonance-logo.svg" alt="logo">
+
+             <ul class="nav">
+              <li><a href="">Informazioni su Resonance</a></li>
+              <li><a href="">Licenza</a></li>
+              <li><a href="">Contatti</a></li>
+             </ul>
+            
+            
+            </div>
+
           <div class="col-12 bd">
           
               <button id="switch-poetry"> Poesia </button>
@@ -39,13 +58,13 @@
 
 
 
-          <div class="col-12 bd centra">
+          <div class="col-12 centra" id="container-text-phase1">
             <!-- form to get greek text -->
             <form action="#">
               <label for="provide-gtx">Inserisci il testo:</label><br /><br />
-              <textarea id="input-gtx" name="fornisci-testo-greco"></textarea
+              <textarea id="input-gtx" name="fornisci-testo-greco" placeholder="Inserisci il testo facendo attenzione a non andare a capo"></textarea
               ><br /><br />
-              <button id="button-submit" type="submit">Invia</button>
+              <button id="button-submit" class="button-beige" type="submit">Invia</button>
             </form>
           </div>
         </div>

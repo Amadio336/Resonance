@@ -1,3 +1,6 @@
+*{
+    font-family: "Inter", sans-serif;
+}
 
 .bd{
     border: 1px solid red;
@@ -14,20 +17,76 @@
 }
 
 
+:root {
+    --primary-color: #ff709d;
+    --secondary-color: #e8ce5a;
+    --third-color: #b31b4b;
+
+  }
+
+.button-beige{
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: var(--secondary-color);
+    border: none;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+
+   
+}
+
+.button-pink{
+    width: 100px;
+    height: 30px;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: var(--primary-color);
+    border: none;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
+
+}
+
+
 
 /* phase 1 */
 
 #container-phase1{
     min-height: 100vh;
+    background-color: var(--secondary-color);
 }
 
 #input-gtx{
     width: 500px;
     height: 500px;
+    box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.3);
 }
 
 
+#container-text-phase1{
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+  
 
+.logo{
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    margin-right: auto;
+}
+
+.nav li{
+    display: inline;
+    margin:0 15px;
+}
+
+.nav li a{
+    text-decoration: none;
+    color: var(--third-color);
+    font-weight: bold;
+
+}
 
 /*------------ end phase1 ---------------------------- */
 
