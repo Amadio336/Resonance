@@ -13,6 +13,7 @@ let jsonFIleArray = []
 let indexWordConflicted = []
 let jsonFIleArraySorted = []
 let finalArray =[]
+let lastIndex = 0
 
 
 
@@ -304,86 +305,93 @@ console.log("finalArray",finalArray)
   
   
   words.forEach(word =>{
-    word.addEventListener("click", ()=>{     
+    word.addEventListener("click", handleClick)    
       
         
+
+    function handleClick() {
+      
       const conflictInterface = document.createElement("div")
       conflictInterface.classList.add("conflict-interface")
       document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
-
-
-
-
-   for (let element of finalArray)  {
- 
-    const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
-
-
-         
-   
-    if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC") && element.elId == word.getAttribute("data-index-word")) {
-            
-      const bodyLength = element.el.RDF.Annotation.Body.length
-
-      for (let index = 0; index < bodyLength; index++) {
-        const option = document.createElement("div")
-        option.classList.add("option")
-        option.innerHTML = `<p>${index} </br>${element.el.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.el.RDF.Annotation.Body[index].rest.entry.dict.pofs.$} </p>`
-        conflictInterface.appendChild(option)
-      }
-
-    }
-    
-  };
-
-
-  
-
-  
-  
-  const options = document.querySelectorAll(".option")
-
-  options.forEach((option, indice) =>{
-    option.addEventListener("click", ()=>{
-
-      indexWordConflicted.sort((a,b) => a -b)
-
-      console.log(indexWordConflicted)
-
-      finalArray.forEach(element =>{
+      
+      
+      
+      
+      for (let element of finalArray)  {
+        
         const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
-
-        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
+        
+        
+        
+        
+        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC") && element.elId == word.getAttribute("data-index-word")) {
           
-          sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
-          sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
-
-          indexFinal++
-    
+          const bodyLength = element.el.RDF.Annotation.Body.length
           
-          conflictInterface.remove()
+          for (let index = 0; index < bodyLength; index++) {
+            const option = document.createElement("div")
+            option.classList.add("option")
+            option.innerHTML = `<p>${index} </br>${element.el.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.el.RDF.Annotation.Body[index].rest.entry.dict.pofs.$} </p>`
+            conflictInterface.appendChild(option)
+          }
           
-          console.log(sortedArr)
         }
         
+      };
+      
+      
+      
+      
+      
+      
+      const options = document.querySelectorAll(".option")
+      
+      options.forEach((option, indice) =>{
+        option.addEventListener("click", ()=>{
+          
+          indexWordConflicted.sort((a,b) => a -b)
+          
+          console.log(indexWordConflicted)
+          
+          finalArray.forEach(element =>{
+            const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+            
+            if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
+              
+              sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
+              sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
+              
+              indexFinal++
+              
+              
+              conflictInterface.remove()
+              
+              console.log(sortedArr)
+            }
+            
+            
+            
+          })
+          
+          words[lastIndex].classList.remove("conflicted")
+          lastIndex++
+          
+          
+        })
         
         
       })
       
- 
-
-    })
-
-
-  })
+      
+      
+      
+      /* qui finisce foreach */
+      
+      words[lastIndex].removeEventListener("click", handleClick)
+    }
     
-
     
-
-  }) 
-
-
-
   
   
   
