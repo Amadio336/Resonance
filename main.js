@@ -228,7 +228,7 @@ function handleGkwValues() {
        "beforeend",  
        `<div class="values"> 
        
-       <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+       <h5 class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
        <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
        <p> Categoria: ${sortedArr[indexgkw].category} </p>
        <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
@@ -253,7 +253,7 @@ function handleGkwValues() {
       "beforeend",  
       `<div class="values"> 
       
-      <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <h5 class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
       <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
       <p> Categoria: ${sortedArr[indexgkw].category} </p>
       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
@@ -272,7 +272,7 @@ function handleGkwValues() {
       "beforeend",  
       `<div class="values"> 
       
-      <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <h5  class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
       <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
       <p> Categoria: ${sortedArr[indexgkw].category} </p>
       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
@@ -292,7 +292,7 @@ function handleGkwValues() {
       "beforeend",  
       `<div class="values"> 
       
-      <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <h5  class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
       <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
       <p> Categoria: ${sortedArr[indexgkw].category} </p>
       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
@@ -307,7 +307,7 @@ function handleGkwValues() {
       "beforeend",  
       `<div class="values"> 
       
-      <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <h5  class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
       <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
       <p> Categoria: ${sortedArr[indexgkw].category} </p>
       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
@@ -321,7 +321,7 @@ function handleGkwValues() {
       "beforeend",  
       `<div class="values"> 
       
-      <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <h5  class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
       <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
       <p> Categoria: ${sortedArr[indexgkw].category} </p>
       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
@@ -337,7 +337,7 @@ function handleGkwValues() {
       "beforeend",  
       `<div class="values"> 
       
-      <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <h5  class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
       <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
       <p> Categoria: ${sortedArr[indexgkw].category} </p>
       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
@@ -351,7 +351,7 @@ function handleGkwValues() {
         "beforeend",  
         `<div class="values"> 
         
-        <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+        <h5  class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
         <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
         <p> Categoria: ${sortedArr[indexgkw].category} </p>
         <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
@@ -365,7 +365,7 @@ function handleGkwValues() {
           "beforeend",  
           `<div class="values"> 
           
-          <h5>  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+          <h5 class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
           <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
           <p> Categoria: ${sortedArr[indexgkw].category} </p>
           <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
