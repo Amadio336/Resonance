@@ -1,3 +1,6 @@
+*{
+    font-family: "Inter", sans-serif;
+}
 
 .bd{
     border: 1px solid red;
@@ -14,20 +17,121 @@
 }
 
 
+:root {
+    --primary-color: #ff709d;
+    --secondary-color: #e8ce5a;
+    --third-color: #b31b4b;
+
+  }
+
+.button-beige{
+   padding: 0 15px;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: var(--secondary-color);
+    border: none;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+
+
+   
+}
+
+.button-pink{
+    padding: 0 15px;
+    border-radius: 10px;
+    margin: 10px;
+    background-color: var(--primary-color);
+    border: none;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+   
+
+}
+
+.title-text{
+    color: var(--secondary-color);
+    font-weight: bold;
+}
+
+.title-text-violet{
+    color: var(--third-color);
+    font-weight: bold;
+}
+
+.margin-button{
+    margin: 10px 0;
+}
+
+.spazio-vuoto{
+    width: 100%;
+    height: 50px;
+}
+
+.bd-violet{
+    border: 3px solid var(--third-color);
+}
 
 /* phase 1 */
 
 #container-phase1{
     min-height: 100vh;
+    background-color: var(--secondary-color);
+    padding-bottom: 30px;
 }
 
 #input-gtx{
     width: 500px;
     height: 500px;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+    resize: both;
 }
 
 
+#container-text-phase1{
+    background-color: var(--primary-color);
+    border-radius: 10px;
+}
+  
 
+#navbar{
+    margin-bottom:50px;
+    border-bottom: solid 1px var(--third-color);
+}
+
+.logo{
+    width: 200px;
+    height: 100px;
+    padding: 10px;
+    margin-right: auto;
+}
+
+.nav li{
+    display: inline;
+    margin:0 15px;
+}
+
+.nav li a{
+    text-decoration: none;
+    color: var(--third-color);
+    font-weight: bold;
+
+}
+
+#wrapper-mode{
+    display: flex;
+    align-items: left;
+    justify-content: left;
+    flex-direction: row;
+    margin-bottom: 50px;
+}
+
+#specifier-mode{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--third-color);
+    font-weight: bold;
+}
 
 /*------------ end phase1 ---------------------------- */
 
@@ -37,22 +141,28 @@
 /* phase2 */
 #container-phase2{
     min-height: 100vh;
-    background-color: green;
+    background-color: var(--primary-color);
 }
 
 #wrapper-greek-text{
     min-height: 100vh;
-    background-color: orange;
+    background-color: var(--secondary-color);
+    position: relative;
 
 }
 
 
 #col-greek-text{
-    background-color: orange;
     padding: 50px;
     overflow: scroll;
     resize: both;
 
+}
+
+#search-by-tag{
+    border-radius: 10px;
+    background-color: var(--secondary-color);
+    border: 3px solid var(--third-color);
 }
 
 
@@ -75,10 +185,10 @@
     display: none;
     position: absolute;
     top: 0;
-    left: 100%;
     width: 100%;
     height: 100%;
-    background-color: lightskyblue;
+    background-color: var(--third-color);
+    
     
 }
 
@@ -97,11 +207,60 @@
 
 
 
+
+.conflicted{
+ background-color: red;
+    border-radius: 5px;
+  
+}
+
+
+.conflict-interface{
+    width: 500px;
+    height: 500px;
+    border: 2px solid var(--third-color);
+    background-color:var(--primary-color);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.option{
+    background-color: var(--secondary-color);
+    margin:10px;
+    padding: 20px;
+    border-radius: 10px;
+    border: 2px solid var(--third-color);
+
+}
+
+#make-diagraph-wrapper{
+    height: 50%;
+    display: flex;
+    align-items: end;
+    justify-content: center;
+}
+
+ .button-make{
+width: 100%;
+height: 50px;
+border: 2px solid var(--third-color);
+} 
+
 /*------------ end phase 2 ---------------------------- */
 
 
+
+
 .highlighted{
-    background-color: yellow;
+    background-color: var(--primary-color);
+    border-radius: 5px;
 }
 
 
@@ -119,6 +278,7 @@
     min-height: 100vh;
     max-height: 100vh;
     overflow-y: auto;
+    background-color: var(--secondary-color);
     
    
 }
@@ -127,12 +287,15 @@
     min-height: 100vh;
     max-height: 100vh;
     overflow-y: scroll;
+    background-color: var(--primary-color);
 
 }
 
 #toolbar{
     display: flex; 
-    justify-content: end;
+    justify-content: center;
+    min-height: 10vh;
+
 }
 
 
@@ -179,6 +342,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    background-color: white;
 }
 
 
@@ -190,36 +354,45 @@
 
 /* table tool */
 
-#maincontainer-table-tool{
-    border: 1px solid red;
-}
+
 
 #table-tool-subcontainer{
     width: 300px;
     height: 250px;
-    border: 1px solid red;
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+  background-color: var(--secondary-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 
     
+}
+#choice-table{
+    position: absolute;
+top:50%;
+
+    transform: translateY(-50%);
+
 }
 
 
 .cell{
-    border: 1px solid blue;
     width: 0px;
     height: 30px;
     padding: 20px;
     margin: 5px;
     border-radius: 7px;
-    background-color: blue;
+    background-color: var(--primary-color);
+    border: 1px solid var(--third-color);
 
 }
 
 .cell-mouseover{
-    background-color: lightblue;
+    background-color: var(--third-color);
 }
 
 
@@ -231,13 +404,13 @@
 /* table diagraph */
 
 #container-table{
-    border: 1px solid red;
     width: 100%;
     height: 100%;
     overflow-x: scroll;
     display: flex;
     align-items: center;
     justify-content: start;
+    background-color: white;
 }
 
 tr,th,td{

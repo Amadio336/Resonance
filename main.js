@@ -1,3 +1,8 @@
+import { sortedArr } from "./APIs.js"
+
+
+
+
 /* phase 1 */
 
 /*  take the elements */
@@ -16,6 +21,7 @@ const selectionButton = document.getElementById("selection-button");
 const selectionAllButton = document.getElementById("selection-all-button");
 const gkwValuesArea = document.getElementById("gkw-values-area");
 const beginningValues = document.getElementById("beginning-values");
+const allowCompleteResearchButton = document.getElementById("allow-complete-research")
 const saveGkwValuesButton = document.getElementById("save-gkw-values");
 const closeGkwValuesButton = document.getElementById("close-gkw-values")
 const SearchBarTag = document.getElementById("search-by-tag")
@@ -117,7 +123,7 @@ class GreekWord {
 
 /* --------------------------- */
 
-let arrayCleaned = [];
+export let arrayCleaned = [];
 let objectArraygGkwWithValues = [];
 
 let highlightableGreekWords = null;
@@ -130,7 +136,7 @@ let inputMatrice;
 
 
 
-/* function handleGtx > cleans greek-text*/
+/* function handleGtx > this function cleans greek text and creates element for the phase 2  */
 function handleGtx(e) {
   e.preventDefault();
   
@@ -152,8 +158,11 @@ function handleGtx(e) {
       newWord.createWordInserted();
       objectArraygGkwWithValues.push(newWord);
     });
+
+
     
-    console.log(objectArraygGkwWithValues);
+    
+ /*    console.log(objectArraygGkwWithValues); */
     
     /* showing gkws values clicking on a sigle greek word in orange container */
     
@@ -192,52 +201,231 @@ function handleGtx(e) {
     
 
   }
- 
-
-
-
-
 
 
   /* makes appear phase 2. By default phase 2 is setted like display:none */
   containerPhase2.style.display = "block";
+
+
+
 }
 
 
-/* sava in objects the values of the greek words given by the user */
+
+
+/* save in an object the values of the greek words given by the user */
 
 function handleGkwValues() {
   
     gkwValuesArea.classList.add("gkw-values-area-appear")
     beginningValues.innerHTML = "";
     indexgkw = Array.from(highlightableGreekWords).indexOf(this);
+   
+    /* if word's category is "noun" */
+   if (sortedArr[indexgkw].category == "noun") {
+    
+     beginningValues.insertAdjacentHTML(
+       "beforeend",  
+       `<div class="values"> 
+       
+       <h5 class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+       <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+       <p> Categoria: ${sortedArr[indexgkw].category} </p>
+       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+       <p> Declinazione: ${sortedArr[indexgkw].decl} </p>
+       <p> Caso: </p>
+       <p> Genere:  ${sortedArr[indexgkw].gend} </p>
+       <p> Numero:  ${sortedArr[indexgkw].num}  </p>
+
+       
+       
+       </div>`
+
+       
+      );            
+    
+      
+ /* if word's category is "verb" */
+     
+  } else if(sortedArr[indexgkw].category == "verb"){
+
     beginningValues.insertAdjacentHTML(
       "beforeend",  
-      `<p class="values"> 
-             
-                Parola: ${objectArraygGkwWithValues[indexgkw].word} </br>
-                Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" />
-                </p>`
-    );            
+      `<div class="values"> 
+      
+      <h5 class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+      <p> Categoria: ${sortedArr[indexgkw].category} </p>
+      <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+      <p> Modo:  ${sortedArr[indexgkw].mood} </p>
+      <p> Tempo:  ${sortedArr[indexgkw].tense} </p>
+      <p> Persona: </p>
+      <p> Radice: </p>
+      
+      
+      </div>`
+            
+     );
+  } else if (sortedArr[indexgkw].category == "adjective"){  /* aggettivi */
 
-    inputMatrice = document.getElementById("input-matrice");
+    beginningValues.insertAdjacentHTML(
+      "beforeend",  
+      `<div class="values"> 
+      
+      <h5  class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+      <p> Categoria: ${sortedArr[indexgkw].category} </p>
+      <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+      <p> Declinazione: ${sortedArr[indexgkw].decl}  </p>
+      <p> Caso : </p>
+      <p> Genere: </p>
+      <p>: </p>
+      <p> : </p>
+      
+      
+      </div>`)
 
-    saveGkwValuesButton.addEventListener("click", () => {
-        highlightableGreekWords.forEach((highlightableGreekWord) => {
-          let matriceValue = inputMatrice.value;  
-          objectArraygGkwWithValues[indexgkw].matrice = matriceValue;
+
+  } else if(sortedArr[indexgkw].category == "pronoun"){
+
+    beginningValues.insertAdjacentHTML(
+      "beforeend",  
+      `<div class="values"> 
+      
+      <h5  class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+      <p> Categoria: ${sortedArr[indexgkw].category} </p>
+      <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+      
+      
+      </div>`)
+
+
+  } else if(sortedArr[indexgkw].category == "particle") {
     
-    
-       
+    beginningValues.insertAdjacentHTML(
+      "beforeend",  
+      `<div class="values"> 
+      
+      <h5  class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+      <p> Categoria: ${sortedArr[indexgkw].category} </p>
+      <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+   
+      
+      </div>`)
+
+  } else if(sortedArr[indexgkw].category == "preposition"){
+
+    beginningValues.insertAdjacentHTML(
+      "beforeend",  
+      `<div class="values"> 
+      
+      <h5  class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+      <p> Categoria: ${sortedArr[indexgkw].category} </p>
+      <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+   
+      
+      </div>`)
+
+
+
+  }  else if(sortedArr[indexgkw].category == "article"){
+
+    beginningValues.insertAdjacentHTML(
+      "beforeend",  
+      `<div class="values"> 
+      
+      <h5  class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+      <p> Categoria: ${sortedArr[indexgkw].category} </p>
+      <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+   
+      
+      </div>`)
+
+    } else if(sortedArr[indexgkw].category == "conjunction"){
+
+      beginningValues.insertAdjacentHTML(
+        "beforeend",  
+        `<div class="values"> 
         
-      });    
+        <h5  class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+        <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+        <p> Categoria: ${sortedArr[indexgkw].category} </p>
+        <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
      
-      console.log(objectArraygGkwWithValues);
-    
-      });
-     
-  }    
+        
+        </div>`)
   
+      } else if(sortedArr[indexgkw].category == "adverb"){
+
+        beginningValues.insertAdjacentHTML(
+          "beforeend",  
+          `<div class="values"> 
+          
+          <h5 class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+          <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+          <p> Categoria: ${sortedArr[indexgkw].category} </p>
+          <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+       
+          
+          </div>`)
+    
+        }
+  
+
+
+  inputMatrice = document.getElementById("input-matrice");
+      
+  saveGkwValuesButton.addEventListener("click", () => {
+    highlightableGreekWords.forEach((highlightableGreekWord) => {
+      let matriceValue = inputMatrice.value;  
+      objectArraygGkwWithValues[indexgkw].matrice = matriceValue; 
+    })
+ 
+  console.log("objectarrayWithvalues",objectArraygGkwWithValues);
+
+  });
+
+}
+
+
+/* button allow complete research */
+
+allowCompleteResearchButton.addEventListener("click", completeResearch)
+  
+let syncIndex = 0
+
+function completeResearch() { // this function is fundamental, it associates to the object with all the values of a single words the values themselves
+
+  objectArraygGkwWithValues.forEach((value) => {
+/* adding values of dict */
+    objectArraygGkwWithValues[syncIndex].category = sortedArr[syncIndex].category
+    objectArraygGkwWithValues[syncIndex].SubVoce = sortedArr[syncIndex].SubVoce
+
+/* adding values of infl*/
+    sortedArr[syncIndex].mood != undefined ? objectArraygGkwWithValues[syncIndex].mood = sortedArr[syncIndex].mood : console.log("no verb")
+    sortedArr[syncIndex].tense != undefined ? objectArraygGkwWithValues[syncIndex].tense = sortedArr[syncIndex].tense : console.log("no verb")
+
+    sortedArr[syncIndex].decl != undefined ? objectArraygGkwWithValues[syncIndex].decl = sortedArr[syncIndex].decl : console.log("no noun")
+    sortedArr[syncIndex].gend != undefined ? objectArraygGkwWithValues[syncIndex].gend = sortedArr[syncIndex].gend : console.log("no noun")
+
+    syncIndex++
+  }
+)
+
+
+  
+  
+
+
+console.log(objectArraygGkwWithValues)
+
+}
+
+
 
 
 
@@ -250,7 +438,7 @@ closeGkwValuesButton.addEventListener("click", ()=>{
 
 
 
-/* searchbar by tag */
+/* searchbar by tag >  */
 
 SearchBarTag.addEventListener("keyup", handleSearchByTag)
 
@@ -258,22 +446,29 @@ SearchBarTag.addEventListener("keyup", handleSearchByTag)
     let searchBarTagValue = SearchBarTag.value
 
     if (event.key === "Enter") {
+
       objectArraygGkwWithValues.forEach((objectArraygGkwWithValue) =>{
           if (!searchBarTagValue == "") {
+
+            for (const key in objectArraygGkwWithValue) {
+
+              if (objectArraygGkwWithValue[key] == searchBarTagValue) {
+                const indexWordBold = objectArraygGkwWithValues.indexOf(objectArraygGkwWithValue)
+                console.log(indexWordBold)
+                highlightableGreekWords[indexWordBold].classList.add("bold")
+                
+              }
             
-              if (objectArraygGkwWithValue.matrice.includes(searchBarTagValue)) {
-                  const indexWordBold = objectArraygGkwWithValues.indexOf(objectArraygGkwWithValue)
-                  console.log(indexWordBold)
-                  highlightableGreekWords[indexWordBold].classList.add("bold")
-              } 
+            }
+            
               
-          } else if (searchBarTagValue == ""){
+           } else if (searchBarTagValue == ""){
              highlightableGreekWords.forEach((highlightableGreekWord) => {
               highlightableGreekWord.classList.remove("bold")
              })
   
           }
-      })
+      }) 
       
     }
 
@@ -315,8 +510,7 @@ function selectAllElements() {
     highlightableGreekWord.classList.add("highlighted");
   });
 }
-
-resonanceElements = []; // !!!! array with all the resonance elements
+ let resonanceElements = []; // !!!! array with all the resonance elements
 
 /* making the resonance elements for the diagraph > action on button CreateDiagraph */
 
@@ -402,7 +596,8 @@ unlockButton.addEventListener("click", () => {
 
 //  table tool and costruction of table
 
-cells = document.querySelectorAll(".cell"); // selection of the cells
+let cells = document.querySelectorAll(".cell"); // selection of the cells
+
 
 cells.forEach((cell) => {
   cell.addEventListener("click", () => {
@@ -431,7 +626,7 @@ cells.forEach((cell) => {
     for (let i = 0; i < row; i++) {
       // loops that create drag-area table
 
-      tr = document.createElement("tr");
+     let tr = document.createElement("tr");
       tr.classList.add("diagraph-row");
       tableDiagraph.appendChild(tr);
 
@@ -507,10 +702,13 @@ cells.forEach((cell) => {
 
 /* mouse effects on table tool */
 
+let dataRow = null;
+let dataColumnsPerRow = null;
+
 cells.forEach((cell) => {
   cell.addEventListener("mouseover", () => {
-    dataRow = cell.getAttribute("data-row");
-    dataColumnsPerRow = cell.getAttribute("data-column-per-row");
+     dataRow = cell.getAttribute("data-row");
+     dataColumnsPerRow = cell.getAttribute("data-column-per-row");
 
     for (const cell of cells) {
       if (
@@ -624,3 +822,9 @@ sliderSizeTable.addEventListener("click", () => {
     diagraphRow.style.height = `${tableSize}px`;
   });
 });
+
+
+
+
+
+export {handleGkwValues}

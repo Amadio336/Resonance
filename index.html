@@ -14,7 +14,14 @@
 <!-- sortable js -->
     <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
 
+<!-- bootstrap icon -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
+<!-- inter font -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet">
 
     <!-- css -->
 
@@ -28,10 +35,23 @@
         <div class="row">
 
           <!-- col with the checkbox for the poetry -->
-          <div class="col-12 bd">
+
+          <div class="col-12 centra" id="navbar">
+             <img class="logo" src="resonance-logo.svg" alt="logo">
+
+             <ul class="nav">
+              <li><a href="">Informazioni su Resonance</a></li>
+              <li><a href="">Licenza</a></li>
+              <li><a href="">Contatti</a></li>
+             </ul>
+            
+            
+            </div>
+
+          <div class="col-12" id="wrapper-mode">
           
-              <button id="switch-poetry"> Poesia </button>
-              <button id="switch-prose"> Prosa </button>
+              <button class="button-pink" id="switch-poetry"> Poesia </button>
+              <button class="button-pink" id="switch-prose"> Prosa </button>
 
               <p id="specifier-mode"> </p>
           
@@ -39,13 +59,13 @@
 
 
 
-          <div class="col-12 bd centra">
+          <div class="col-12 centra" id="container-text-phase1">
             <!-- form to get greek text -->
             <form action="#">
-              <label for="provide-gtx">Inserisci il testo:</label><br /><br />
-              <textarea id="input-gtx" name="fornisci-testo-greco"></textarea
+              <label for="provide-gtx" class="title-text" style="margin-top: 10px;">Inserisci il testo:</label><br /><br />
+              <textarea id="input-gtx" name="fornisci-testo-greco" placeholder="Inserisci il testo facendo attenzione a non andare a capo"></textarea
               ><br /><br />
-              <button id="button-submit" type="submit">Invia</button>
+              <button id="button-submit" class="button-beige" type="submit">Invia</button>
             </form>
           </div>
         </div>
@@ -55,10 +75,10 @@
     <!-- phase 2 -->
 
     <div id="container-phase2" class="container-fluid hide">
-      <div class="row" style="border: 5px blue solid">
+      <div class="row">
       
         <!-- column with greek text selectable -->
-         <div id="wrapper-greek-text" class="col-9 bd">
+         <div id="wrapper-greek-text" class="col-9 bd-violet">
             <div id="col-greek-text">
   
               
@@ -66,29 +86,33 @@
             </div>
          </div>
         <!-- column with toolbar -->
-        <div id="toolbar-phase2" class="col-3 bd">
+        <div id="toolbar-phase2" class="col-3 bd-violet" style="border-left: none;">
       
           <!-- column with features to analyze text  -->
-          <div class="col-12 bd">
-            <p>Toolbar</p>
-            <label for="search-by-tag"> Cerca per tag</label>
+          <div class="col-12">
+            <p class="title-text-violet" style="font-size: 20px;">Toolbar</p>
+            <label for="search-by-tag" class="title-text"> Cerca per tag </label>
             <input type="text" id="search-by-tag">
-            <button id="selection-button">Passa alla selezione</button>
-            <button id="selection-all-button">Seleziona tutti</button>
+            <button id="allow-complete-research" class="margin-button button-beige"> Permetti la ricerca completa</button>
+            <button id="resolve-conflict" class="margin-button button-beige">Risolvi conflitti</button>
+
+            <div class="spazio-vuoto"></div>
+            <button id="selection-button" class="margin-button button-beige">Passa alla selezione</button> <br>
+            <button id="selection-all-button" class="margin-button button-beige">Seleziona tutti</button>
 
           </div>
 
           <!-- column with button to create a diagrph -->
-          <div class="col-12 bd">
-            <button id="make-diagraph">Crea un diagrafo</button>
+          <div class="col-12" id="make-diagraph-wrapper">
+            <button class="button-make button-beige" id="make-diagraph">Crea un diagrafo</button>
           </div>
 
         
           <!-- area to look and modify values of greek words -->
            <div id="gkw-values-area" class="gkw-values-area"> 
-              <h5 id="beginning-values"> </h5>
-              <button id="save-gkw-values"> Salva</button>
-              <button id="close-gkw-values"> Chiudi</button>
+              <div id="beginning-values"> </div>
+              <button id="save-gkw-values" class="button-beige"> Salva</button>
+              <button id="close-gkw-values" class="button-beige"> Chiudi</button>
             </div>
 
 
@@ -98,40 +122,34 @@
 
     <!-- phase 3 -->
 
-    <div id="container-phase3" class="container-fluid bd">
+    <div id="container-phase3" class="container-fluid bd-violet">
       <div class="row">
-        <div id="toolbar" class="col-12 bd">
-          <button id="add-separator"> Aggiungi separatore</button>
-          <button id="add-row"> Aggiungi parlante </button>
-          <button id="add-col"> Aggiungi categoria</button>
-          <button id="choose-table-button">Scegli tabella</button>
-          <label for="table-size-slider">Dimensioni tabella</label>
-          <input type="range" id="table-size-slider" name="table-size" min="0" max="1000" step="50">
-          <button id="modifier"> Blocca diagrafo</button>
-          <button id="unlock-diagraph"> Sblocca diagrafo</button>
+        <div id="toolbar" class="col-12 bd-violet" style="border-top:none; border-left: none; border-right: none;">
+          <button class="button-pink" id="add-separator"> Aggiungi separatore</button>
+          <button class="button-pink" id="add-row"> + parlante </button>
+          <button class="button-pink" id="add-col"> + categoria</button>
+          <button class="button-pink" id="choose-table-button">Scegli tabella</button>
+          <label for="table-size-slider" class="centra" style="margin-right: 5px;">Dimensioni tabella</label>
+          <input type="range" id="table-size-slider" name="table-size" min="0" max="1000" step="50" value="0">
+          <button class="button-pink" id="modifier"> <i class="bi bi-lock-fill"></i></button>
+          <button class="button-pink" id="unlock-diagraph"> <i class="bi bi-unlock-fill"></i> </button>
       
 
         </div>
 
-        <div id="main-sidebar" class="col-2 bd">
-         <!--  <p class="resonance-element" draggable="true" > jdaksdjaskdjaskdjaskl</p>
-          <p class="resonance-element" draggable="true" > moi</p>
-          <p class="resonance-element" draggable="true" > ennepe</p>
-          <p class="resonance-element" draggable="true" > musa</p>
-          <p class="resonance-element" draggable="true" > polutropon</p>
-       
-           -->
+        <div id="main-sidebar" class="col-2">
+
 
 
         </div>
-        <div id="work-area" class="col-10 bd">
+        <div id="work-area" class="col-10">
           <!-- table tool -->
 
           <div id="maincontainer-table-tool" class="hide">
               
-              <p> Seleziona dimensioni tabella</p>
+              <p class="title-text-violet" id="choice-table"> Seleziona dimensioni tabella</p>
 
-            <div id="table-tool-subcontainer">
+            <div id="table-tool-subcontainer" class="bd-violet rounded">
               <div class="cell" data-row="1" data-column-per-row="1"></div>
               <div class="cell" data-row="1" data-column-per-row="2"></div>
               <div class="cell" data-row="1" data-column-per-row="3"></div>
@@ -165,33 +183,6 @@
  
           
 
-         <!--   <table>
-            <thead>
-                  <tr>
-                      <th>  </th>
-                      <th>  </th>
-                      <th> </th>
-                      <th></th>
-                  </tr>
-              </thead>
-              <tbody> 
-                  <tr> 
-                      <td class="drag-area"> <p>  </p></td>
-                      <td class="drag-area"> <p> </p></td>
-                      <td class="drag-area"> <p> </p></td>
-                      <td class="drag-area"> <p> </p></td>
-                  </tr>
-                  <tr>
-                      <td  class="drag-area"> <p> </p></td>
-                      <td  class="drag-area"> <p></p></td>
-                      <td  class="drag-area"> <p></p></td>
-                      <td  class="drag-area"> <p></p></td>
-                  </tr>
-                </tbody>
-
-
-              </table> -->
-
         </div>
       </div>
     </div>
@@ -200,7 +191,7 @@
 
     <script></script>
 
-    <script src="main.js"></script>
+    <script type="module" src="main.js"></script>
 
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
