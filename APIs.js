@@ -261,7 +261,6 @@ resolveConflictButton.addEventListener("click", ()=>{
   
   
   
-  
   words = document.querySelectorAll(".conflicted")
   
   
@@ -270,7 +269,7 @@ resolveConflictButton.addEventListener("click", ()=>{
   
   
   
-  console.log(words)
+  console.log("words",words)
   
   
   let index = 0
