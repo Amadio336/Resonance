@@ -1,4 +1,5 @@
 import { sortedArr } from "./APIs.js"
+import { buttonAutomaticResearch, prova } from "./automatic-research.js";
 
 
 
@@ -26,6 +27,7 @@ const saveGkwValuesButton = document.getElementById("save-gkw-values");
 const closeGkwValuesButton = document.getElementById("close-gkw-values")
 const SearchBarTag = document.getElementById("search-by-tag")
 const makeDiagraph = document.getElementById("make-diagraph");
+
 
 const sidebarResonanceElements = document.getElementById("main-sidebar");
 const tableDiagraph = document.getElementById("table-diagraph");
@@ -824,6 +826,9 @@ sliderSizeTable.addEventListener("click", () => {
 });
 
 
+
+
+buttonAutomaticResearch.addEventListener("click", prova)
 
 
 

@@ -366,7 +366,7 @@ console.log("finalArray",finalArray)
               
               conflictInterface.remove()
               
-              console.log(sortedArr)
+              console.log("sortedArr",sortedArr)
             }
             
             
