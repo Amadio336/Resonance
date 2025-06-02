@@ -2,6 +2,9 @@
 import {handleGkwValues} from "./main.js"
 /* this part aims to provide main.js grammar info about words provided */
 
+
+import { generateColours } from "./colour-generator.js";
+
 const inputGtx = document.getElementById("input-gtx")
 const buttonSubmit = document.getElementById("button-submit")
 
@@ -403,11 +406,6 @@ console.log("finalArray",finalArray)
 
 })
 
-
-
-
-
- 
 
 
 

@@ -1,50 +1,8 @@
 import { sortedArr } from "./APIs.js"
+import { colours, generateColours } from "./colour-generator.js"
 
 const buttonAutomaticResearch = document.getElementById("automatic-research")
 
-const colours = [
-    'red', 'green', 'blue', 'yellow', 'purple',
-    'orange', 'pink', 'brown', 'black', 'white',
-    'grey', 'cyan', 'magenta', 'lime', 'indigo',
-    'violet', 'turquoise', 'beige', 'maroon', 'gold', 'red', 'green', 'blue', 'yellow', 'purple',
-    'orange', 'pink', 'brown', 'black', 'white',
-    'grey', 'cyan', 'magenta', 'lime', 'indigo',
-    'violet', 'turquoise', 'beige', 'maroon', 'gold',
-    'red', 'green', 'blue', 'yellow', 'purple',
-    'orange', 'pink', 'brown', 'black', 'white',
-    'grey', 'cyan', 'magenta', 'lime', 'indigo',
-    'violet', 'turquoise', 'beige', 'maroon', 'gold', 'red', 'green', 'blue', 'yellow', 'purple',
-    'orange', 'pink', 'brown', 'black', 'white',
-    'grey', 'cyan', 'magenta', 'lime', 'indigo',
-    'violet', 'turquoise', 'beige', 'maroon', 'gold',
-    'red', 'green', 'blue', 'yellow', 'purple',
-    'orange', 'pink', 'brown', 'black', 'white',
-    'grey', 'cyan', 'magenta', 'lime', 'indigo',
-    'violet', 'turquoise', 'beige', 'maroon', 'gold', 'red', 'green', 'blue', 'yellow', 'purple',
-    'orange', 'pink', 'brown', 'black', 'white',
-    'grey', 'cyan', 'magenta', 'lime', 'indigo',
-    'violet', 'turquoise', 'beige', 'maroon', 'gold',
-    'red', 'green', 'blue', 'yellow', 'purple',
-    'orange', 'pink', 'brown', 'black', 'white',
-    'grey', 'cyan', 'magenta', 'lime', 'indigo',
-    'violet', 'turquoise', 'beige', 'maroon', 'gold', 'red', 'green', 'blue', 'yellow', 'purple',
-    'orange', 'pink', 'brown', 'black', 'white',
-    'grey', 'cyan', 'magenta', 'lime', 'indigo',
-    'violet', 'turquoise', 'beige', 'maroon', 'gold', 'red', 'green', 'blue', 'yellow', 'purple',
-    'orange', 'pink', 'brown', 'black', 'white',
-    'grey', 'cyan', 'magenta', 'lime', 'indigo',
-    'violet', 'turquoise', 'beige', 'maroon', 'gold', 'red', 'green', 'blue', 'yellow', 'purple',
-    'orange', 'pink', 'brown', 'black', 'white',
-    'grey', 'cyan', 'magenta', 'lime', 'indigo',
-    'violet', 'turquoise', 'beige', 'maroon', 'gold',
-    'red', 'green', 'blue', 'yellow', 'purple',
-    'orange', 'pink', 'brown', 'black', 'white',
-    'grey', 'cyan', 'magenta', 'lime', 'indigo',
-    'violet', 'turquoise', 'beige', 'maroon', 'gold', 'red', 'green', 'blue', 'yellow', 'purple',
-    'orange', 'pink', 'brown', 'black', 'white',
-    'grey', 'cyan', 'magenta', 'lime', 'indigo',
-    'violet', 'turquoise', 'beige', 'maroon', 'gold',
-];
 
 
 
@@ -59,6 +17,8 @@ let index = 0
 function prova() {
     const words = document.querySelectorAll(".highlightable") /*  the elements in the text provided by user */
 
+    generateColours()
+
     sortedArr.forEach(element => {
         SubVoceOnlyArr.push(element.SubVoce)
     })
@@ -72,7 +32,7 @@ function prova() {
 
 
 
-        for (let i = 1; i < 20; i++) {
+        for (let i = 1; i < 50; i++) {
             /* 
                         console.log(SubVoceOnlyArr[n], "    ", SubVoceOnlyArr[n + i]) */
 
@@ -96,41 +56,44 @@ function prova() {
                 words[n + i].classList.add("repetition")
 
 
-                
-                
-                
-                
-                
-                
+
+
+
+
+
+
                 /*       words[n].style.backgroundColor = colours[colorIndex]
                      words[n + i].style.backgroundColor = colours[colorIndex]  */
-                     
-                    }
-                    index = n + 1
-                    
-                }
-                
-                const repetitions = document.querySelectorAll(".repetition")
-                /*        console.log("repetition", repetitions) */
-                
-                repetitions.forEach(repetition => {
-                    if (repetition.getAttribute("data-repetition") == RepMap.value) {
-                        repetition.style.color = RepMap.colour
-                        colorIndex++
-                        
-                    }
-                    
-                    
-                })
-                
-                
-                
+
+            }
+            index = n + 1
+
+        }
+
+        const repetitions = document.querySelectorAll(".repetition")
+        /*        console.log("repetition", repetitions) */
+
+        console.log("colours", colours)
+
+        repetitions.forEach(repetition => {
+            if (repetition.getAttribute("data-repetition") == RepMap.value) {
+                repetition.style.color = RepMap.colour
+                colorIndex++
+
+            }
+
+
+        })
+
+
+
 
 
 
     })
-    
-        console.log("colorIndex", colorIndex) 
+
+
+    console.log("colorIndex", colorIndex)
 
 }
 
@@ -144,4 +107,4 @@ function prova() {
 
 
 
-export { buttonAutomaticResearch, prova }
+export { buttonAutomaticResearch, prova, colorIndex }

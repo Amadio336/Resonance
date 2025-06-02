@@ -1,5 +1,6 @@
 import { sortedArr } from "./APIs.js"
 import { buttonAutomaticResearch, prova } from "./automatic-research.js";
+import { generateColours } from "./colour-generator.js";
 
 
 
@@ -828,8 +829,9 @@ sliderSizeTable.addEventListener("click", () => {
 
 
 
+
 buttonAutomaticResearch.addEventListener("click", prova)
 
 
 
-export {handleGkwValues}
+export {handleGkwValues, buttonAutomaticResearch}
