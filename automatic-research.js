@@ -32,7 +32,7 @@ function prova() {
 
 
 
-        for (let i = 1; i < 50; i++) {
+        for (let i = 1; i < 9; i++) {
             /* 
                         console.log(SubVoceOnlyArr[n], "    ", SubVoceOnlyArr[n + i]) */
 
@@ -73,7 +73,7 @@ function prova() {
         const repetitions = document.querySelectorAll(".repetition")
         /*        console.log("repetition", repetitions) */
 
-        console.log("colours", colours)
+   
 
         repetitions.forEach(repetition => {
             if (repetition.getAttribute("data-repetition") == RepMap.value) {

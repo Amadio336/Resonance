@@ -8,7 +8,7 @@ const colours = [
 
 
 function generateColours() {
-    console.log("generatecolours")
+
     for (let index = 0; index < 500; index++) {
         
         const red = Math.round(Math.random() * ((255-1)+1))
