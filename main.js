@@ -1,7 +1,7 @@
 import { sortedArr } from "./APIs.js"
 import { buttonAutomaticResearch, prova } from "./automatic-research.js";
 import { generateColours } from "./colour-generator.js";
-
+import { inputSoglia } from "./automatic-research.js";
 
 
 
@@ -27,6 +27,9 @@ const allowCompleteResearchButton = document.getElementById("allow-complete-rese
 const saveGkwValuesButton = document.getElementById("save-gkw-values");
 const closeGkwValuesButton = document.getElementById("close-gkw-values")
 const SearchBarTag = document.getElementById("search-by-tag")
+const wrapperGreekText = document.getElementById("wrapper-greek-text")
+const selectBgPhase2 = document.getElementById("wrapper-greek-text-bg")
+const inputChangeColorColumn = document.getElementById("column-color")
 const makeDiagraph = document.getElementById("make-diagraph");
 
 
@@ -170,6 +173,11 @@ function handleGtx(e) {
     /* showing gkws values clicking on a sigle greek word in orange container */
     
     highlightableGreekWords = document.querySelectorAll(".highlightable");
+
+    console.log("highlightableGreekWords",highlightableGreekWords.length)
+    inputSoglia.max = highlightableGreekWords.length
+
+
     highlightableGreekWords.forEach((highlightableGreekWord) => {
       highlightableGreekWord.addEventListener("click", handleGkwValues);
     });
@@ -832,6 +840,12 @@ sliderSizeTable.addEventListener("click", () => {
 
 buttonAutomaticResearch.addEventListener("click", prova)
 
+
+selectBgPhase2.addEventListener("input", ()=>{
+  wrapperGreekText.style.backgroundColor = selectBgPhase2.value
+  inputChangeColorColumn.style.backgroundColor = selectBgPhase2.value
+
+})
 
 
 export {handleGkwValues, buttonAutomaticResearch}

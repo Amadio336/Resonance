@@ -76,15 +76,29 @@
 
     <div id="container-phase2" class="container-fluid hide">
       <div class="row">
+
+      
       
         <!-- column with greek text selectable -->
          <div id="wrapper-greek-text" class="col-9 bd-violet">
+        
             <div id="col-greek-text">
   
               
 
             </div>
+
+              <div class="col-12" id="column-color">  <label for="wrapper-greek-text-bg">Scegli un colore:</label>
+           <input type="color" id="wrapper-greek-text-bg" name="colore" value="#ff0000">
+          
+          </div>
+
+
+
          </div>
+
+
+
         <!-- column with toolbar -->
         <div id="toolbar-phase2" class="col-3 bd-violet" style="border-left: none;">
       
@@ -96,6 +110,8 @@
             <button id="allow-complete-research" class="margin-button button-beige"> Permetti la ricerca completa</button>
             <button id="resolve-conflict" class="margin-button button-beige">Risolvi conflitti</button>
             <button id="automatic-research">Ricerca automatica</button>
+            <label for="soglia">Soglia</label>
+              <input type="number" required min="2" id="soglia" name="soglia">
             
 
             <div class="spazio-vuoto"></div>
@@ -103,6 +119,9 @@
             <button id="selection-all-button" class="margin-button button-beige">Seleziona tutti</button>
 
           </div>
+
+
+          
 
           <!-- column with button to create a diagrph -->
           <div class="col-12" id="make-diagraph-wrapper">

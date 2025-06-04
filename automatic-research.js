@@ -2,8 +2,8 @@ import { sortedArr } from "./APIs.js"
 import { colours, generateColours } from "./colour-generator.js"
 
 const buttonAutomaticResearch = document.getElementById("automatic-research")
-
-
+const inputSoglia = document.getElementById("soglia")
+let sogliaValue;  
 
 
 let colorIndex = 0
@@ -16,6 +16,12 @@ let index = 0
 
 function prova() {
     const words = document.querySelectorAll(".highlightable") /*  the elements in the text provided by user */
+
+    sogliaValue = inputSoglia.value
+console.log("sogliaValue",sogliaValue)
+        
+
+
 
     generateColours()
 
@@ -32,7 +38,7 @@ function prova() {
 
 
 
-        for (let i = 1; i < 9; i++) {
+        for (let i = 1; i < sogliaValue; i++) {
             /* 
                         console.log(SubVoceOnlyArr[n], "    ", SubVoceOnlyArr[n + i]) */
 
@@ -107,4 +113,4 @@ function prova() {
 
 
 
-export { buttonAutomaticResearch, prova, colorIndex }
+export { buttonAutomaticResearch, prova, colorIndex, inputSoglia }

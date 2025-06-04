@@ -139,6 +139,12 @@
 
 
 /* phase2 */
+
+#column-color{
+    background-color: var(--secondary-color);
+}
+
+
 #container-phase2{
     min-height: 100vh;
     background-color: var(--primary-color);
