@@ -17,6 +17,10 @@
 }
 
 
+.max-width-button{
+    max-width: 85%;
+}
+
 :root {
     --primary-color: #ff709d;
     --secondary-color: #e8ce5a;

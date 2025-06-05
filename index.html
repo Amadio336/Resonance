@@ -90,7 +90,7 @@
           <div class="col-12 mb-2  d-flex justify-content-end align-items-center">
 
             <!-- input color -->
-             <label for="wrapper-greek-text-bg"> Colore sfondo</label>
+            <label for="wrapper-greek-text-bg"> Colore sfondo</label>
             <input type="color" id="wrapper-greek-text-bg" name="colore" value="#ff0000">
 
 
@@ -112,29 +112,83 @@
 
         <!-- column with features to analyze text  -->
         <div class="col-12">
-          <p class="title-text-violet" style="font-size: 20px;">Toolbar</p>
-          <label for="search-by-tag" class="title-text"> Cerca per tag </label>
-          <input type="text" id="search-by-tag">
-          <button id="allow-complete-research" class="margin-button button-beige"> Permetti la ricerca completa</button>
 
-          <button id="automatic-research">Ricerca automatica</button>
-          <label for="soglia">Soglia</label>
-          <input type="number" required min="2" id="soglia" name="soglia">
+          <!-- tab with research, stats and diagraph -->
 
 
-          <div class="spazio-vuoto"></div>
-          <button id="selection-button" class="margin-button button-beige">Passa alla selezione</button> <br>
-          <button id="selection-all-button" class="margin-button button-beige">Seleziona tutti</button>
+          <!-- nav-tabs -->
+          <nav>
+            <div class="nav nav-tabs" id="nav-tab" role="tablist">
+              <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
+                role="tab" aria-controls="nav-home" aria-selected="true">Ricerca</button>
+
+              <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
+                type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Statistiche</button>
+
+              <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
+                type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Diagrafo</button>
+            </div>
+          </nav>
+          <!-- --------------------------------------------------------------------------- -->
+
+          <!-- tab content -->
+
+          <div class="tab-content" id="nav-tabContent">
+
+            <!-- tab research -->
+            <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+
+              <div class="bd">
+              
+              <!-- input search by tag -->
+              <label for="search-by-tag" class="title-text mt-5"> Cerca per tag </label>
+              <input type="text" id="search-by-tag">
+
+
+              <div class="spazio-vuoto"></div>
+
+              <!-- allorw complete researc -->
+              <button id="allow-complete-research" class="margin-button button-beige"> 
+                Permetti ricerca completa
+              </button>
+
+
+              <hr>
+
+              <!-- automatic researc -->
+              <label for="soglia">Soglia</label>
+              <input type="number" class="mb-3" style="max-width: 50%;" required min="2" id="soglia" name="soglia"> <br>
+
+              <button id="automatic-research" class="margin-button button-beige n">Ricerca
+                automatica</button>
+              <hr>
+          
+              </div>
+            </div>
+
+
+            <!-- tab statistics -->
+            <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+              ...</div>
+
+
+
+            <!-- tab diagraph -->
+            <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+              <button id="selection-button" class="margin-button button-beige">Passa alla selezione</button> <br>
+              <button id="selection-all-button" class="margin-button button-beige">Seleziona tutti</button>
+              <button class="button-make button-beige" id="make-diagraph">Crea un diagrafo</button>
+
+            </div>
+
+          </div>
 
         </div>
 
 
 
 
-        <!-- column with button to create a diagrph -->
-        <div class="col-12" id="make-diagraph-wrapper">
-          <button class="button-make button-beige" id="make-diagraph">Crea un diagrafo</button>
-        </div>
+
 
 
         <!-- area to look and modify values of greek words -->
