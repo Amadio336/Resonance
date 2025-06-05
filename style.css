@@ -237,6 +237,29 @@
 }
 
 
+#col-greek-text{
+    padding-top:0 ;
+}
+
+#resolve-conflict{
+    padding: 10px;
+    border: solid 2px var(--third-color);
+    margin: 10px;
+}
+
+#wrapper-greek-text-bg{
+border: solid 1px black;
+  width: 40px;
+  height: 25px;
+  border-radius: 10px;
+  background-color: transparent;
+  cursor: pointer;
+  padding: 0;
+  margin: 5px;
+
+}
+
+
 .option{
     background-color: var(--secondary-color);
     margin:10px;
