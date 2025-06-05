@@ -286,6 +286,14 @@ height: 50px;
 border: 2px solid var(--third-color);
 } 
 
+
+
+
+.nav-tabs-title{
+    font-weight: bold;
+    color:#b31b4b
+}
+
 /*------------ end phase 2 ---------------------------- */
 
 

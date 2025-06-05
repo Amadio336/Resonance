@@ -87,17 +87,7 @@
 
         <div id="col-greek-text">
 
-          <div class="col-12 mb-2  d-flex justify-content-end align-items-center">
-
-            <!-- input color -->
-            <label for="wrapper-greek-text-bg"> Colore sfondo</label>
-            <input type="color" id="wrapper-greek-text-bg" name="colore" value="#ff0000">
-
-
-            <!-- button resolve-conflict -->
-            <button id="resolve-conflict" class="margin-button button-pink mr-3"> <strong>Risolvi
-                conflitti</strong></button>
-          </div>
+        
         </div>
 
 
@@ -120,13 +110,19 @@
           <nav>
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
               <button class="nav-link" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button"
-                role="tab" aria-controls="nav-home" aria-selected="true">Ricerca</button>
+                role="tab" aria-controls="nav-home" aria-selected="true">
+                <p class="nav-tabs-title">Ricerca</p>
+              </button>
 
               <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile"
-                type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Statistiche</button>
+                type="button" role="tab" aria-controls="nav-profile" aria-selected="false">
+                <p class="nav-tabs-title">Statistiche</p>
+              </button>
 
               <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-contact"
-                type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Diagrafo</button>
+                type="button" role="tab" aria-controls="nav-contact" aria-selected="false">
+                <p class="nav-tabs-title">Diagrafo</p>
+              </button>
             </div>
           </nav>
           <!-- --------------------------------------------------------------------------- -->
@@ -139,50 +135,98 @@
             <div class="tab-pane fade" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
 
               <div class="bd">
-              
-              <!-- input search by tag -->
-              <label for="search-by-tag" class="title-text mt-5"> Cerca per tag </label>
-              <input type="text" id="search-by-tag">
+
+                <!-- input color -->
+                <label for="wrapper-greek-text-bg"> Colore sfondo</label>
+                <input type="color" id="wrapper-greek-text-bg" name="colore" value="#ff0000">
 
 
-              <div class="spazio-vuoto"></div>
+                <!-- button resolve-conflict -->
+                <button id="resolve-conflict" class="margin-button button-beige mr-3"> <strong>Risolvi
+                    conflitti</strong></button>
+                <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover"
+                  data-bs-placement="bottom"
+                  data-bs-content="Risolvi conflitti - permette di risolvere i conflitti (parole evidenziate in rosso) generati dalle parole omonime. ATTENZIONE - risolvi i conflitti nell’ordine in cui si presentano.">
+                  ?
+                </button>
 
-              <!-- allorw complete researc -->
-              <button id="allow-complete-research" class="margin-button button-beige"> 
-                Permetti ricerca completa
-              </button>
+                <br>
+
+                <!-- input search by tag -->
+                <label for="search-by-tag" class="title-text mt-5"> Cerca per tag </label>
+                <input type="text" id="search-by-tag">
+                <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover"
+                  data-bs-placement="bottom"
+                  data-bs-content="Cerca per tag - Clicca su una parola all’interno del testo e aggiungi una descrizione personalizzata, poi clicca su salva. Inserendo in questo campo di ricerca la tua descrizione e schiacciando INVIO, gli elementi desiderati verrano evidenziati ">
+                  ?
+                </button>
 
 
-              <hr>
+                <div class="spazio-vuoto"></div>
 
-              <!-- automatic researc -->
-              <label for="soglia">Soglia</label>
-              <input type="number" class="mb-3" style="max-width: 50%;" required min="2" id="soglia" name="soglia"> <br>
+                <!-- allorw complete researc -->
+                <button id="allow-complete-research" class="margin-button button-beige">
+                  Abilita riconoscimento automatico
+                </button>
+                <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover"
+                  data-bs-placement="bottom"
+                  data-bs-content="Abilita riconoscimento automatico - abilitando questa funzione, Resonance riconoscerà automaticamente gli elementi forniti. Cliccando su ogni elemento potrai vedere una descrizione morfologica e, nel campo di ricerca di sopra, potrai studiare il testo evidenziando tutte le forme che ti interessano. Es. dopo aver abilitato il riconoscimento automatico, cerca nella barra di sopra “aorist” oppure “verb” e premi invio. ATTENZIONE - questa funzione richiede la risoluzione dei conflitti ">
+                  ?
+                </button>
 
-              <button id="automatic-research" class="margin-button button-beige n">Ricerca
-                automatica</button>
-              <hr>
-          
+
+                <hr>
+
+                <!-- automatic research -->
+                <label for="soglia">Soglia</label>
+                <input type="number" class="mb-3" style="max-width: 50%;" required min="2" id="soglia" name="soglia">
+                <br>
+
+                <button id="automatic-research" class="margin-button button-beige n">Ricerca occorrenze</button>
+                <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover"
+                  data-bs-placement="bottom"
+                  data-bs-content="Ricerca occorrenze - Resonance permette di evidenziare istantaneamente occorrenze del medesimo lemma. Bisogna specificare prima una soglia, ossia la distanza massima per cui un’occorrenza è considerata interessante es. Se la soglia impostata è 10, tutte le occorrenze di uno stesso lemma che si trovano a una distanza maggiore di 10 parole le une dalle altre non verrano considerate. ATTENZIONE - questa funzione richiede la risoluzione dei conflitti 	">
+                  ?
+                </button>
+                <hr>
+
               </div>
             </div>
 
 
             <!-- tab statistics -->
             <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
-              ...</div>
+
+              <div class="bd"></div>
+
+
+            </div>
 
 
 
             <!-- tab diagraph -->
             <div class="tab-pane fade" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
-              <button id="selection-button" class="margin-button button-beige">Passa alla selezione</button> <br>
-              <button id="selection-all-button" class="margin-button button-beige">Seleziona tutti</button>
-              <button class="button-make button-beige" id="make-diagraph">Crea un diagrafo</button>
 
+              <div class="bd">
+
+                <button id="selection-button" class="margin-button button-beige">Passa alla selezione</button>
+                <button type="button" class="btn btn-secondary" data-bs-container="body" data-bs-toggle="popover"
+                  data-bs-placement="bottom"
+                  data-bs-content="Passa alla selezione - una volta individuati gli elementi di risonanza, selezionali uno per uno, cliccando su di essi (si coloreranno di rosa). Una volta selezionati gli elementi di interesse, clicca su CREA DIAGRAFO">
+                  ?
+                </button>
+
+
+                <br>
+                <button id="selection-all-button" class="margin-button button-beige">Seleziona tutti</button>
+
+                <hr>
+              </div>
+              <div class="bd h-100">
+                <button class="button-make button-beige" id="make-diagraph" style="margin: 0;">Crea un diagrafo</button>
+              </div>
             </div>
-
           </div>
-
         </div>
 
 
