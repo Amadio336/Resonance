@@ -41,6 +41,8 @@ splittedGtext.forEach((gkw) => { // prendere gli elementi di arr1, ci mette un i
   
   index++; // incrementa l'indice
 
+  console.log("cleanedGText", cleanedGText)
+
 });
 
 let allJsonFiles = []

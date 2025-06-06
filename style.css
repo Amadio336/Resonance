@@ -249,6 +249,7 @@
     padding: 10px;
     border: solid 2px var(--third-color);
     margin: 10px;
+    margin-left: 0;;
 }
 
 #wrapper-greek-text-bg{
