@@ -26,14 +26,17 @@ buttonSubmit.addEventListener("click", searchFlection)
  async function searchFlection() {
   
 
+ 
  let rowGText = inputGtx.value;
 let splittedGtext = rowGText.split(" "); // viene trasformato in un array con split, ogni spazio è un elemento
 
 
 
+
+
 splittedGtext.forEach((gkw) => { // prendere gli elementi di arr1, ci mette un indce e le mette dentro arr2
   const gkwObj = {
-    word: gkw,
+    word: gkw.replace("\n", ""),
     id: index,
   };
   
@@ -41,13 +44,14 @@ splittedGtext.forEach((gkw) => { // prendere gli elementi di arr1, ci mette un i
   
   index++; // incrementa l'indice
 
-  console.log("cleanedGText", cleanedGText)
-
 });
 
 let allJsonFiles = []
 let indexJsonReturned =0
  
+
+console.log("cleanedGText", cleanedGText)
+
 cleanedGText.forEach((gkw) => {
  
   fetch(
