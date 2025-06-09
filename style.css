@@ -295,6 +295,26 @@ border: 2px solid var(--third-color);
     color:#b31b4b
 }
 
+
+
+.button-close-conflict-interface{
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    top:0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+/* color and size of Button to close conflict interface */
+.bi::before, [class*=" bi-"]::before, [class^="bi-"]::before{
+      font-size: 25px;
+    color:#b31b4b;
+}
+
 /*------------ end phase 2 ---------------------------- */
 
 

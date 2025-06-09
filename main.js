@@ -215,7 +215,7 @@ function handleGtx(e) {
     arrPoetryCleaned.forEach((greekWord) => {
 
         if (greekWord == "") {
-          console.log("sei tu?", arrPoetryCleaned.indexOf(greekWord))
+          
           arrPoetryCleaned.splice(arrPoetryCleaned.indexOf(greekWord), 1)
           
         }
@@ -224,7 +224,7 @@ function handleGtx(e) {
       objectArraygGkwWithValues.push(newWord);
     });
 
-    console.log("arrPoetryCleaned", arrPoetryCleaned)
+
 
 
     

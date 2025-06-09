@@ -268,16 +268,9 @@ const resolveConflictButton = document.getElementById("resolve-conflict")
 /* event listner on resolveConflictButton */
 resolveConflictButton.addEventListener("click", ()=>{
   
-  
-  
-  words = document.querySelectorAll(".conflicted")
-  
-  
-  
-  
-  
-  
-  
+
+  /* taking all elements conflicted */
+  words = document.querySelectorAll(".conflicted")  
   console.log("words",words)
   
   
@@ -291,7 +284,7 @@ resolveConflictButton.addEventListener("click", ()=>{
     wordsWithUrns.push(wordWithUrns)
   })
   
-  
+  /* sorting data provided by APIs according to the order of the words conlicted in the text */
   jsonFIleArraySorted = wordsWithUrns.map(item => jsonFIleArray.find(x => x.RDF.Annotation.hasTarget.Description.about.normalize("NFC") === item.normalize("NFC")))
   console.log(wordsWithUrns)
   console.log("jsonFIleArraySorted",jsonFIleArraySorted)
@@ -319,20 +312,36 @@ console.log("finalArray",finalArray)
 
     function handleClick() {
       
+      /* create pink interface */
       const conflictInterface = document.createElement("div")
       conflictInterface.classList.add("conflict-interface")
+      /* button to close conflict interface */
+      const buttonCloseConflictInterface = document.createElement("div")
+      buttonCloseConflictInterface.classList.add("button-close-conflict-interface")
+      buttonCloseConflictInterface.innerHTML =  `<i class="bi bi-x-square"></i> ` 
+      conflictInterface.appendChild(buttonCloseConflictInterface)
       document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
       
       
-      
-      
+      /* close conflictInterface */
+
+      buttonCloseConflictInterface.addEventListener("click", ()=> conflictInterface.remove())
+
+      try{
+
       for (let element of finalArray)  {
-        
+
+        if (element.el == undefined) {
+          console.error("non riconosciuto", finalArray.indexOf(element))
+          continue
+        }
+
+
         const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+
         
         
-        
-        
+  
         if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC") && element.elId == word.getAttribute("data-index-word")) {
           
           const bodyLength = element.el.RDF.Annotation.Body.length
@@ -342,11 +351,10 @@ console.log("finalArray",finalArray)
             option.classList.add("option")
             option.innerHTML = `<p>${index} </br>${element.el.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.el.RDF.Annotation.Body[index].rest.entry.dict.pofs.$} </p>`
             conflictInterface.appendChild(option)
-          }
-          
-        }
-        
-      };
+          }}
+        };
+
+        }catch(error){console.log(error)}
       
       
       
@@ -362,39 +370,31 @@ console.log("finalArray",finalArray)
           
           console.log(indexWordConflicted)
           
+          try{
           finalArray.forEach(element =>{
+
+             if (element.el == undefined) {
+          console.error("non riconosciuto", finalArray.indexOf(element))
+          return
+        }
+
+
             const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
             
+             
+
             if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
-              
               sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
               sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
-              
               indexFinal++
-              
-              
               conflictInterface.remove()
-              
               console.log("sortedArr",sortedArr)
-            }
+            }})}catch(error){console.log(error)}
             
-            
-            
-          })
-          
-          words[lastIndex].classList.remove("conflicted")
-          lastIndex++
-          
-          
-        })
-        
-        
+            words[lastIndex].classList.remove("conflicted")
+            lastIndex++           
+        }) 
       })
-      
-      
-      
-      
-      /* qui finisce foreach */
       
       words[lastIndex].removeEventListener("click", handleClick)
     }
