@@ -372,20 +372,15 @@ console.log("finalArray",finalArray)
           
           try{
           finalArray.forEach(element =>{
-            if (element.el == "not found")  return
 
-             if (element.el == undefined) {
-
-                
-              console.error("non riconosciuto", finalArray.indexOf(element))
-              sortedArr[indexWordConflicted[indexFinal]].SubVoce = "not found"
-              sortedArr[indexWordConflicted[indexFinal]].category = "not found"
-              element.el = "not found"
-              indexFinal++
-              console.log(finalArray)
+            let URNCleaned;
+            
+            if (element.el == undefined) {
               return
-        }
-            const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+            }else{
+              URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+            }
+          
             
             if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
               sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
