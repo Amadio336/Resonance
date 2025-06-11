@@ -263,7 +263,7 @@ function handleGtx(e) {
 
 function handleGkwValues() {
 
-  console.log("arrPoetryCleaned", arrPoetryCleaned)
+  
   
     gkwValuesArea.classList.add("gkw-values-area-appear")
     beginningValues.innerHTML = "";
