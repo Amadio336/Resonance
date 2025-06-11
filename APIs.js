@@ -304,6 +304,16 @@ resolveConflictButton.addEventListener("click", ()=>{
   
 console.log("finalArray",finalArray)
   
+
+words.forEach(word => {
+  word.addEventListener("contextmenu", function(event) {
+    event.preventDefault(); // Blocca il menu contestuale del browser
+    alert("Hai cliccato con il tasto destro!");
+    indexFinal++
+});
+})
+
+
   
   words.forEach(word =>{
     word.addEventListener("click", handleClick)    
@@ -387,6 +397,9 @@ console.log("finalArray",finalArray)
               sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
               indexFinal++
               conflictInterface.remove()
+
+              console.log("indexWordConflicted[indexFinal]", indexWordConflicted[indexFinal])
+              console.log("indexFinal", indexFinal)
               console.log("sortedArr",sortedArr)
             }})}catch(error){console.log(error)}
             
@@ -397,20 +410,9 @@ console.log("finalArray",finalArray)
       
       words[lastIndex].removeEventListener("click", handleClick)
     }
-    
-    
-  
-  
-  
-  
-  
-  
-  
-})
-
 
 })
-
+})
 
 
 
