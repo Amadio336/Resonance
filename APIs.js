@@ -304,20 +304,26 @@ resolveConflictButton.addEventListener("click", ()=>{
   
 console.log("finalArray",finalArray)
   
-
+/* contextmanu (tasto destro) function, it's used in order to increment indexFinal by 1 every time I click with rigth click over a word not caugth */
 words.forEach(word => {
   word.addEventListener("contextmenu", function(event) {
     event.preventDefault(); // Blocca il menu contestuale del browser
     alert("Hai cliccato con il tasto destro!");
     indexFinal++
-});
+
+    words[lastIndex].classList.remove("conflicted")
+    lastIndex++  
+    words[lastIndex].removeEventListener("click", handleClick)
+  });
+  
+  
 })
 
 
+
+words.forEach(word =>{
+  word.addEventListener("click", handleClick)    
   
-  words.forEach(word =>{
-    word.addEventListener("click", handleClick)    
-      
         
 
     function handleClick() {
@@ -398,10 +404,13 @@ words.forEach(word => {
               indexFinal++
               conflictInterface.remove()
 
-              console.log("indexWordConflicted[indexFinal]", indexWordConflicted[indexFinal])
+           /*    console.log("indexWordConflicted[indexFinal]", indexWordConflicted[indexFinal])
               console.log("indexFinal", indexFinal)
-              console.log("sortedArr",sortedArr)
+              console.log("sortedArr",sortedArr) */
             }})}catch(error){console.log(error)}
+
+            console.log("words[lastIndex]",  words[lastIndex])
+            console.log("lastIndex",  lastIndex)
             
             words[lastIndex].classList.remove("conflicted")
             lastIndex++           
