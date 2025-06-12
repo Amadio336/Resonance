@@ -261,6 +261,7 @@ let wordsWithUrns = []
 
 
 
+
 /* button to resolve conflict */
 
 const resolveConflictButton = document.getElementById("resolve-conflict")
@@ -304,126 +305,151 @@ resolveConflictButton.addEventListener("click", ()=>{
   
 console.log("finalArray",finalArray)
   
-/* contextmanu (tasto destro) function, it's used in order to increment indexFinal by 1 every time I click with rigth click over a word not caugth */
+/* contextmenu (tasto destro) function, it's used in order to increment indexFinal by 1 every time I click with rigth click over a word not caugth */
 words.forEach(word => {
-  word.addEventListener("contextmenu", function(event) {
-    event.preventDefault(); // Blocca il menu contestuale del browser
-    alert("Hai cliccato con il tasto destro!");
-    indexFinal++
+const handler = function handlerWrapper(event){
+  createSkipIterface(word, event)
+  word.removeEventListener("contextmenu", handler)
+}
+  word.addEventListener("contextmenu", handler);
+})
 
-    words[lastIndex].classList.remove("conflicted")
-    lastIndex++  
-    words[lastIndex].removeEventListener("click", handleClick)
+/* la logica è: per ogni word (cioè word conflicted) crea l'eventlistner contexmenu ed esegui la funzione handler. Handler però è un insieme di 2 funzioni
+quindi eseguirà skip e poi rimuovere l'el */
+
+
+/* function to remove EL from not found words */
+function createSkipIterface(word, event) {
+    event.preventDefault(); // Blocca il menu contestuale del browser
+    const divSkip = document.createElement("div")
+    divSkip.textContent = "Salta"
+    divSkip.classList.add("skip-button")
+    word.appendChild(divSkip)
+    divSkip.addEventListener("click", skipWord)
+
+  }
+
+function skipWord() {
+  indexFinal++
+  words[lastIndex].classList.remove("conflicted") 
+  lastIndex++
+
+  const skipButton = document.querySelector(".skip-button")
+  skipButton.remove()
+}
+
+
+    
+  
+  words.forEach(word => {
+    const handler = function handleClickWrapper(event) {
+      handleClick(word, event);    
+      word.removeEventListener("click", handleClickWrapper); 
+    };
+    
+    word.addEventListener("click", handler);
   });
   
   
+  
 })
 
 
 
-words.forEach(word =>{
-  word.addEventListener("click", handleClick)    
+/* algorithm to resolve conflict */
+function handleClick(word) {
   
-        
-
-    function handleClick() {
-      
-      /* create pink interface */
-      const conflictInterface = document.createElement("div")
-      conflictInterface.classList.add("conflict-interface")
-      /* button to close conflict interface */
-      const buttonCloseConflictInterface = document.createElement("div")
-      buttonCloseConflictInterface.classList.add("button-close-conflict-interface")
-      buttonCloseConflictInterface.innerHTML =  `<i class="bi bi-x-square"></i> ` 
-      conflictInterface.appendChild(buttonCloseConflictInterface)
-      document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
-      
-      
-      /* close conflictInterface */
-
-      buttonCloseConflictInterface.addEventListener("click", ()=> conflictInterface.remove())
-
-      try{
-
-      for (let element of finalArray)  {
-
-        if (element.el == undefined || element.el == "not found") {
-          console.error("non riconosciuto", finalArray.indexOf(element))
-          continue
-        }
-
-
-        const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
-
-        
-        
+  /* create pink interface */
+  const conflictInterface = document.createElement("div")
+  conflictInterface.classList.add("conflict-interface")
+  /* button to close conflict interface */
+  const buttonCloseConflictInterface = document.createElement("div")
+  buttonCloseConflictInterface.classList.add("button-close-conflict-interface")
+  buttonCloseConflictInterface.innerHTML =  `<i class="bi bi-x-square"></i> ` 
+  conflictInterface.appendChild(buttonCloseConflictInterface)
+  document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
   
-        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC") && element.elId == word.getAttribute("data-index-word")) {
-          
-          const bodyLength = element.el.RDF.Annotation.Body.length
-          
-          for (let index = 0; index < bodyLength; index++) {
-            const option = document.createElement("div")
-            option.classList.add("option")
-            option.innerHTML = `<p>${index} </br>${element.el.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.el.RDF.Annotation.Body[index].rest.entry.dict.pofs.$} </p>`
-            conflictInterface.appendChild(option)
-          }}
-        };
+  
+  /* close conflictInterface */
 
-        }catch(error){console.log(error)}
-      
-      
-      
-      
-      
-      
-      const options = document.querySelectorAll(".option")
-      
-      options.forEach((option, indice) =>{
-        option.addEventListener("click", ()=>{
-          
-          indexWordConflicted.sort((a,b) => a -b)
-          
-          console.log(indexWordConflicted)
-          
-          try{
-          finalArray.forEach(element =>{
+  buttonCloseConflictInterface.addEventListener("click", ()=> conflictInterface.remove())
 
-            let URNCleaned;
-            
-            if (element.el == undefined) {
-              return
-            }else{
-              URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
-            }
-          
-            
-            if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
-              sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
-              sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
-              indexFinal++
-              conflictInterface.remove()
+  try{
 
-           /*    console.log("indexWordConflicted[indexFinal]", indexWordConflicted[indexFinal])
-              console.log("indexFinal", indexFinal)
-              console.log("sortedArr",sortedArr) */
-            }})}catch(error){console.log(error)}
+  for (let element of finalArray)  {
 
-            console.log("words[lastIndex]",  words[lastIndex])
-            console.log("lastIndex",  lastIndex)
-            
-            words[lastIndex].classList.remove("conflicted")
-            lastIndex++           
-        }) 
-      })
-      
-      words[lastIndex].removeEventListener("click", handleClick)
+    if (element.el == undefined || element.el == "not found") {
+      console.error("non riconosciuto", finalArray.indexOf(element))
+      continue
     }
 
-})
-})
 
+    const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
 
+    
+    
+
+    if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC") && element.elId == word.getAttribute("data-index-word")) {
+      
+      const bodyLength = element.el.RDF.Annotation.Body.length
+      
+      for (let index = 0; index < bodyLength; index++) {
+        const option = document.createElement("div")
+        option.classList.add("option")
+        option.innerHTML = `<p>${index} </br>${element.el.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.el.RDF.Annotation.Body[index].rest.entry.dict.pofs.$} </p>`
+        conflictInterface.appendChild(option)
+      }}
+    };
+
+    }catch(error){console.log(error)}
+  
+  
+  
+  
+  
+  
+  const options = document.querySelectorAll(".option")
+  
+  options.forEach((option, indice) =>{
+    option.addEventListener("click", ()=>{
+      
+      indexWordConflicted.sort((a,b) => a -b)
+      
+      console.log(indexWordConflicted)
+      
+      try{
+      finalArray.forEach(element =>{
+
+        let URNCleaned;
+        
+        if (element.el == undefined) {
+          return
+        }else{
+          URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+        }
+      
+        
+        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
+          sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
+          sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
+          indexFinal++
+          conflictInterface.remove()
+
+       /*    console.log("indexWordConflicted[indexFinal]", indexWordConflicted[indexFinal])
+          console.log("indexFinal", indexFinal)
+          console.log("sortedArr",sortedArr) */
+        }})}catch(error){console.log(error)}
+
+        console.log("words[lastIndex]",  words[lastIndex])
+        console.log("lastIndex",  lastIndex)
+        
+        words[lastIndex].classList.remove("conflicted")
+        lastIndex++           
+    }) 
+  })
+  
+/*   words[lastIndex].removeEventListener("click", handler) */
+}
 
 
 export { sortedArr }
