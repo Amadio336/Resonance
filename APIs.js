@@ -251,6 +251,7 @@ cleanedGText.forEach((gkw) => {
   
  
     console.log("sorted Arr", sortedArr)  
+    
   
 }
 

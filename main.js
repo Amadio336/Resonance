@@ -861,4 +861,36 @@ const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]
 const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl))
 
 
+
+
+
+/* dowload json versione of sortedArr */
+const jsonDwlBut = document.getElementById("Json")
+
+jsonDwlBut.addEventListener("click", ()=>{
+  
+  let jsonSortedArr = JSON.stringify(sortedArr)
+  const blob = new Blob([jsonSortedArr], { type: 'application/json' });
+  console.log(blob)
+
+  const link = document.createElement("a");
+link.href = URL.createObjectURL(blob);
+link.download = "dati.json"; // Nome del file
+link.click(); // Avvia il download
+
+// 5. Rilascia la memoria usata dall'URL temporaneo
+URL.revokeObjectURL(link.href);
+
+})
+
+
+
+
+
+
+
+
+
+
+
 export {handleGkwValues, buttonAutomaticResearch}
