@@ -211,7 +211,7 @@ cleanedGText.forEach((gkw) => {
 
     }
       
-    } else if(objLenght > 1){ /* se il body ha più oggetti, quindi è una parola omonima, prende arbitrariamente la prima occorrenza */
+    } else if(objLenght > 1){ 
 
       jsonFIleArray.push(jsonFIle)
 

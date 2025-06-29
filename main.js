@@ -703,40 +703,7 @@ cells.forEach((cell) => {
           });
         });
 
-        /* drang and drop of the cells of diagraph - pahse 3 */
-        /*    function handleDragEnter(e) {
-                            e.preventDefault()
-                           
-                        }
-
-                        function handleDragOver(e) {
-                            e.preventDefault()
-                            
-                        }
-
-                     
-
-                        function handleDrop() {
-                         
-                            if (value == 0) {
-                                
-                                dragItem.classList.remove("resonance-element", "already-used", "highlightable", "highlighted",)
-                                dragItem.classList.add("on-table")
-                                
-                                this.appendChild(dragItem)
-    
-                                if (dragItem.getAttribute("data-separator") =="separator") {
-                                    newSeparator.classList.add("separator")    
-                                }
-
-                            } else {
-
-                            }
-
-                            
-                           
-                            
-                        } */
+      
       }
 
       /* creation of speakers columns */
