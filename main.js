@@ -115,7 +115,8 @@ buttonSubmit.addEventListener("click", importOrAuto)
 
 
 /* function to import data from Json or select automatic research */
-function importOrAuto(){
+function importOrAuto(e){
+  e.preventDefault()
 
   /* create int of selection */
   let selectImportOrAutoInt = document.createElement("div")
