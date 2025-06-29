@@ -2,6 +2,9 @@
 import {handleGkwValues} from "./main.js"
 /* this part aims to provide main.js grammar info about words provided */
 
+
+import { generateColours } from "./colour-generator.js";
+
 const inputGtx = document.getElementById("input-gtx")
 const buttonSubmit = document.getElementById("button-submit")
 
@@ -23,14 +26,17 @@ buttonSubmit.addEventListener("click", searchFlection)
  async function searchFlection() {
   
 
+ 
  let rowGText = inputGtx.value;
 let splittedGtext = rowGText.split(" "); // viene trasformato in un array con split, ogni spazio è un elemento
 
 
 
+
+
 splittedGtext.forEach((gkw) => { // prendere gli elementi di arr1, ci mette un indce e le mette dentro arr2
   const gkwObj = {
-    word: gkw,
+    word: gkw.replace("\n", ""),
     id: index,
   };
   
@@ -43,6 +49,9 @@ splittedGtext.forEach((gkw) => { // prendere gli elementi di arr1, ci mette un i
 let allJsonFiles = []
 let indexJsonReturned =0
  
+
+console.log("cleanedGText", cleanedGText)
+
 cleanedGText.forEach((gkw) => {
  
   fetch(
@@ -202,7 +211,7 @@ cleanedGText.forEach((gkw) => {
 
     }
       
-    } else if(objLenght > 1){ /* se il body ha più oggetti, quindi è una parola omonima, prende arbitrariamente la prima occorrenza */
+    } else if(objLenght > 1){ 
 
       jsonFIleArray.push(jsonFIle)
 
@@ -242,6 +251,7 @@ cleanedGText.forEach((gkw) => {
   
  
     console.log("sorted Arr", sortedArr)  
+    
   
 }
 
@@ -252,6 +262,7 @@ let wordsWithUrns = []
 
 
 
+
 /* button to resolve conflict */
 
 const resolveConflictButton = document.getElementById("resolve-conflict")
@@ -259,16 +270,9 @@ const resolveConflictButton = document.getElementById("resolve-conflict")
 /* event listner on resolveConflictButton */
 resolveConflictButton.addEventListener("click", ()=>{
   
-  
-  
-  words = document.querySelectorAll(".conflicted")
-  
-  
-  
-  
-  
-  
-  
+
+  /* taking all elements conflicted */
+  words = document.querySelectorAll(".conflicted")  
   console.log("words",words)
   
   
@@ -282,7 +286,7 @@ resolveConflictButton.addEventListener("click", ()=>{
     wordsWithUrns.push(wordWithUrns)
   })
   
-  
+  /* sorting data provided by APIs according to the order of the words conlicted in the text */
   jsonFIleArraySorted = wordsWithUrns.map(item => jsonFIleArray.find(x => x.RDF.Annotation.hasTarget.Description.about.normalize("NFC") === item.normalize("NFC")))
   console.log(wordsWithUrns)
   console.log("jsonFIleArraySorted",jsonFIleArraySorted)
@@ -302,114 +306,151 @@ resolveConflictButton.addEventListener("click", ()=>{
   
 console.log("finalArray",finalArray)
   
-  
-  words.forEach(word =>{
-    word.addEventListener("click", handleClick)    
-      
-        
+/* contextmenu (tasto destro) function, it's used in order to increment indexFinal by 1 every time I click with rigth click over a word not caugth */
+words.forEach(word => {
+const handler = function handlerWrapper(event){
+  createSkipIterface(word, event)
+  word.removeEventListener("contextmenu", handler)
+}
+  word.addEventListener("contextmenu", handler);
+})
 
-    function handleClick() {
-      
-      const conflictInterface = document.createElement("div")
-      conflictInterface.classList.add("conflict-interface")
-      document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
-      
-      
-      
-      
-      for (let element of finalArray)  {
-        
-        const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
-        
-        
-        
-        
-        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC") && element.elId == word.getAttribute("data-index-word")) {
-          
-          const bodyLength = element.el.RDF.Annotation.Body.length
-          
-          for (let index = 0; index < bodyLength; index++) {
-            const option = document.createElement("div")
-            option.classList.add("option")
-            option.innerHTML = `<p>${index} </br>${element.el.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.el.RDF.Annotation.Body[index].rest.entry.dict.pofs.$} </p>`
-            conflictInterface.appendChild(option)
-          }
-          
-        }
-        
-      };
-      
-      
-      
-      
-      
-      
-      const options = document.querySelectorAll(".option")
-      
-      options.forEach((option, indice) =>{
-        option.addEventListener("click", ()=>{
-          
-          indexWordConflicted.sort((a,b) => a -b)
-          
-          console.log(indexWordConflicted)
-          
-          finalArray.forEach(element =>{
-            const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
-            
-            if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
-              
-              sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
-              sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
-              
-              indexFinal++
-              
-              
-              conflictInterface.remove()
-              
-              console.log(sortedArr)
-            }
-            
-            
-            
-          })
-          
-          words[lastIndex].classList.remove("conflicted")
-          lastIndex++
-          
-          
-        })
-        
-        
-      })
-      
-      
-      
-      
-      /* qui finisce foreach */
-      
-      words[lastIndex].removeEventListener("click", handleClick)
+/* la logica è: per ogni word (cioè word conflicted) crea l'eventlistner contexmenu ed esegui la funzione handler. Handler però è un insieme di 2 funzioni
+quindi eseguirà skip e poi rimuovere l'el */
+
+
+/* function to remove EL from not found words */
+function createSkipIterface(word, event) {
+    event.preventDefault(); // Blocca il menu contestuale del browser
+    const divSkip = document.createElement("div")
+    divSkip.textContent = "Salta"
+    divSkip.classList.add("skip-button")
+    word.appendChild(divSkip)
+    divSkip.addEventListener("click", skipWord)
+
+  }
+
+function skipWord() {
+  indexFinal++
+  words[lastIndex].classList.remove("conflicted") 
+  lastIndex++
+
+  const skipButton = document.querySelector(".skip-button")
+  skipButton.remove()
+}
+
+
+    
+  
+  words.forEach(word => {
+    const handler = function handleClickWrapper(event) {
+      handleClick(word, event);    
+      word.removeEventListener("click", handleClickWrapper); 
+    };
+    
+    word.addEventListener("click", handler);
+  });
+  
+  
+  
+})
+
+
+
+/* algorithm to resolve conflict */
+function handleClick(word) {
+  
+  /* create pink interface */
+  const conflictInterface = document.createElement("div")
+  conflictInterface.classList.add("conflict-interface")
+  /* button to close conflict interface */
+  const buttonCloseConflictInterface = document.createElement("div")
+  buttonCloseConflictInterface.classList.add("button-close-conflict-interface")
+  buttonCloseConflictInterface.innerHTML =  `<i class="bi bi-x-square"></i> ` 
+  conflictInterface.appendChild(buttonCloseConflictInterface)
+  document.getElementById("wrapper-greek-text").appendChild(conflictInterface)
+  
+  
+  /* close conflictInterface */
+
+  buttonCloseConflictInterface.addEventListener("click", ()=> conflictInterface.remove())
+
+  try{
+
+  for (let element of finalArray)  {
+
+    if (element.el == undefined || element.el == "not found") {
+      console.error("non riconosciuto", finalArray.indexOf(element))
+      continue
     }
+
+
+    const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+
     
     
+
+    if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC") && element.elId == word.getAttribute("data-index-word")) {
+      
+      const bodyLength = element.el.RDF.Annotation.Body.length
+      
+      for (let index = 0; index < bodyLength; index++) {
+        const option = document.createElement("div")
+        option.classList.add("option")
+        option.innerHTML = `<p>${index} </br>${element.el.RDF.Annotation.Body[index].rest.entry.dict.hdwd.$} </br> ${element.el.RDF.Annotation.Body[index].rest.entry.dict.pofs.$} </p>`
+        conflictInterface.appendChild(option)
+      }}
+    };
+
+    }catch(error){console.log(error)}
   
   
   
   
   
   
+  const options = document.querySelectorAll(".option")
   
-})
+  options.forEach((option, indice) =>{
+    option.addEventListener("click", ()=>{
+      
+      indexWordConflicted.sort((a,b) => a -b)
+      
+      console.log(indexWordConflicted)
+      
+      try{
+      finalArray.forEach(element =>{
 
+        let URNCleaned;
+        
+        if (element.el == undefined) {
+          return
+        }else{
+          URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+        }
+      
+        
+        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
+          sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
+          sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
+          indexFinal++
+          conflictInterface.remove()
 
-})
+       /*    console.log("indexWordConflicted[indexFinal]", indexWordConflicted[indexFinal])
+          console.log("indexFinal", indexFinal)
+          console.log("sortedArr",sortedArr) */
+        }})}catch(error){console.log(error)}
 
-
-
-
-
- 
-
-
+        console.log("words[lastIndex]",  words[lastIndex])
+        console.log("lastIndex",  lastIndex)
+        
+        words[lastIndex].classList.remove("conflicted")
+        lastIndex++           
+    }) 
+  })
+  
+/*   words[lastIndex].removeEventListener("click", handler) */
+}
 
 
 export { sortedArr }
