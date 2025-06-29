@@ -2,6 +2,7 @@ import { sortedArr } from "./APIs.js"
 import { buttonAutomaticResearch, prova } from "./automatic-research.js";
 import { generateColours } from "./colour-generator.js";
 import { inputSoglia } from "./automatic-research.js";
+import { searchFlection } from "./APIs.js";
 
 
 
@@ -10,6 +11,7 @@ import { inputSoglia } from "./automatic-research.js";
 /*  take the elements */
 
 const inputGtx = document.getElementById("input-gtx"); /* input of greek text */
+const containerPhase1 = document.getElementById("container-phase1")
 const buttonSubmit = document.getElementById("button-submit");
 const poetryCheckbox = document.getElementById("switch-poetry")
 const proseCheckbox = document.getElementById("switch-prose")
@@ -30,6 +32,7 @@ const SearchBarTag = document.getElementById("search-by-tag")
 const wrapperGreekText = document.getElementById("wrapper-greek-text")
 const selectBgPhase2 = document.getElementById("wrapper-greek-text-bg")
 const inputChangeColorColumn = document.getElementById("column-color")
+const jsonDwlBut = document.getElementById("Json")
 const makeDiagraph = document.getElementById("make-diagraph");
 
 
@@ -42,7 +45,7 @@ const addColButton = document.getElementById("add-col");
 const addSeparatorButton = document.getElementById("add-separator");
 const sliderSizeTable = document.getElementById("table-size-slider");
 
-/* drang and drop of the cells of diagraph - pahse 3 */
+/*---- drang and drop of the cells of diagraph - pahse 3------------ */
 
 function handleDragEnter(e) {
   e.preventDefault();
@@ -73,10 +76,12 @@ function handleDrop() {
 
 let dragItem = null;
 
-let poesiaValue = 0
+/* --------------------------------------------- */
 
+/* -----------poetry or prose checjbox -----------*/
 /* verifier poetry mode */
 
+let poesiaValue = 0
 function specifierProseOrPoetry() {
   if (poesiaValue == 0) {
     specifierMode.textContent = "Modalità Prosa"
@@ -91,6 +96,8 @@ function specifierProseOrPoetry() {
 specifierProseOrPoetry()
 
 
+
+
 poetryCheckbox.addEventListener("click", ()=> {
   poesiaValue = 1
   specifierProseOrPoetry()
@@ -101,15 +108,45 @@ proseCheckbox.addEventListener("click", ()=>{
   specifierProseOrPoetry()
 })
 
+/* ---------------------------------------------- */
+
+/* --------- select json data or allow Resonance to enable automatic research */
+buttonSubmit.addEventListener("click", importOrAuto)
+
+
+/* function to import data from Json or select automatic research */
+function importOrAuto(){
+
+  /* create int of selection */
+  let selectImportOrAutoInt = document.createElement("div")
+  selectImportOrAutoInt.classList.add("conflict-interface")
+
+  /* create automatich reseach option */
+  let automaticResOp = document.createElement("div")
+  automaticResOp.textContent="Prova"
+  automaticResOp.classList.add(".option")
+  automaticResOp.addEventListener("click", handleGtx)
+  automaticResOp.addEventListener("click", searchFlection)
+
+
+  /* create import data from json option */
+  let importDataOp = document.createElement("input")
+  importDataOp.type = "file"
+  importDataOp.id = "import-Json"
+  importDataOp.classList.add(".option")
+  importDataOp.addEventListener("change", SortedArrSync)
 
 
 
+  
+  containerPhase1.appendChild(selectImportOrAutoInt)
+  selectImportOrAutoInt.appendChild(automaticResOp)
+  selectImportOrAutoInt.appendChild(importDataOp)
+}
 
-/* cleaning greek text  */
 
-buttonSubmit.addEventListener("click", handleGtx);
 
-/* OOP class greekword ------------------------------------ */
+/* ----------- OOP class greekword ------------------------------ */
 
 class GreekWord {
   constructor(word, matrice = "") {
@@ -125,8 +162,6 @@ class GreekWord {
     visualizedText.appendChild(wordInserted);
   }
 }
-
-
 /* --------------------------- */
 
 export let arrayCleaned = [];
@@ -142,11 +177,48 @@ let inputMatrice;
 
 
 
+/* --------- function SorteArrSync ------ */
 
-/* function handleGtx > this function cleans greek text and creates element for the phase 2  */
+function SortedArrSync(){
+
+  const importJsonData = document.getElementById("import-Json") 
+  const file = importJsonData.files
+  console.log(file)
+  const reader = new FileReader()
+
+  reader.addEventListener("load", (e) =>{
+     const fileContent = JSON.parse(e.target.result)
+
+     for (const element of fileContent) {
+      sortedArr.push(element)
+      
+     }
+     
+
+  console.log("sortedArr",sortedArr)
+
+  handleGtx(e)
+
+
+  })
+
+
+
+
+  reader.readAsText(file[0]);
+
+
+
+
+}
+
+
+
+/* ---- function handleGtx > this function cleans greek text and creates element for the phase 2 ------- */
+/* it is activated when automaticResOp is pressed */
 function handleGtx(e) {
   e.preventDefault();
-  
+
   if (poesiaValue == 0) {
     
     let arrayGtxImperfected = inputGtx.value.split("\n");
@@ -170,10 +242,7 @@ function handleGtx(e) {
     /* showing gkws values clicking on a sigle greek word in orange container */
     
     highlightableGreekWords = document.querySelectorAll(".highlightable");
-
     console.log("highlightableGreekWords",highlightableGreekWords)
-
-
 
     inputSoglia.max = highlightableGreekWords.length
 
@@ -208,10 +277,6 @@ function handleGtx(e) {
         visualizedText.appendChild(lineSpace)
     });
 
-
-    
-
-
     arrPoetryCleaned.forEach((greekWord) => {
 
         if (greekWord == "") {
@@ -228,7 +293,7 @@ function handleGtx(e) {
 
 
     
-  let   initHighlightableGreekWords = document.querySelectorAll(".highlightable");
+  let initHighlightableGreekWords = document.querySelectorAll(".highlightable");
 
     
     initHighlightableGreekWords.forEach(element =>{
@@ -256,7 +321,7 @@ function handleGtx(e) {
 
 }
 
-
+/* ------------------------------------------- */
 
 
 /* save in an object the values of the greek words given by the user */
@@ -864,8 +929,7 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 
 
 
-/* dowload json versione of sortedArr */
-const jsonDwlBut = document.getElementById("Json")
+/* dowload json version of sortedArr */
 
 jsonDwlBut.addEventListener("click", ()=>{
   
@@ -879,9 +943,11 @@ link.download = "dati.json"; // Nome del file
 link.click(); // Avvia il download
 
 // 5. Rilascia la memoria usata dall'URL temporaneo
-URL.revokeObjectURL(link.href);
+URL.revokeObjectURL(link.href); 
 
 })
+
+
 
 
 

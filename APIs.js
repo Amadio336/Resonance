@@ -20,15 +20,16 @@ let lastIndex = 0
 
 
 
-buttonSubmit.addEventListener("click", searchFlection)
 
 
- async function searchFlection() {
+
+ export async function searchFlection(e) {
+  e.preventDefault()
   
 
  
  let rowGText = inputGtx.value;
-let splittedGtext = rowGText.split(" "); // viene trasformato in un array con split, ogni spazio è un elemento
+ let splittedGtext = rowGText.split(" "); // viene trasformato in un array con split, ogni spazio è un elemento
 
 
 
