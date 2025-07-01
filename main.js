@@ -118,14 +118,19 @@ buttonSubmit.addEventListener("click", importOrAuto)
 function importOrAuto(e){
   e.preventDefault()
 
+  window.scrollTo({
+    top:0,
+    behavior: "smooth"
+  })
+
   /* create int of selection */
   let selectImportOrAutoInt = document.createElement("div")
-  selectImportOrAutoInt.classList.add("conflict-interface")
+  selectImportOrAutoInt.classList.add("import-or-auto-interface")
 
   /* create automatich reseach option */
   let automaticResOp = document.createElement("div")
-  automaticResOp.textContent="Prova"
-  automaticResOp.classList.add(".option")
+  automaticResOp.textContent="Riconoscimento automatico"
+  automaticResOp.classList.add("option")
   automaticResOp.addEventListener("click", handleGtx)
   automaticResOp.addEventListener("click", searchFlection)
 
@@ -134,7 +139,7 @@ function importOrAuto(e){
   let importDataOp = document.createElement("input")
   importDataOp.type = "file"
   importDataOp.id = "import-Json"
-  importDataOp.classList.add(".option")
+  importDataOp.classList.add("option")
   importDataOp.addEventListener("change", SortedArrSync)
 
 

@@ -137,6 +137,26 @@
     font-weight: bold;
 }
 
+
+
+.import-or-auto-interface{
+     width: 400px;
+    height: 500px;
+    border: 2px solid var(--third-color);
+    background-color: var(--primary-color);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20%;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
 /*------------ end phase1 ---------------------------- */
 
 
@@ -277,6 +297,7 @@
     padding: 20px;
     border-radius: 10px;
     border: 2px solid var(--third-color);
+    cursor: pointer;
 
 }
 
