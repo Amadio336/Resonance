@@ -130,24 +130,35 @@ function importOrAuto(e){
   /* create automatich reseach option */
   let automaticResOp = document.createElement("div")
   automaticResOp.textContent="Riconoscimento automatico"
-  automaticResOp.classList.add("option")
+  automaticResOp.classList.add("option-2")
   automaticResOp.addEventListener("click", handleGtx)
   automaticResOp.addEventListener("click", searchFlection)
 
+/* -------------------------------------------- */
 
   /* create import data from json option */
-  let importDataOp = document.createElement("input")
-  importDataOp.type = "file"
-  importDataOp.id = "import-Json"
-  importDataOp.classList.add("option")
-  importDataOp.addEventListener("change", SortedArrSync)
+  let importDataDiv = document.createElement("div")
+  importDataDiv.classList.add("option-2")
+  importDataDiv.insertAdjacentHTML("afterbegin", "<p> Importa Json </p>") // metti icona bootstrap
+
+  let containerInputFIle = document.createElement("div")
+  containerInputFIle.classList.add("container-input-file")
+  containerInputFIle.insertAdjacentHTML("afterbegin", `  <img src="icons/upload.svg" class="upload-ico" alt="">`)
+
+  let importDataOpInput = document.createElement("input")
+  importDataOpInput.type = "file"
+  importDataOpInput.id = "import-Json"
+  importDataOpInput.addEventListener("change", ()=>{SortedArrSync(selectImportOrAutoInt)})
+  containerInputFIle.appendChild(importDataOpInput)
+  importDataDiv.appendChild(containerInputFIle)
 
 
 
   
   containerPhase1.appendChild(selectImportOrAutoInt)
   selectImportOrAutoInt.appendChild(automaticResOp)
-  selectImportOrAutoInt.appendChild(importDataOp)
+  selectImportOrAutoInt.appendChild(importDataDiv)
+
 }
 
 
@@ -185,7 +196,7 @@ let inputMatrice;
 
 /* --------- function SorteArrSync ------ */
 
-function SortedArrSync(){
+function SortedArrSync(selectImportOrAutoInt){
 
   const importJsonData = document.getElementById("import-Json") 
   const file = importJsonData.files
@@ -199,9 +210,13 @@ function SortedArrSync(){
       sortedArr.push(element)
       
      }
-     
+   
+  selectImportOrAutoInt.remove()  
+  
 
   console.log("sortedArr",sortedArr)
+
+
 
   handleGtx(e)
 
@@ -224,6 +239,8 @@ function SortedArrSync(){
 /* it is activated when automaticResOp is pressed */
 function handleGtx(e) {
   e.preventDefault();
+
+ 
 
   if (poesiaValue == 0) {
     

@@ -253,6 +253,8 @@ cleanedGText.forEach((gkw) => {
  
     console.log("sorted Arr", sortedArr)  
     
+  const inputOrAutoInt = document.querySelector(".import-or-auto-interface")
+  inputOrAutoInt.remove()
   
 }
 
