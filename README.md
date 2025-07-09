@@ -4,7 +4,7 @@
 
 **Main Aim**
 
-A web application that aims to find, analyze and handle dialogic syntax in ancient Greek texts
+A web application that aims to help find, analyze and handle dialogic syntax in ancient Greek texts
 
 **Operation detail**
 
