@@ -584,34 +584,21 @@ SearchBarTag.addEventListener("keyup", handleSearchByTag)
     let searchBarTagValue = SearchBarTag.value
 
     if (event.key === "Enter") {
-
       objectArraygGkwWithValues.forEach((objectArraygGkwWithValue) =>{
           if (!searchBarTagValue == "") {
-
             for (const key in objectArraygGkwWithValue) {
-
               if (objectArraygGkwWithValue[key] == searchBarTagValue) {
                 const indexWordBold = objectArraygGkwWithValues.indexOf(objectArraygGkwWithValue)
                 console.log(indexWordBold)
                 highlightableGreekWords[indexWordBold].classList.add("bold")
-                
-              }
-            
-            }
-            
-              
+              }}
            } else if (searchBarTagValue == ""){
              highlightableGreekWords.forEach((highlightableGreekWord) => {
               highlightableGreekWord.classList.remove("bold")
+             })}
              })
-  
+            }
           }
-      }) 
-      
-    }
-
-
- }
 
 
 
