@@ -8,15 +8,14 @@ let sogliaValue;
 
 let colorIndex = 0
 
-const SubVoceOnlyArr = [] /* this array has only the SubVoce values of the words analyzed */
+const SubVoceOnlyArr = [] 
 
 
 let index = 0
 
 
 function prova() {
-    const words = document.querySelectorAll(".highlightable") /*  the elements in the text provided by user */
-
+    const words = document.querySelectorAll(".highlightable") 
     sogliaValue = inputSoglia.value
 console.log("sogliaValue",sogliaValue)
         
