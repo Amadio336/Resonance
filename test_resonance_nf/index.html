@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>ciao1</p>
+
+    <div id="container"></div>
+
+    <ul id="my-list"></ul>
+
+    <script>
+      container = document.getElementById("container");
+
+      const paragraphs = document.querySelectorAll("p");
+      console.log(paragraphs);
+
+      paragraphs.forEach((element, index) => {
+        element.addEventListener("contextmenu", (e) => {
+          e.preventDefault();
+          console.log(index);
+        });
+      });
+
+      /* prova per realizzare statistiche sulle occorrenze delle parole */
+
+      stats = {};
+
+      arr1 = [
+        "ciao",
+        "ehi",
+        "come",
+        "ciao",
+        "come",
+        "come",
+        "ciao",
+        "come",
+        "come",
+        "ciao",
+        "ciao",
+        "ciao",
+        "ciao",
+      ];
+
+      arr1.forEach((element) => {
+        if (!stats[element]) {
+          stats[element] = 0;
+        }
+        stats[element]++;
+      });
+
+      /* function that reorders decrescently stats and insert them in DOM */
+      function reoder() {
+        statsEntries = Object.entries(stats);
+        statsSorted = statsEntries.sort((a, b) => a[1] - b[1]);
+        console.log(statsSorted);
+
+        try {
+          for (i = 0; i < 5; i++) {
+            container.insertAdjacentHTML(
+              "afterbegin",
+              `<p> ${statsSorted[i][0]}: ${statsSorted[i][1]}`
+            );
+          }
+        } catch (e) {
+          console.log("i troppo grande", e);
+        }
+      }
+
+      reoder();
+
+
+  
+    
+     
+
+    </script>
+  </body>
+</html>
