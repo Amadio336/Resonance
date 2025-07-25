@@ -371,9 +371,9 @@ function handleGkwValues() {
        <p> Categoria: ${sortedArr[indexgkw].category} </p>
        <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
        <p> Declinazione: ${sortedArr[indexgkw].decl} </p>
-       <p> Caso: </p>
+       <p> Caso: ${sortedArr[indexgkw].case} </p>
        <p> Genere:  ${sortedArr[indexgkw].gend} </p>
-       <p> Numero:  ${sortedArr[indexgkw].num}  </p>
+       <p> Numero:  ${sortedArr[indexgkw].number}  </p>
 
        
        
@@ -544,12 +544,13 @@ function completeResearch() { // this function is fundamental, it associates to 
     objectArraygGkwWithValues[syncIndex].SubVoce = sortedArr[syncIndex].SubVoce
 
 /* adding values of infl*/
-    sortedArr[syncIndex].mood != undefined ? objectArraygGkwWithValues[syncIndex].mood = sortedArr[syncIndex].mood : console.log("no verb")
-    sortedArr[syncIndex].tense != undefined ? objectArraygGkwWithValues[syncIndex].tense = sortedArr[syncIndex].tense : console.log("no verb")
+    sortedArr[syncIndex].mood != undefined ? objectArraygGkwWithValues[syncIndex].mood = sortedArr[syncIndex].mood : null
+    sortedArr[syncIndex].tense != undefined ? objectArraygGkwWithValues[syncIndex].tense = sortedArr[syncIndex].tense : null
 
-    sortedArr[syncIndex].decl != undefined ? objectArraygGkwWithValues[syncIndex].decl = sortedArr[syncIndex].decl : console.log("no noun")
-    sortedArr[syncIndex].gend != undefined ? objectArraygGkwWithValues[syncIndex].gend = sortedArr[syncIndex].gend : console.log("no noun")
-
+    sortedArr[syncIndex].decl != undefined ? objectArraygGkwWithValues[syncIndex].decl = sortedArr[syncIndex].decl : null
+    sortedArr[syncIndex].gend != undefined ? objectArraygGkwWithValues[syncIndex].gend = sortedArr[syncIndex].gend : null
+    sortedArr[syncIndex].number != undefined ? objectArraygGkwWithValues[syncIndex].number = sortedArr[syncIndex].number : null
+    sortedArr[syncIndex].case != undefined ? objectArraygGkwWithValues[syncIndex].case = sortedArr[syncIndex].case : null
     syncIndex++
   }
 )
