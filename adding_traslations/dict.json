@@ -1,0 +1,581 @@
+[
+    {"SubVoce" : "δούλη", "tras":"slave"},
+    {"SubVoce" :"πέδον", "tras": "plane place"},
+    {
+        "SubVoce": "ἀγορά",
+        "tras": "an assembly of the people"
+    },
+    {
+        "SubVoce": "Ἀθηναῖος",
+        "tras": "Athenian, of Athens"
+    },
+    {
+        "SubVoce": "αἰσχύνω",
+        "tras": "to make ugly, disfigure, mar"
+    },
+    {
+        "SubVoce": "ἀκούω",
+        "tras": "to hear"
+    },
+    {
+        "SubVoce": "ἀλήθεια",
+        "tras": "truth"
+    },
+    {
+        "SubVoce": "ἀληθής",
+        "tras": "unconcealed, true"
+    },
+    {
+        "SubVoce": "ἀλλά",
+        "tras": "otherwise, but"
+    },
+    {
+        "SubVoce": "ἄλλοθι",
+        "tras": "elsewhere, in another place, in a strange"
+    },
+    {
+        "SubVoce": "ἄλλος",
+        "tras": "other, another"
+    },
+    {
+        "SubVoce": "ἄλλως",
+        "tras": "in another way"
+    },
+    {
+        "SubVoce": "ἄν",
+        "tras": "modal particle"
+    },
+    {
+        "SubVoce": "ἀνά",
+        "tras": "up, upon"
+    },
+    {
+        "SubVoce": "ἀναβαίνω",
+        "tras": "to go up, mount, to go up to"
+    },
+    {
+        "SubVoce": "ἀναίσχυντος",
+        "tras": "shameless, impudent"
+    },
+    {
+        "SubVoce": "ἀνήρ",
+        "tras": "a man"
+    },
+    {
+        "SubVoce": "ἀπολογέομαι",
+        "tras": "to speak in defence, defend oneself"
+    },
+    {
+        "SubVoce": "ἄρα",
+        "tras": "particle: 'so'"
+    },
+    {
+        "SubVoce": "ἀτεχνής",
+        "tras": "unskilled, adv. ἀτεχνῶς simply"
+    },
+    {
+        "SubVoce": "ἄτεχνος",
+        "tras": "without art, ignorant of the rules of art, unskilled, empirical"
+    },
+    {
+        "SubVoce": "ἀτεχνῶς",
+        "tras": "simply"
+    },
+    {
+        "SubVoce": "ἀτέχνως",
+        "tras": "without rules of art, empirically"
+    },
+    {
+        "SubVoce": "αὐτίκα",
+        "tras": "forthwith, straightway, at once"
+    },
+    {
+        "SubVoce": "αὐτός",
+        "tras": "unemph. 3rd pers.pronoun; -self; [the] same"
+    },
+    {
+        "SubVoce": "γάρ",
+        "tras": "for"
+    },
+    {
+        "SubVoce": "γε",
+        "tras": "at least, at any rate"
+    },
+    {
+        "SubVoce": "γίγνομαι",
+        "tras": "become, be born"
+    },
+    {
+        "SubVoce": "δέ",
+        "tras": "but"
+    },
+    {
+        "SubVoce": "δεινός",
+        "tras": "fearful, terrible, dread, dire"
+    },
+    {
+        "SubVoce": "δέω",
+        "tras": "to bind, tie, fetter"
+    },
+    {
+        "SubVoce": "δέω2",
+        "tras": "to lack, miss, stand in need of"
+    },
+    {
+        "SubVoce": "δήπου",
+        "tras": "perhaps, it may be"
+    },
+    {
+        "SubVoce": "διά",
+        "tras": "through c. gen.; because of c. acc."
+    },
+    {
+        "SubVoce": "δίκαιος",
+        "tras": "just, observant of custom, correct, balanced"
+    },
+    {
+        "SubVoce": "δικαστήριον",
+        "tras": "a court of justice"
+    },
+    {
+        "SubVoce": "διό",
+        "tras": "wherefore, on which account"
+    },
+    {
+        "SubVoce": "δοκέω",
+        "tras": "seem, impers. it seems best.."
+    },
+    {
+        "SubVoce": "ἐάν",
+        "tras": "if"
+    },
+    {
+        "SubVoce": "ἑβδομήκοντα",
+        "tras": "seventy"
+    },
+    {
+        "SubVoce": "ἐγώ",
+        "tras": "I (first person pronoun)"
+    },
+    {
+        "SubVoce": "εἰ",
+        "tras": "conj. if, whether; part. w/wishes, adv. w/imperatives"
+    },
+    {
+        "SubVoce": "εἰκῇ",
+        "tras": "without plan"
+    },
+    {
+        "SubVoce": "εἰμί",
+        "tras": "to be"
+    },
+    {
+        "SubVoce": "εἶπον",
+        "tras": "to speak, say"
+    },
+    {
+        "SubVoce": "εἰς",
+        "tras": "into, to c. acc."
+    },
+    {
+        "SubVoce": "εἷς",
+        "tras": "one"
+    },
+    {
+        "SubVoce": "εἴσειμι",
+        "tras": "to go into"
+    },
+    {
+        "SubVoce": "εἰσίημι",
+        "tras": "to send into"
+    },
+    {
+        "SubVoce": "εἴωθα",
+        "tras": "to be accustomed"
+    },
+    {
+        "SubVoce": "ἐμαυτοῦ",
+        "tras": "of me, of myself"
+    },
+    {
+        "SubVoce": "ἐμέω",
+        "tras": "to vomit, throw up"
+    },
+    {
+        "SubVoce": "ἐμός",
+        "tras": "mine"
+    },
+    {
+        "SubVoce": "ἐν",
+        "tras": "in, among. c. dat."
+    },
+    {
+        "SubVoce": "ἕνεκα",
+        "tras": "on account of, for the sake of, because of, for"
+    },
+    {
+        "SubVoce": "ἐνθάδε",
+        "tras": "here, in this place, at this point"
+    },
+    {
+        "SubVoce": "ἐξαπατάω",
+        "tras": "to deceive"
+    },
+    {
+        "SubVoce": "ἐξελέγχω",
+        "tras": "to convict, confute, refute"
+    },
+    {
+        "SubVoce": "ἐπεί",
+        "tras": "after, since, when"
+    },
+    {
+        "SubVoce": "ἐπί",
+        "tras": "on, upon with gen., dat., and acc."
+    },
+    {
+        "SubVoce": "ἐπιλανθάνομαι",
+        "tras": "to forget"
+    },
+    {
+        "SubVoce": "ἐπιλήθω",
+        "tras": "to cause to forget"
+    },
+    {
+        "SubVoce": "ἐπιτυγχάνω",
+        "tras": "to hit the mark"
+    },
+    {
+        "SubVoce": "ἔπος",
+        "tras": "a word"
+    },
+    {
+        "SubVoce": "ἔργον",
+        "tras": "work"
+    },
+    {
+        "SubVoce": "ἐρῶ",
+        "tras": "[I will say]"
+    },
+    {
+        "SubVoce": "ἔτος",
+        "tras": "a year"
+    },
+    {
+        "SubVoce": "εὐλαβέομαι",
+        "tras": "to be discreet, cautious, beware"
+    },
+    {
+        "SubVoce": "ἔχω",
+        "tras": "to have"
+    },
+    {
+        "SubVoce": "Ζεύς",
+        "tras": "Zeus"
+    },
+    {
+        "SubVoce": "ἤ",
+        "tras": "either..or; than"
+    },
+    {
+        "SubVoce": "ἡλικία",
+        "tras": "time of life, age"
+    },
+    {
+        "SubVoce": "θαυμάζω",
+        "tras": "to wonder, marvel, be astonished"
+    },
+    {
+        "SubVoce": "θορυβέω",
+        "tras": "to make a noise"
+    },
+    {
+        "SubVoce": "ἵημι",
+        "tras": "to set a going, put in motion"
+    },
+    {
+        "SubVoce": "ἵνα",
+        "tras": "in order that (conj.); where (rel. adv.)"
+    },
+    {
+        "SubVoce": "καί",
+        "tras": "and, also"
+    },
+    {
+        "SubVoce": "καίτοι",
+        "tras": "and indeed, and further; and yet"
+    },
+    {
+        "SubVoce": "καλέω",
+        "tras": "to call, summon"
+    },
+    {
+        "SubVoce": "καλλιεπέομαι",
+        "tras": "to say in fine phrases"
+    },
+    {
+        "SubVoce": "κατά",
+        "tras": "down, against with gen.; according to, throughout with acc."
+    },
+    {
+        "SubVoce": "κατήγορος",
+        "tras": "an accuser"
+    },
+    {
+        "SubVoce": "κοσμέω",
+        "tras": "to order, arrange"
+    },
+    {
+        "SubVoce": "λέγω",
+        "tras": "to pick; to say"
+    },
+    {
+        "SubVoce": "λέξις",
+        "tras": "a speaking, saying, speech"
+    },
+    {
+        "SubVoce": "λόγος",
+        "tras": "the word"
+    },
+    {
+        "SubVoce": "μά",
+        "tras": "(no,) by .."
+    },
+    {
+        "SubVoce": "μάλιστα",
+        "tras": "most"
+    },
+    {
+        "SubVoce": "μειράκιον",
+        "tras": "a boy, lad, stripling"
+    },
+    {
+        "SubVoce": "μέν",
+        "tras": "on the one hand, on the other hand"
+    },
+    {
+        "SubVoce": "μέντοι",
+        "tras": "however, nevertheless; of course (answers)"
+    },
+    {
+        "SubVoce": "μή",
+        "tras": "not"
+    },
+    {
+        "SubVoce": "μηδέ",
+        "tras": "but not"
+    },
+    {
+        "SubVoce": "μηδείς",
+        "tras": "(and not one); not one, no-one"
+    },
+    {
+        "SubVoce": "μήτε",
+        "tras": "neither / nor"
+    },
+    {
+        "SubVoce": "νῦν",
+        "tras": "now at this very time"
+    },
+    {
+        "SubVoce": "ξένος",
+        "tras": "a guest, guest-friend, stranger; foreign"
+    },
+    {
+        "SubVoce": "ὁ",
+        "tras": "the"
+    },
+    {
+        "SubVoce": "ὅδε",
+        "tras": "this"
+    },
+    {
+        "SubVoce": "οἶδα",
+        "tras": "to know"
+    },
+    {
+        "SubVoce": "ὀλίγος",
+        "tras": "few, little, scanty, small"
+    },
+    {
+        "SubVoce": "ὁμολογέω",
+        "tras": "agree, say the same thing as"
+    },
+    {
+        "SubVoce": "ὄνομα",
+        "tras": "name"
+    },
+    {
+        "SubVoce": "ὅπως",
+        "tras": "how, that, in order that, as"
+    },
+    {
+        "SubVoce": "ὁπωσοῦν",
+        "tras": "in any way whatever, in some way or other"
+    },
+    {
+        "SubVoce": "ὅς",
+        "tras": "who, that, which: relative pronoun"
+    },
+    {
+        "SubVoce": "ὅς2",
+        "tras": "[possessive pronoun]"
+    },
+    {
+        "SubVoce": "ὅσπερ",
+        "tras": "the very man who, the very thing which"
+    },
+    {
+        "SubVoce": "ὅτι",
+        "tras": "adv. + superl., as...as possible; ὅτι μή except"
+    },
+    {
+        "SubVoce": "ὅτι2",
+        "tras": "conj.: that, because"
+    },
+    {
+        "SubVoce": "οὐ",
+        "tras": "not"
+    },
+    {
+        "SubVoce": "οὐδέ",
+        "tras": "and/but not; not even"
+    },
+    {
+        "SubVoce": "οὐδείς",
+        "tras": "not one, nobody"
+    },
+    {
+        "SubVoce": "οὖν",
+        "tras": "so, then, therefore"
+    },
+    {
+        "SubVoce": "οὗτος",
+        "tras": "this; that"
+    },
+    {
+        "SubVoce": "οὕτως",
+        "tras": "so, in this manner"
+    },
+    {
+        "SubVoce": "πάνυ",
+        "tras": "altogether, entirely"
+    },
+    {
+        "SubVoce": "παρίημι",
+        "tras": "to pass over, let go, relax, yield, allow"
+    },
+    {
+        "SubVoce": "πᾶς",
+        "tras": "all, the whole"
+    },
+    {
+        "SubVoce": "πάσχω",
+        "tras": "to experience, to suffer"
+    },
+    {
+        "SubVoce": "πιθανός",
+        "tras": "calculated to persuade;"
+    },
+    {
+        "SubVoce": "πιστεύω",
+        "tras": "to trust, trust to"
+    },
+    {
+        "SubVoce": "πλάσσω",
+        "tras": "to form, mould, shape"
+    },
+    {
+        "SubVoce": "πλήσσω",
+        "tras": "to strike, smite"
+    },
+    {
+        "SubVoce": "πολύς",
+        "tras": "much, many"
+    },
+    {
+        "SubVoce": "πρέπω",
+        "tras": "to be clearly seen, to resemble, to seem (πρέπει it is fitting)"
+    },
+    {
+        "SubVoce": "προσδοκάω",
+        "tras": "to expect"
+    },
+    {
+        "SubVoce": "προσδοκέω",
+        "tras": "to be thought besides"
+    },
+    {
+        "SubVoce": "πρότερος",
+        "tras": "before, earlier"
+    },
+    {
+        "SubVoce": "πρῶτος",
+        "tras": "first"
+    },
+    {
+        "SubVoce": "ῥῆμα",
+        "tras": "(spoken) word, line, verb"
+    },
+    {
+        "SubVoce": "ῥήτωρ",
+        "tras": "a public speaker, pleader"
+    },
+    {
+        "SubVoce": "σύ",
+        "tras": "you (personal pronoun)"
+    },
+    {
+        "SubVoce": "τε",
+        "tras": "and"
+    },
+    {
+        "SubVoce": "τῇδε",
+        "tras": "here, thus"
+    },
+    {
+        "SubVoce": "τις",
+        "tras": "any one, any thing, some one, some thing;"
+    },
+    {
+        "SubVoce": "τράπεζα",
+        "tras": "four-legged a table"
+    },
+    {
+        "SubVoce": "τραπεζόω",
+        "tras": "offer"
+    },
+    {
+        "SubVoce": "ὑμός",
+        "tras": "your"
+    },
+    {
+        "SubVoce": "ὑπό",
+        "tras": "from under, by, c. gen. under, c. dat., towards c. acc."
+    },
+    {
+        "SubVoce": "φαίνω",
+        "tras": "to bring to light, make to appear"
+    },
+    {
+        "SubVoce": "χρή",
+        "tras": "it is fated, necessary"
+    },
+    {
+        "SubVoce": "ψεύδω",
+        "tras": "to cheat by lies, beguile"
+    },
+    {
+        "SubVoce": "ὦ",
+        "tras": "O! oh!"
+    },
+    {
+        "SubVoce": "ὡς",
+        "tras": "as, how"
+    },
+    {
+        "SubVoce": "ὥσπερ",
+        "tras": "just as if, even as"
+    }
+
+]
