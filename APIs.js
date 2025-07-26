@@ -324,13 +324,22 @@ quindi eseguirà skip e poi rimuovere l'el */
 
 /* function to remove EL from not found words */
 function createSkipIterface(word, event) {
+   /* create skip interface */
     event.preventDefault(); // Blocca il menu contestuale del browser
     const divSkip = document.createElement("div")
-    divSkip.textContent = "Salta"
     divSkip.classList.add("skip-button")
     word.appendChild(divSkip)
-    divSkip.addEventListener("click", skipWord)
 
+    let skipButton = document.createElement("span")
+    skipButton.textContent = "salta"
+    divSkip.appendChild(skipButton)
+    skipButton.addEventListener("click", skipWord)
+
+    let closeDivSkip = document.createElement("span")
+    closeDivSkip.style.display = "block"
+    closeDivSkip.textContent = "chiudi"
+    divSkip.insertAdjacentElement("afterbegin", closeDivSkip)
+    closeDivSkip.addEventListener("click", ()=>{divSkip.remove()})
   }
 
 function skipWord() {
