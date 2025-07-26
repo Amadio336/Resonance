@@ -81,7 +81,7 @@ let dragItem = null;
 /* -----------poetry or prose checjbox -----------*/
 /* verifier poetry mode */
 
-let poesiaValue = 0
+let poesiaValue = 1
 function specifierProseOrPoetry() {
   if (poesiaValue == 0) {
     specifierMode.textContent = "Modalità Prosa"
@@ -262,6 +262,8 @@ function handleGtx(e) {
     });
 
     
+
+    
     /* showing gkws values clicking on a sigle greek word in orange container */
     
     highlightableGreekWords = document.querySelectorAll(".highlightable");
@@ -286,7 +288,7 @@ function handleGtx(e) {
       lineSpace.style.display = "block"
      
       const singleLines = line.split(" ") // array containing every word of a line 
-      
+      console.log("singleLines", singleLines)
       singleLines.forEach((singleLine)=>{ // creates an array in which every word is an element 
         arrPoetryCleaned.push(singleLine)
     
@@ -298,19 +300,20 @@ function handleGtx(e) {
       })   
 
         visualizedText.appendChild(lineSpace)
-    });
+      });
 
-    arrPoetryCleaned.forEach((greekWord) => {
-
-        if (greekWord == "") {
-          
+      arrPoetryCleaned.forEach(greekWord =>{
+         if (greekWord == "") {
           arrPoetryCleaned.splice(arrPoetryCleaned.indexOf(greekWord), 1)
-          
         }
-
+      })
+      
+      arrPoetryCleaned.forEach((greekWord) => {
+      
       let newWord = new GreekWord(greekWord);
       objectArraygGkwWithValues.push(newWord);
     });
+
 
 
 

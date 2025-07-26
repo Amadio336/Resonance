@@ -436,6 +436,19 @@ function handleClick(word) {
         if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
           sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
           sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
+
+          if (sortedArr[indexWordConflicted[indexFinal]].category == "noun"){
+            /* set gend, declension */
+            sortedArr[indexWordConflicted[indexFinal]].gend = element.el.RDF.Annotation.Body[indice].rest.entry.dict.gend.$
+            sortedArr[indexWordConflicted[indexFinal]].decl = element.el.RDF.Annotation.Body[indice].rest.entry.dict.decl.$
+
+            /* set case, number */
+            sortedArr[indexWordConflicted[indexFinal]].case = element.el.RDF.Annotation.Body[indice].rest.entry.infl.case.$
+            sortedArr[indexWordConflicted[indexFinal]].number = element.el.RDF.Annotation.Body[indice].rest.entry.infl.num.$
+
+          }
+
+
           indexFinal++
           conflictInterface.remove()
 
