@@ -457,13 +457,18 @@ function handleClick(word) {
 
           }
 
+          if (sortedArr[indexWordConflicted[indexFinal]].category == "verb"){
+            /* set mood, tense */
+            sortedArr[indexWordConflicted[indexFinal]].gend = element.el.RDF.Annotation.Body[indice].rest.entry.infl[0].mood.$
+            sortedArr[indexWordConflicted[indexFinal]].decl = element.el.RDF.Annotation.Body[indice].rest.entry.infl[0].tense.$
+
+           
+          }
+
 
           indexFinal++
           conflictInterface.remove()
 
-       /*    console.log("indexWordConflicted[indexFinal]", indexWordConflicted[indexFinal])
-          console.log("indexFinal", indexFinal)
-          console.log("sortedArr",sortedArr) */
         }})}catch(error){console.log(error)}
 
         console.log("words[lastIndex]",  words[lastIndex])

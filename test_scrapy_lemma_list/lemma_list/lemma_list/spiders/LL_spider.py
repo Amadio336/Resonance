@@ -26,13 +26,16 @@ class LlSpiderSpider(scrapy.Spider):
                 "more_info": "https://vocab.perseus.org" + lemma.css("th.lemma_text a ::attr(href)").get()
             }
 
-        next_page_reference = response.css("i.fa.fa-forward")
+        """ next_page_reference = response.css("i.fa.fa-forward")
         next_page_a_element = next_page_reference.xpath("..")
-        next_page_link = next_page_a_element.css("::attr(href)").get()
-        
-        #see from 49,20 min 
-        
-        
-        
+        next_page_link = next_page_a_element.css("::attr(href)").get() """
+
+        base_link = "https://vocab.perseus.org/lemma/"
+        mover = "?page="
         
         
+        
+        
+        
+
+        # see from 49,20 min
