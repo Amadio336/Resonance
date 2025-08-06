@@ -459,8 +459,8 @@ function handleClick(word) {
 
           if (sortedArr[indexWordConflicted[indexFinal]].category == "verb"){
             /* set mood, tense */
-            sortedArr[indexWordConflicted[indexFinal]].gend = element.el.RDF.Annotation.Body[indice].rest.entry.infl[0].mood.$
-            sortedArr[indexWordConflicted[indexFinal]].decl = element.el.RDF.Annotation.Body[indice].rest.entry.infl[0].tense.$
+            sortedArr[indexWordConflicted[indexFinal]].mood = element.el.RDF.Annotation.Body[indice].rest.entry.infl[0].mood.$
+            sortedArr[indexWordConflicted[indexFinal]].tense = element.el.RDF.Annotation.Body[indice].rest.entry.infl[0].tense.$
 
            
           }
