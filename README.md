@@ -1,14 +1,6 @@
 # Resonance
 
 
-🗓️June Goals
-
-	1	UX Redesign Phase 2 – This redesign allows users to feel more comfortable with Resonance’s features by providing a detailed description of how each feature works.  
-	2	Improved Text Acquisition – The goal of this improvement is to eliminate errors caused by paragraphematic signs, numbers, and punctuation marks.  
-	3	Statistics Section – A section containing statistics on the Greek text provided by the user (mode, main themes, key occurrences).  
-	4	Automatic Research Feature – This feature allows users to automatically find occurrences of a specific lemma.  
-
-
 
 **Main Aim**
 
