@@ -2495,9 +2495,6 @@ file5:
 lemmi nel file json 3980
 elementi ripetuti: 973
 
-I am unable to access local files on your computer, including the JSON files you mentioned. Therefore, I cannot provide a response based on their content.
-
-However, I can format the list you provided in your last message. Here is the formatted list:
 
 ```
 διαπρεπής : 3
@@ -3474,3 +3471,4 @@ However, I can format the list you provided in your last message. Here is the fo
 Δελφίς : 2
 Δεῖμος : 2
 ```
+
