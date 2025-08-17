@@ -38,7 +38,7 @@ class LlSpiderSpider(scrapy.Spider):
         base_link = "https://vocab.perseus.org/lemma/"
         mover = "?page="
 
-        for page_index in range(601, 800):
+        for page_index in range(4872, 4873):
             next_page_url = f"{base_link}{mover}{page_index}"
             yield response.follow(next_page_url, callback = self.parse)
 
