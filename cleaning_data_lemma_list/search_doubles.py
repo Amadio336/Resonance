@@ -3,7 +3,7 @@ import os
 
 
 try:
-    with open("dict_401_600_cl.json", "r") as file:
+    with open("dict_4501_4871.json", "r") as file:
         data = json.load(file)
 
 
