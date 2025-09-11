@@ -43,7 +43,7 @@ const chooseTableButton = document.getElementById("choose-table-button");
 const addRowButton = document.getElementById("add-row");
 const addColButton = document.getElementById("add-col");
 const addSeparatorButton = document.getElementById("add-separator");
-const sliderSizeTable = document.getElementById("table-size-slider");
+const optimizerTableView = document.getElementById("optimize-table-view")
 
 /*---- drang and drop of the cells of diagraph - pahse 3------------ */
 
@@ -920,18 +920,16 @@ addRowButton.addEventListener("click", function () {
   newRow.insertAdjacentElement("beforeend", inputSpeakerCol);
 });
 
-/* handling of slider for table size */
 
-sliderSizeTable.addEventListener("click", () => {
-  const diagraphRows = document.querySelectorAll(".diagraph-row");
-  console.log(diagraphRows);
-  let tableSize = sliderSizeTable.value;
+/* optimize table view */
 
-  diagraphRows.forEach((diagraphRow) => {
-    diagraphRow.style.height = `${tableSize}px`;
-  });
+optimizerTableView.addEventListener("click", ()=>{
+
+const inputs = document.querySelectorAll("input");
+inputs.forEach((input) => {
+    input.classList.toggle("optimized")
 });
-
+})
 
 
 
