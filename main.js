@@ -440,8 +440,7 @@ function handleGkwValues() {
       <p> Categoria: ${sortedArr[indexgkw].category} </p>
       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
       <p> Declinazione: ${sortedArr[indexgkw].decl}  </p>
-      <p> Caso: </p>
-      <p> Genere: </p>
+
          
       
       </div>`)
