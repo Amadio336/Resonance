@@ -458,9 +458,24 @@ function handleClick(word) {
           }
 
           if (sortedArr[indexWordConflicted[indexFinal]].category == "verb"){
-            /* set mood, tense */
-            sortedArr[indexWordConflicted[indexFinal]].mood = element.el.RDF.Annotation.Body[indice].rest.entry.infl.mood.$
-            sortedArr[indexWordConflicted[indexFinal]].tense = element.el.RDF.Annotation.Body[indice].rest.entry.infl.tense.$
+
+         /* set mood and tense */
+            if (element.el.RDF.Annotation.Body[indice].rest.entry.infl.length == undefined){
+              sortedArr[indexWordConflicted[indexFinal]].mood = element.el.RDF.Annotation.Body[indice].rest.entry.infl.mood.$
+              sortedArr[indexWordConflicted[indexFinal]].tense = element.el.RDF.Annotation.Body[indice].rest.entry.infl.tense.$
+
+            }
+
+
+           
+            /* set mood, tense.  The value is abitrary set to 0 TODO:. The problem is that some words has infl.lenght > 1, for instance εχει, it coulb be 3sin act or 2 sing medio passive.  */
+            if (element.el.RDF.Annotation.Body[indice].rest.entry.infl.length != undefined){
+              sortedArr[indexWordConflicted[indexFinal]].mood = element.el.RDF.Annotation.Body[indice].rest.entry.infl[0].mood.$
+              sortedArr[indexWordConflicted[indexFinal]].tense = element.el.RDF.Annotation.Body[indice].rest.entry.infl[0].tense.$
+
+            }
+
+
 
            
           }
