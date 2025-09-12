@@ -2,6 +2,7 @@ import { sortedArr } from "./APIs.js"
 import { buttonAutomaticResearch, prova } from "./automatic-research.js";
 import { generateColours } from "./colour-generator.js";
 import { inputSoglia } from "./automatic-research.js";
+import { searchFlection } from "./APIs.js";
 
 
 
@@ -10,6 +11,7 @@ import { inputSoglia } from "./automatic-research.js";
 /*  take the elements */
 
 const inputGtx = document.getElementById("input-gtx"); /* input of greek text */
+const containerPhase1 = document.getElementById("container-phase1")
 const buttonSubmit = document.getElementById("button-submit");
 const poetryCheckbox = document.getElementById("switch-poetry")
 const proseCheckbox = document.getElementById("switch-prose")
@@ -30,6 +32,7 @@ const SearchBarTag = document.getElementById("search-by-tag")
 const wrapperGreekText = document.getElementById("wrapper-greek-text")
 const selectBgPhase2 = document.getElementById("wrapper-greek-text-bg")
 const inputChangeColorColumn = document.getElementById("column-color")
+const jsonDwlBut = document.getElementById("Json")
 const makeDiagraph = document.getElementById("make-diagraph");
 
 
@@ -40,9 +43,9 @@ const chooseTableButton = document.getElementById("choose-table-button");
 const addRowButton = document.getElementById("add-row");
 const addColButton = document.getElementById("add-col");
 const addSeparatorButton = document.getElementById("add-separator");
-const sliderSizeTable = document.getElementById("table-size-slider");
+const optimizerTableView = document.getElementById("optimize-table-view")
 
-/* drang and drop of the cells of diagraph - pahse 3 */
+/*---- drang and drop of the cells of diagraph - pahse 3------------ */
 
 function handleDragEnter(e) {
   e.preventDefault();
@@ -73,10 +76,12 @@ function handleDrop() {
 
 let dragItem = null;
 
-let poesiaValue = 0
+/* --------------------------------------------- */
 
+/* -----------poetry or prose checjbox -----------*/
 /* verifier poetry mode */
 
+let poesiaValue = 1
 function specifierProseOrPoetry() {
   if (poesiaValue == 0) {
     specifierMode.textContent = "Modalità Prosa"
@@ -91,6 +96,8 @@ function specifierProseOrPoetry() {
 specifierProseOrPoetry()
 
 
+
+
 poetryCheckbox.addEventListener("click", ()=> {
   poesiaValue = 1
   specifierProseOrPoetry()
@@ -101,15 +108,62 @@ proseCheckbox.addEventListener("click", ()=>{
   specifierProseOrPoetry()
 })
 
+/* ---------------------------------------------- */
+
+/* --------- select json data or allow Resonance to enable automatic research */
+buttonSubmit.addEventListener("click", importOrAuto)
+
+
+/* function to import data from Json or select automatic research */
+function importOrAuto(e){
+  e.preventDefault()
+
+  window.scrollTo({
+    top:0,
+    behavior: "smooth"
+  })
+
+  /* create int of selection */
+  let selectImportOrAutoInt = document.createElement("div")
+  selectImportOrAutoInt.classList.add("import-or-auto-interface")
+
+  /* create automatich reseach option */
+  let automaticResOp = document.createElement("div")
+  automaticResOp.textContent="Riconoscimento automatico"
+  automaticResOp.classList.add("option-2")
+  automaticResOp.addEventListener("click", handleGtx)
+  automaticResOp.addEventListener("click", searchFlection)
+
+/* -------------------------------------------- */
+
+  /* create import data from json option */
+  let importDataDiv = document.createElement("div")
+  importDataDiv.classList.add("option-2")
+  importDataDiv.insertAdjacentHTML("afterbegin", "<p> Importa Json </p>") // metti icona bootstrap
+
+  let containerInputFIle = document.createElement("div")
+  containerInputFIle.classList.add("container-input-file")
+  containerInputFIle.insertAdjacentHTML("afterbegin", `  <img src="icons/upload.svg" class="upload-ico" alt="">`)
+
+  let importDataOpInput = document.createElement("input")
+  importDataOpInput.type = "file"
+  importDataOpInput.id = "import-Json"
+  importDataOpInput.addEventListener("change", ()=>{SortedArrSync(selectImportOrAutoInt)})
+  containerInputFIle.appendChild(importDataOpInput)
+  importDataDiv.appendChild(containerInputFIle)
 
 
 
+  
+  containerPhase1.appendChild(selectImportOrAutoInt)
+  selectImportOrAutoInt.appendChild(automaticResOp)
+  selectImportOrAutoInt.appendChild(importDataDiv)
 
-/* cleaning greek text  */
+}
 
-buttonSubmit.addEventListener("click", handleGtx);
 
-/* OOP class greekword ------------------------------------ */
+
+/* ----------- OOP class greekword ------------------------------ */
 
 class GreekWord {
   constructor(word, matrice = "") {
@@ -125,8 +179,6 @@ class GreekWord {
     visualizedText.appendChild(wordInserted);
   }
 }
-
-
 /* --------------------------- */
 
 export let arrayCleaned = [];
@@ -142,11 +194,54 @@ let inputMatrice;
 
 
 
+/* --------- function SorteArrSync ------ */
 
-/* function handleGtx > this function cleans greek text and creates element for the phase 2  */
+function SortedArrSync(selectImportOrAutoInt){
+
+  const importJsonData = document.getElementById("import-Json") 
+  const file = importJsonData.files
+  console.log(file)
+  const reader = new FileReader()
+
+  reader.addEventListener("load", (e) =>{
+     const fileContent = JSON.parse(e.target.result)
+
+     for (const element of fileContent) {
+      sortedArr.push(element)
+      
+     }
+   
+  selectImportOrAutoInt.remove()  
+  
+
+  console.log("sortedArr",sortedArr)
+
+
+
+  handleGtx(e)
+
+
+  })
+
+
+
+
+  reader.readAsText(file[0]);
+
+
+
+
+}
+
+
+
+/* ---- function handleGtx > this function cleans greek text and creates element for the phase 2 ------- */
+/* it is activated when automaticResOp is pressed */
 function handleGtx(e) {
   e.preventDefault();
-  
+
+ 
+
   if (poesiaValue == 0) {
     
     let arrayGtxImperfected = inputGtx.value.split("\n");
@@ -167,13 +262,12 @@ function handleGtx(e) {
     });
 
     
+
+    
     /* showing gkws values clicking on a sigle greek word in orange container */
     
     highlightableGreekWords = document.querySelectorAll(".highlightable");
-
     console.log("highlightableGreekWords",highlightableGreekWords)
-
-
 
     inputSoglia.max = highlightableGreekWords.length
 
@@ -194,7 +288,7 @@ function handleGtx(e) {
       lineSpace.style.display = "block"
      
       const singleLines = line.split(" ") // array containing every word of a line 
-      
+      console.log("singleLines", singleLines)
       singleLines.forEach((singleLine)=>{ // creates an array in which every word is an element 
         arrPoetryCleaned.push(singleLine)
     
@@ -206,20 +300,16 @@ function handleGtx(e) {
       })   
 
         visualizedText.appendChild(lineSpace)
-    });
+      });
 
-
-    
-
-
-    arrPoetryCleaned.forEach((greekWord) => {
-
-        if (greekWord == "") {
-          
+      arrPoetryCleaned.forEach(greekWord =>{
+         if (greekWord == "") {
           arrPoetryCleaned.splice(arrPoetryCleaned.indexOf(greekWord), 1)
-          
         }
-
+      })
+      
+      arrPoetryCleaned.forEach((greekWord) => {
+      
       let newWord = new GreekWord(greekWord);
       objectArraygGkwWithValues.push(newWord);
     });
@@ -227,8 +317,9 @@ function handleGtx(e) {
 
 
 
+
     
-  let   initHighlightableGreekWords = document.querySelectorAll(".highlightable");
+  let initHighlightableGreekWords = document.querySelectorAll(".highlightable");
 
     
     initHighlightableGreekWords.forEach(element =>{
@@ -256,7 +347,7 @@ function handleGtx(e) {
 
 }
 
-
+/* ------------------------------------------- */
 
 
 /* save in an object the values of the greek words given by the user */
@@ -283,9 +374,9 @@ function handleGkwValues() {
        <p> Categoria: ${sortedArr[indexgkw].category} </p>
        <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
        <p> Declinazione: ${sortedArr[indexgkw].decl} </p>
-       <p> Caso: </p>
+       <p> Caso: ${sortedArr[indexgkw].case} </p>
        <p> Genere:  ${sortedArr[indexgkw].gend} </p>
-       <p> Numero:  ${sortedArr[indexgkw].num}  </p>
+       <p> Numero:  ${sortedArr[indexgkw].number}  </p>
 
        
        
@@ -456,12 +547,13 @@ function completeResearch() { // this function is fundamental, it associates to 
     objectArraygGkwWithValues[syncIndex].SubVoce = sortedArr[syncIndex].SubVoce
 
 /* adding values of infl*/
-    sortedArr[syncIndex].mood != undefined ? objectArraygGkwWithValues[syncIndex].mood = sortedArr[syncIndex].mood : console.log("no verb")
-    sortedArr[syncIndex].tense != undefined ? objectArraygGkwWithValues[syncIndex].tense = sortedArr[syncIndex].tense : console.log("no verb")
+    sortedArr[syncIndex].mood != undefined ? objectArraygGkwWithValues[syncIndex].mood = sortedArr[syncIndex].mood : null
+    sortedArr[syncIndex].tense != undefined ? objectArraygGkwWithValues[syncIndex].tense = sortedArr[syncIndex].tense : null
 
-    sortedArr[syncIndex].decl != undefined ? objectArraygGkwWithValues[syncIndex].decl = sortedArr[syncIndex].decl : console.log("no noun")
-    sortedArr[syncIndex].gend != undefined ? objectArraygGkwWithValues[syncIndex].gend = sortedArr[syncIndex].gend : console.log("no noun")
-
+    sortedArr[syncIndex].decl != undefined ? objectArraygGkwWithValues[syncIndex].decl = sortedArr[syncIndex].decl : null
+    sortedArr[syncIndex].gend != undefined ? objectArraygGkwWithValues[syncIndex].gend = sortedArr[syncIndex].gend : null
+    sortedArr[syncIndex].number != undefined ? objectArraygGkwWithValues[syncIndex].number = sortedArr[syncIndex].number : null
+    sortedArr[syncIndex].case != undefined ? objectArraygGkwWithValues[syncIndex].case = sortedArr[syncIndex].case : null
     syncIndex++
   }
 )
@@ -828,18 +920,16 @@ addRowButton.addEventListener("click", function () {
   newRow.insertAdjacentElement("beforeend", inputSpeakerCol);
 });
 
-/* handling of slider for table size */
 
-sliderSizeTable.addEventListener("click", () => {
-  const diagraphRows = document.querySelectorAll(".diagraph-row");
-  console.log(diagraphRows);
-  let tableSize = sliderSizeTable.value;
+/* optimize table view */
 
-  diagraphRows.forEach((diagraphRow) => {
-    diagraphRow.style.height = `${tableSize}px`;
-  });
+optimizerTableView.addEventListener("click", ()=>{
+
+const inputs = document.querySelectorAll("input");
+inputs.forEach((input) => {
+    input.classList.toggle("optimized")
 });
-
+})
 
 
 
@@ -864,8 +954,7 @@ const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstra
 
 
 
-/* dowload json versione of sortedArr */
-const jsonDwlBut = document.getElementById("Json")
+/* dowload json version of sortedArr */
 
 jsonDwlBut.addEventListener("click", ()=>{
   
@@ -879,9 +968,11 @@ link.download = "dati.json"; // Nome del file
 link.click(); // Avvia il download
 
 // 5. Rilascia la memoria usata dall'URL temporaneo
-URL.revokeObjectURL(link.href);
+URL.revokeObjectURL(link.href); 
 
 })
+
+
 
 
 

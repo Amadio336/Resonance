@@ -1,0 +1,147 @@
+{
+  "RDF": {
+    "Annotation": {
+      "about": "urn:TuftsMorphologyService:Ἀσιάτιδος:morpheusgrc",
+      "creator": {
+        "Agent": {
+          "about": "org.perseus:tools:morpheus.v1"
+        }
+      },
+      "created": {
+        "$": "2020-01-01T00:00:00.000000"
+      },
+      "hasTarget": {
+        "Description": {
+          "about": "urn:word:Ἀσιάτιδος"
+        }
+      },
+      "title": {},
+      "hasBody": [
+        {
+          "resource": "urn:uuid:idm2d2fb80e1ad3f7295aa6e9e31839c3cbd15295971085840db0a97246b7c54dac"
+        },
+        {
+          "resource": "urn:uuid:idm8d278d7fd56833b99e9591195c11bdd76af834e64ce7423185a72189665bbf99"
+        }
+      ],
+      "Body": [
+        {
+          "about": "urn:uuid:idm2d2fb80e1ad3f7295aa6e9e31839c3cbd15295971085840db0a97246b7c54dac",
+          "type": {
+            "resource": "cnt:ContentAsXML"
+          },
+          "rest": {
+            "entry": {
+              "uri": null,
+              "dict": {
+                "hdwd": {
+                  "lang": "grc",
+                  "$": "Ἀσιάτις"
+                },
+                "pofs": {
+                  "order": 3,
+                  "$": "noun"
+                },
+                "decl": {
+                  "$": "3rd"
+                },
+                "gend": {
+                  "$": "feminine"
+                }
+              },
+              "infl": {
+                "term": {
+                  "lang": "grc",
+                  "stem": {
+                    "$": "Ἀσιατ"
+                  },
+                  "suff": {
+                    "$": "ιδος"
+                  }
+                },
+                "pofs": {
+                  "order": 3,
+                  "$": "noun"
+                },
+                "decl": {
+                  "$": "3rd"
+                },
+                "case": {
+                  "order": 6,
+                  "$": "genitive"
+                },
+                "gend": {
+                  "$": "feminine"
+                },
+                "num": {
+                  "$": "singular"
+                },
+                "stemtype": {
+                  "$": "is_idos"
+                }
+              }
+            }
+          }
+        },
+        {
+          "about": "urn:uuid:idm8d278d7fd56833b99e9591195c11bdd76af834e64ce7423185a72189665bbf99",
+          "type": {
+            "resource": "cnt:ContentAsXML"
+          },
+          "rest": {
+            "entry": {
+              "uri": null,
+              "dict": {
+                "hdwd": {
+                  "lang": "grc",
+                  "$": "Ἀσιανός"
+                },
+                "pofs": {
+                  "order": 3,
+                  "$": "noun"
+                },
+                "decl": {
+                  "$": "3rd"
+                },
+                "gend": {
+                  "$": "feminine"
+                }
+              },
+              "infl": {
+                "term": {
+                  "lang": "grc",
+                  "stem": {
+                    "$": "Ἀσιᾱτ"
+                  },
+                  "suff": {
+                    "$": "ιδος"
+                  }
+                },
+                "pofs": {
+                  "order": 3,
+                  "$": "noun"
+                },
+                "decl": {
+                  "$": "3rd"
+                },
+                "case": {
+                  "order": 6,
+                  "$": "genitive"
+                },
+                "gend": {
+                  "$": "feminine"
+                },
+                "num": {
+                  "$": "singular"
+                },
+                "stemtype": {
+                  "$": "is_idos"
+                }
+              }
+            }
+          }
+        }
+      ]
+    }
+  }
+}
