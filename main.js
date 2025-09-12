@@ -3,6 +3,7 @@ import { buttonAutomaticResearch, prova } from "./automatic-research.js";
 import { generateColours } from "./colour-generator.js";
 import { inputSoglia } from "./automatic-research.js";
 import { searchFlection } from "./APIs.js";
+import { genSmStats } from "./stats.js"
 
 
 
@@ -32,6 +33,7 @@ const SearchBarTag = document.getElementById("search-by-tag")
 const wrapperGreekText = document.getElementById("wrapper-greek-text")
 const selectBgPhase2 = document.getElementById("wrapper-greek-text-bg")
 const inputChangeColorColumn = document.getElementById("column-color")
+const GenSmStatsButton = document.getElementById("generate-small-stats")
 const jsonDwlBut = document.getElementById("Json")
 const makeDiagraph = document.getElementById("make-diagraph");
 
@@ -181,7 +183,7 @@ class GreekWord {
 }
 /* --------------------------- */
 
-export let arrayCleaned = [];
+let arrayCleaned = [];
 let objectArraygGkwWithValues = [];
 let arrPoetryCleaned = []
 
@@ -641,6 +643,15 @@ SearchBarTag.addEventListener("keyup", handleSearchByTag)
 
 
  }
+
+
+
+ /* function that generates small stats in phase 2 */
+
+ GenSmStatsButton.addEventListener("click", genSmStats)
+
+
+
 
 
 

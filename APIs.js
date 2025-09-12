@@ -469,10 +469,6 @@ function handleClick(word) {
             sortedArr[indexWordConflicted[indexFinal]].gend = element.el.RDF.Annotation.Body[indice].rest.entry.dict.gend.$
             sortedArr[indexWordConflicted[indexFinal]].decl = element.el.RDF.Annotation.Body[indice].rest.entry.dict.decl.$
 
-            /* set case, number */
-            sortedArr[indexWordConflicted[indexFinal]].case = element.el.RDF.Annotation.Body[indice].rest.entry.infl.case.$
-            sortedArr[indexWordConflicted[indexFinal]].number = element.el.RDF.Annotation.Body[indice].rest.entry.infl.num.$
-
           }
 
           if (sortedArr[indexWordConflicted[indexFinal]].category == "verb"){
