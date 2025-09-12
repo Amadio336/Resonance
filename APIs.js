@@ -324,13 +324,22 @@ quindi eseguirà skip e poi rimuovere l'el */
 
 /* function to remove EL from not found words */
 function createSkipIterface(word, event) {
+   /* create skip interface */
     event.preventDefault(); // Blocca il menu contestuale del browser
     const divSkip = document.createElement("div")
-    divSkip.textContent = "Salta"
     divSkip.classList.add("skip-button")
     word.appendChild(divSkip)
-    divSkip.addEventListener("click", skipWord)
 
+    let skipButton = document.createElement("span")
+    skipButton.textContent = "salta"
+    divSkip.appendChild(skipButton)
+    skipButton.addEventListener("click", skipWord)
+
+    let closeDivSkip = document.createElement("span")
+    closeDivSkip.style.display = "block"
+    closeDivSkip.textContent = "chiudi"
+    divSkip.insertAdjacentElement("afterbegin", closeDivSkip)
+    closeDivSkip.addEventListener("click", ()=>{divSkip.remove()})
   }
 
 function skipWord() {
@@ -436,12 +445,45 @@ function handleClick(word) {
         if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
           sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
           sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
+
+          if (sortedArr[indexWordConflicted[indexFinal]].category == "noun"){
+            /* set gend, declension */
+            sortedArr[indexWordConflicted[indexFinal]].gend = element.el.RDF.Annotation.Body[indice].rest.entry.dict.gend.$
+            sortedArr[indexWordConflicted[indexFinal]].decl = element.el.RDF.Annotation.Body[indice].rest.entry.dict.decl.$
+
+            /* set case, number */
+            sortedArr[indexWordConflicted[indexFinal]].case = element.el.RDF.Annotation.Body[indice].rest.entry.infl.case.$
+            sortedArr[indexWordConflicted[indexFinal]].number = element.el.RDF.Annotation.Body[indice].rest.entry.infl.num.$
+
+          }
+
+          if (sortedArr[indexWordConflicted[indexFinal]].category == "verb"){
+
+         /* set mood and tense */
+            if (element.el.RDF.Annotation.Body[indice].rest.entry.infl.length == undefined){
+              sortedArr[indexWordConflicted[indexFinal]].mood = element.el.RDF.Annotation.Body[indice].rest.entry.infl.mood.$
+              sortedArr[indexWordConflicted[indexFinal]].tense = element.el.RDF.Annotation.Body[indice].rest.entry.infl.tense.$
+
+            }
+
+
+           
+            /* set mood, tense.  The value is abitrary set to 0 TODO:. The problem is that some words has infl.lenght > 1, for instance εχει, it coulb be 3sin act or 2 sing medio passive.  */
+            if (element.el.RDF.Annotation.Body[indice].rest.entry.infl.length != undefined){
+              sortedArr[indexWordConflicted[indexFinal]].mood = element.el.RDF.Annotation.Body[indice].rest.entry.infl[0].mood.$
+              sortedArr[indexWordConflicted[indexFinal]].tense = element.el.RDF.Annotation.Body[indice].rest.entry.infl[0].tense.$
+
+            }
+
+
+
+           
+          }
+
+
           indexFinal++
           conflictInterface.remove()
 
-       /*    console.log("indexWordConflicted[indexFinal]", indexWordConflicted[indexFinal])
-          console.log("indexFinal", indexFinal)
-          console.log("sortedArr",sortedArr) */
         }})}catch(error){console.log(error)}
 
         console.log("words[lastIndex]",  words[lastIndex])

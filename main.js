@@ -43,7 +43,7 @@ const chooseTableButton = document.getElementById("choose-table-button");
 const addRowButton = document.getElementById("add-row");
 const addColButton = document.getElementById("add-col");
 const addSeparatorButton = document.getElementById("add-separator");
-const sliderSizeTable = document.getElementById("table-size-slider");
+const optimizerTableView = document.getElementById("optimize-table-view")
 
 /*---- drang and drop of the cells of diagraph - pahse 3------------ */
 
@@ -81,7 +81,7 @@ let dragItem = null;
 /* -----------poetry or prose checjbox -----------*/
 /* verifier poetry mode */
 
-let poesiaValue = 0
+let poesiaValue = 1
 function specifierProseOrPoetry() {
   if (poesiaValue == 0) {
     specifierMode.textContent = "Modalità Prosa"
@@ -262,6 +262,8 @@ function handleGtx(e) {
     });
 
     
+
+    
     /* showing gkws values clicking on a sigle greek word in orange container */
     
     highlightableGreekWords = document.querySelectorAll(".highlightable");
@@ -286,7 +288,7 @@ function handleGtx(e) {
       lineSpace.style.display = "block"
      
       const singleLines = line.split(" ") // array containing every word of a line 
-      
+      console.log("singleLines", singleLines)
       singleLines.forEach((singleLine)=>{ // creates an array in which every word is an element 
         arrPoetryCleaned.push(singleLine)
     
@@ -298,19 +300,20 @@ function handleGtx(e) {
       })   
 
         visualizedText.appendChild(lineSpace)
-    });
+      });
 
-    arrPoetryCleaned.forEach((greekWord) => {
-
-        if (greekWord == "") {
-          
+      arrPoetryCleaned.forEach(greekWord =>{
+         if (greekWord == "") {
           arrPoetryCleaned.splice(arrPoetryCleaned.indexOf(greekWord), 1)
-          
         }
-
+      })
+      
+      arrPoetryCleaned.forEach((greekWord) => {
+      
       let newWord = new GreekWord(greekWord);
       objectArraygGkwWithValues.push(newWord);
     });
+
 
 
 
@@ -371,9 +374,9 @@ function handleGkwValues() {
        <p> Categoria: ${sortedArr[indexgkw].category} </p>
        <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
        <p> Declinazione: ${sortedArr[indexgkw].decl} </p>
-       <p> Caso: </p>
+       <p> Caso: ${sortedArr[indexgkw].case} </p>
        <p> Genere:  ${sortedArr[indexgkw].gend} </p>
-       <p> Numero:  ${sortedArr[indexgkw].num}  </p>
+       <p> Numero:  ${sortedArr[indexgkw].number}  </p>
 
        
        
@@ -544,12 +547,13 @@ function completeResearch() { // this function is fundamental, it associates to 
     objectArraygGkwWithValues[syncIndex].SubVoce = sortedArr[syncIndex].SubVoce
 
 /* adding values of infl*/
-    sortedArr[syncIndex].mood != undefined ? objectArraygGkwWithValues[syncIndex].mood = sortedArr[syncIndex].mood : console.log("no verb")
-    sortedArr[syncIndex].tense != undefined ? objectArraygGkwWithValues[syncIndex].tense = sortedArr[syncIndex].tense : console.log("no verb")
+    sortedArr[syncIndex].mood != undefined ? objectArraygGkwWithValues[syncIndex].mood = sortedArr[syncIndex].mood : null
+    sortedArr[syncIndex].tense != undefined ? objectArraygGkwWithValues[syncIndex].tense = sortedArr[syncIndex].tense : null
 
-    sortedArr[syncIndex].decl != undefined ? objectArraygGkwWithValues[syncIndex].decl = sortedArr[syncIndex].decl : console.log("no noun")
-    sortedArr[syncIndex].gend != undefined ? objectArraygGkwWithValues[syncIndex].gend = sortedArr[syncIndex].gend : console.log("no noun")
-
+    sortedArr[syncIndex].decl != undefined ? objectArraygGkwWithValues[syncIndex].decl = sortedArr[syncIndex].decl : null
+    sortedArr[syncIndex].gend != undefined ? objectArraygGkwWithValues[syncIndex].gend = sortedArr[syncIndex].gend : null
+    sortedArr[syncIndex].number != undefined ? objectArraygGkwWithValues[syncIndex].number = sortedArr[syncIndex].number : null
+    sortedArr[syncIndex].case != undefined ? objectArraygGkwWithValues[syncIndex].case = sortedArr[syncIndex].case : null
     syncIndex++
   }
 )
@@ -903,18 +907,16 @@ addRowButton.addEventListener("click", function () {
   newRow.insertAdjacentElement("beforeend", inputSpeakerCol);
 });
 
-/* handling of slider for table size */
 
-sliderSizeTable.addEventListener("click", () => {
-  const diagraphRows = document.querySelectorAll(".diagraph-row");
-  console.log(diagraphRows);
-  let tableSize = sliderSizeTable.value;
+/* optimize table view */
 
-  diagraphRows.forEach((diagraphRow) => {
-    diagraphRow.style.height = `${tableSize}px`;
-  });
+optimizerTableView.addEventListener("click", ()=>{
+
+const inputs = document.querySelectorAll("input");
+inputs.forEach((input) => {
+    input.classList.toggle("optimized")
 });
-
+})
 
 
 
