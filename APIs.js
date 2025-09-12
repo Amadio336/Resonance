@@ -86,24 +86,42 @@ cleanedGText.forEach((gkw) => {
         decl: jsonFIle.RDF.Annotation.Body.rest.entry.dict.decl.$,
         id: gkw.id,
       };
+
+
+
+
+
    
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id);
-    } else if (jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "verb"){  /* altrimenti, se la parola non omonima è un verbo */
+    } else if (jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "verb"){  
 
       const notSortedObj = {
         SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
         category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
-        tense : undefined, 
-        mood: undefined,
         id: gkw.id,
       };
 
 
       /* these two lines manage the problem infl has more than only one object. If infl has only one object, it takes normally the value of verb.tense and verb.mood, otherwise it takes the first result */
-      jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl.tense.$ : notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].tense.$
-      jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.mood = jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$ : notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].mood.$
+      jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.mood = jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$ : notSortedObj.mood = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].mood.$
+      jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl.tense.$ : notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].tense.$ 
    
+
+      /* this two if statements add case and number to participles, both those with a infl.legnth >0 and those with inf.lengt = 1 or undefined */
+      /* infl.length > 1 or != undefined */
+       if (jsonFIle.RDF.Annotation.Body.rest.entry.infl.length != undefined && jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].mood.$ == "participle"){
+       notSortedObj.participleCase = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].case.$
+       notSortedObj.participleNumber = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].num.$
+        
+      }
+      /* infl.length == 1 or == undefined */
+       if (jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined && jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$ == "participle"){
+       notSortedObj.participleCase = jsonFIle.RDF.Annotation.Body.rest.entry.infl.case.$
+       notSortedObj.participleNumber = jsonFIle.RDF.Annotation.Body.rest.entry.infl.num.$
+        
+      } 
+
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id);
 

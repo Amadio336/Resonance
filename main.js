@@ -374,9 +374,8 @@ function handleGkwValues() {
        <p> Categoria: ${sortedArr[indexgkw].category} </p>
        <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
        <p> Declinazione: ${sortedArr[indexgkw].decl} </p>
-       <p> Caso: ${sortedArr[indexgkw].case} </p>
        <p> Genere:  ${sortedArr[indexgkw].gend} </p>
-       <p> Numero:  ${sortedArr[indexgkw].number}  </p>
+
 
        
        
@@ -388,7 +387,7 @@ function handleGkwValues() {
       
  /* if word's category is "verb" */
      
-  } else if(sortedArr[indexgkw].category == "verb"){
+  } else if(sortedArr[indexgkw].category == "verb" && sortedArr[indexgkw].mood != "participle"){
 
     beginningValues.insertAdjacentHTML(
       "beforeend",  
@@ -400,14 +399,37 @@ function handleGkwValues() {
       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
       <p> Modo:  ${sortedArr[indexgkw].mood} </p>
       <p> Tempo:  ${sortedArr[indexgkw].tense} </p>
-      <p> Persona: </p>
-      <p> Radice: </p>
-      
-      
+    
       </div>`
             
      );
-  } else if (sortedArr[indexgkw].category == "adjective"){  /* aggettivi */
+
+     /* TODO: remember to add person and root for the verb */
+
+
+
+
+  } else if(sortedArr[indexgkw].category == "verb" && sortedArr[indexgkw].mood == "participle"){
+
+     beginningValues.insertAdjacentHTML(
+      "beforeend",  
+      `<div class="values"> 
+      
+      <h5 class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+      <p> Categoria: ${sortedArr[indexgkw].category} </p>
+      <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+      <p> Modo:  ${sortedArr[indexgkw].mood} </p>
+      <p> Tempo:  ${sortedArr[indexgkw].tense} </p>
+      <p> Caso: ${sortedArr[indexgkw].participleCase}  </p>
+      <p> Numero: ${sortedArr[indexgkw].participleNumber} </p>
+    
+      </div>`
+            
+     );
+
+
+  }else if (sortedArr[indexgkw].category == "adjective"){  /* adjectives */
 
     beginningValues.insertAdjacentHTML(
       "beforeend",  
@@ -418,11 +440,9 @@ function handleGkwValues() {
       <p> Categoria: ${sortedArr[indexgkw].category} </p>
       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
       <p> Declinazione: ${sortedArr[indexgkw].decl}  </p>
-      <p> Caso : </p>
+      <p> Caso: </p>
       <p> Genere: </p>
-      <p>: </p>
-      <p> : </p>
-      
+         
       
       </div>`)
 
@@ -549,11 +569,17 @@ function completeResearch() { // this function is fundamental, it associates to 
 /* adding values of infl*/
     sortedArr[syncIndex].mood != undefined ? objectArraygGkwWithValues[syncIndex].mood = sortedArr[syncIndex].mood : null
     sortedArr[syncIndex].tense != undefined ? objectArraygGkwWithValues[syncIndex].tense = sortedArr[syncIndex].tense : null
-
     sortedArr[syncIndex].decl != undefined ? objectArraygGkwWithValues[syncIndex].decl = sortedArr[syncIndex].decl : null
     sortedArr[syncIndex].gend != undefined ? objectArraygGkwWithValues[syncIndex].gend = sortedArr[syncIndex].gend : null
     sortedArr[syncIndex].number != undefined ? objectArraygGkwWithValues[syncIndex].number = sortedArr[syncIndex].number : null
     sortedArr[syncIndex].case != undefined ? objectArraygGkwWithValues[syncIndex].case = sortedArr[syncIndex].case : null
+
+    sortedArr[syncIndex].participleCase != undefined ? objectArraygGkwWithValues[syncIndex].participleCase = sortedArr[syncIndex].participleCase : null
+    sortedArr[syncIndex].participleNumber != undefined ? objectArraygGkwWithValues[syncIndex].participleNumber = sortedArr[syncIndex].participleNumber : null
+
+
+
+
     syncIndex++
   }
 )
