@@ -410,17 +410,72 @@
 }
 
 
+
 @keyframes fadeIn {
     from {
         opacity: 0;
         transform: scale(0.98);
     }
-
+    
     to {
         opacity: 1;
         transform: scale(1);
     }
 }
+
+
+
+
+
+
+@keyframes show-more-anim {
+    0% {
+        width: 60x;
+        height: 60px;
+        position: absolute;
+        border-radius: 15px;
+    }
+    
+    50% {
+        width: 60px;
+        height: 60px;
+    }
+    
+    70% {
+        background-color: beige;
+        width: 80%;
+        height: 80vh;
+    }
+    
+    100% {
+        transform: translateX(-80%);
+        background-color: beige;
+        width: 80vw;
+        height: 80vh;
+        bottom:10%;
+    }
+}
+
+
+/* show more stats */
+.show-more-button{
+    width: 60px;
+    height: 60px;
+    position: absolute;
+    border-radius: 15px;
+    left: 0%;
+    bottom: 5%;
+}
+
+.show-more-button.animate{
+    animation: show-more-anim 0.5s forwards ease-out;
+
+}
+
+
+
+
+
 
 /*------------ end phase 2 ---------------------------- */
 
@@ -521,6 +576,7 @@ input{
     position: relative;
     background-color: white;
 }
+
 
 
 

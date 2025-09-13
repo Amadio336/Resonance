@@ -4,7 +4,7 @@ import { generateColours } from "./colour-generator.js";
 import { inputSoglia } from "./automatic-research.js";
 import { searchFlection } from "./APIs.js";
 import { genSmStats } from "./stats.js"
-
+import { activeShowMoreAnim } from "./stats.js";
 
 
 /* phase 1 */
@@ -34,6 +34,7 @@ const wrapperGreekText = document.getElementById("wrapper-greek-text")
 const selectBgPhase2 = document.getElementById("wrapper-greek-text-bg")
 const inputChangeColorColumn = document.getElementById("column-color")
 const GenSmStatsButton = document.getElementById("generate-small-stats")
+const showMoreButton = document.getElementById("show-more-button")
 const jsonDwlBut = document.getElementById("Json")
 const makeDiagraph = document.getElementById("make-diagraph");
 
@@ -649,6 +650,11 @@ SearchBarTag.addEventListener("keyup", handleSearchByTag)
  /* function that generates small stats in phase 2 */
 
  GenSmStatsButton.addEventListener("click", genSmStats)
+
+
+ /* function that make the animation of show more button */
+ showMoreButton.addEventListener("click", activeShowMoreAnim)
+
 
 
 

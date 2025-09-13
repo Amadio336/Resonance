@@ -2,6 +2,7 @@ import { sortedArr } from "./APIs.js"
 
 
 let words = []
+const showMoreButton = document.querySelector("#show-more-button")
 
 
 /* this function generates small stats on the toolbar of phase2 */
@@ -65,7 +66,7 @@ function genSmStats() {
 
 
         /* counter all word */
-        statsArea.insertAdjacentHTML("afterbegin", `Parole totali: ${words.length}`)
+        statsArea.insertAdjacentHTML("afterbegin", `<p class="title-text-violet mt-5 mb-5">Parole totali: ${words.length}</p>`)
 
 
 
@@ -74,12 +75,6 @@ function genSmStats() {
         /* disabling button genstats */
         genStatsButton.disabled = true
         genStatsButton.classList.add("hide")
-
-        
-
-        
-
-
 
 
 
@@ -90,9 +85,15 @@ function genSmStats() {
 
 
 
+}
 
+function activeShowMoreAnim(){
+    showMoreButton.addEventListener("click", animate)
+}
 
-
+function animate(){
+    showMoreButton.innerHTML = ""
+    showMoreButton.classList.add("animate")
 }
 
 
@@ -100,6 +101,4 @@ function genSmStats() {
 
 
 
-
-
-export { genSmStats }
+export { genSmStats, activeShowMoreAnim }
