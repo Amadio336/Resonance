@@ -468,9 +468,11 @@
 }
 
 .show-more-button.animate{
-    animation: show-more-anim 0.5s forwards ease-out;
+    animation: show-more-anim 0.7s forwards ease-out;
 
 }
+
+
 
 
 
