@@ -481,7 +481,27 @@
     
 }
 
+.wrapper-percentage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
 
+
+.twenty-five-bar{
+     width: 500px;
+     height: 50px;
+    border-radius: 15px;
+    border: 2px solid black;
+    background: linear-gradient(to right, red 25%, blue 25%);
+    margin-inline: auto;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 10px;
+}
 
 
 

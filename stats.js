@@ -130,9 +130,15 @@ function  createBgStats() {
         showMoreWrapper.appendChild(delShowMoreButton)
         delShowMoreButton.addEventListener("click", delBgStatsInterface)
 
+        console.log("il numero totale di parole è", words.length)
 
 
-        showMoreWrapper.insertAdjacentHTML("beforeend","<p> ciao come stai </p> ")
+
+        showMoreWrapper.insertAdjacentHTML('beforeend',
+            ` <div class="wrapper-percentage"> 
+                <div class="twenty-five-bar"> 25%</div>
+            </div>
+           `)
     }
 
 
