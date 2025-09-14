@@ -66,7 +66,7 @@ function genSmStats() {
 
 
         /* counter all word */
-        statsArea.insertAdjacentHTML("afterbegin", `<p class="title-text-violet mt-5 mb-5">Parole totali: ${words.length}</p>`)
+        statsArea.insertAdjacentHTML("afterbegin", `<p class="title-text-violet mt-3 mb-3">Parole totali: ${words.length}</p>`)
 
 
 
@@ -177,7 +177,7 @@ function delBgStatsInterface(){
     isHiddenShowMore = false
 
     if (showMoreButton.firstElementChild.tagName !== 'SPAN'){
-        showMoreButton.insertAdjacentHTML("afterbegin", "<span class='mt-4'> show More</p>")
+        showMoreButton.insertAdjacentHTML("afterbegin", "<span class='mt-4'> Mostra di più</p>")
     }
 
  

@@ -430,15 +430,15 @@
 
 @keyframes show-more-anim {
     0% {
-        width: 60x;
-        height: 60px;
+        width: 130px;
+        height: 40px;
         position: absolute;
         border-radius: 15px;
     }
     
     50% {
-        width: 60px;
-        height: 60px;
+        width: 130px;
+        height: 40px;
     }
     
     70% {
@@ -453,23 +453,32 @@
         width: 80vw;
         height: 80vh;
         bottom:10%;
+        align-items: start;
     }
 }
 
 
 /* show more stats */
 .show-more-button{
-    width: 60px;
-    height: 60px;
+    width: 130px;
+    height: 40px;
     position: absolute;
     border-radius: 15px;
     left: 0%;
     bottom: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .show-more-button.animate{
     animation: show-more-anim 0.7s forwards ease-out;
 
+}
+
+.show-more-button:hover{
+    background-color: #d4b84a;
+    
 }
 
 
