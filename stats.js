@@ -141,15 +141,15 @@ function  createBgStats() {
 
 
 function hideBgStatsInterface(){
-    showMoreButton.classList.remove("animate")
     showMoreWrapper.classList.add("hide")
+    showMoreButton.classList.remove("animate")
     isHiddenShowMore = true
     showMoreButton.insertAdjacentHTML("afterbegin", "<span> nascosto</span>")
 
-    const p = showMoreButton.querySelector('span');
-if (p) {
-    p.remove();
-}
+     const span = showMoreButton.querySelector('span.mt-4');
+if (span) {
+    span.remove();
+} 
 
 
     
