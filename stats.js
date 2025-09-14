@@ -87,15 +87,101 @@ function genSmStats() {
 
 }
 
+const showMoreWrapper = document.getElementById("show-more-wrapper")
+
+let isOpenShowMore = false
+let isHiddenShowMore = false
+
+/* this function is the beginning of the creation of Big Stats Interface */
 function activeShowMoreAnim(){
-    showMoreButton.addEventListener("click", animate)
+    /* clicking on the button Show More makes the animation start */
+    showMoreButton.addEventListener("dblclick", animate)
+
+    showMoreButton.addEventListener("dblclick", showAgain)
+    /* at the end of animation, generates Big Stats Interface */
+    showMoreButton.addEventListener("animationend", createBgStats)
 }
 
+/* this f manages the animation of show more button */
 function animate(){
-    showMoreButton.innerHTML = ""
-    showMoreButton.classList.add("animate")
+    if (isOpenShowMore == false){
+        isOpenShowMore = true
+        showMoreButton.classList.add("animate")
+    }
 }
 
+/* this f generates Bg Stats Interface */
+function  createBgStats() {
+    
+    if(isHiddenShowMore == false){
+
+        /* button hide */
+        const hideShowMoreButton = document.createElement("button")
+        hideShowMoreButton.textContent = "Nascondi"
+        hideShowMoreButton.className = "button-beige mt-4"
+        showMoreWrapper.appendChild(hideShowMoreButton)
+        hideShowMoreButton.addEventListener("click", hideBgStatsInterface)
+        
+        
+        /* button close */
+        const delShowMoreButton = document.createElement("button")
+        delShowMoreButton.textContent = "Chiudi"
+        delShowMoreButton.className = "button-beige mt-4"
+        showMoreWrapper.appendChild(delShowMoreButton)
+        delShowMoreButton.addEventListener("click", delBgStatsInterface)
+
+
+
+        showMoreWrapper.insertAdjacentHTML("beforeend","<p> ciao come stai </p> ")
+    }
+
+
+    
+}
+
+
+function hideBgStatsInterface(){
+    showMoreButton.classList.remove("animate")
+    showMoreWrapper.classList.add("hide")
+    isHiddenShowMore = true
+    showMoreButton.insertAdjacentHTML("afterbegin", "<span> nascosto</span>")
+
+    const p = showMoreButton.querySelector('span');
+if (p) {
+    p.remove();
+}
+
+
+    
+   
+}
+
+
+function showAgain(){
+    if (isHiddenShowMore == true){
+        showMoreButton.classList.add("animate")
+        setTimeout(()=>{showMoreWrapper.classList.remove("hide")}, 700)
+
+        if(showMoreButton.firstElementChild){
+            showMoreButton.firstElementChild.remove()
+        }
+
+    }
+}
+
+function delBgStatsInterface(){
+    showMoreButton.classList.remove("animate")
+    showMoreWrapper.innerHTML = ""
+    console.log(showMoreButton)
+    isOpenShowMore = false
+    isHiddenShowMore = false
+
+    if (showMoreButton.firstElementChild.tagName !== 'SPAN'){
+        showMoreButton.insertAdjacentHTML("afterbegin", "<span class='mt-4'> show More</p>")
+    }
+
+ 
+}
 
 
 
