@@ -42,7 +42,6 @@ let lastIndex = 0
 
 splittedGtext.forEach((gkw) => { 
   /* this if statement deals with preventing empty string from to be considered as a word */
-  console.log("gkw", gkw)
   if (gkw.trim() != ""){
   const gkwObj = {
     word: gkw.replace("\n", ""),
@@ -58,7 +57,6 @@ let indexJsonReturned =0
 console.log("cleanedGText", cleanedGText)
 
 cleanedGText.forEach((gkw) => {
-  console.log(gkw)
 
   try{
   fetch(

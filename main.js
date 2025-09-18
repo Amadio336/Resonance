@@ -84,7 +84,7 @@ let dragItem = null;
 /* -----------poetry or prose checjbox -----------*/
 /* verifier poetry mode */
 
-let poesiaValue = 0
+let poesiaValue = 1
 function specifierProseOrPoetry() {
   if (poesiaValue == 0) {
     specifierMode.textContent = "Modalità Prosa"
@@ -299,7 +299,7 @@ function handleGtx(e) {
       lineSpace.style.display = "block"
      
       const singleLines = line.split(" ") // array containing every word of a line 
-      console.log("singleLines", singleLines)
+   /*    console.log("singleLines", singleLines) */
       singleLines.forEach((singleLine)=>{ // creates an array in which every word is an element 
         arrPoetryCleaned.push(singleLine)
     
