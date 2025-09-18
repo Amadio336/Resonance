@@ -84,7 +84,7 @@ let dragItem = null;
 /* -----------poetry or prose checjbox -----------*/
 /* verifier poetry mode */
 
-let poesiaValue = 1
+let poesiaValue = 0
 function specifierProseOrPoetry() {
   if (poesiaValue == 0) {
     specifierMode.textContent = "Modalità Prosa"
@@ -248,21 +248,29 @@ function handleGtx(e) {
   if (poesiaValue == 0) {
     
     let arrayGtxImperfected = inputGtx.value.split("\n");
+  /*   console.log("arrayGtxImperfected",arrayGtxImperfected) */
     let GtxRecomposed = arrayGtxImperfected.join(" ");
+/*     console.log("GtxRecomposed",GtxRecomposed) */
     let arrayGtx = GtxRecomposed.split(" ");
+/*     console.log("arrayGtx",arrayGtx) */
     
     arrayGtx.forEach((greekWord) => {
       let cleanedNumber = greekWord.replace(/[1234567890]/, "");
       let cleanedParagraphSign = cleanedNumber.replace(/\[\]/, "");
       arrayCleaned.push(cleanedParagraphSign);
     });
+
+    console.log("arrayCleaned",arrayCleaned)
     
     /* adding words in orange container of the phase 2 */
     arrayCleaned.forEach((greekWord) => {
+      if (greekWord != ""){
       let newWord = new GreekWord(greekWord);
       newWord.createWordInserted();
       objectArraygGkwWithValues.push(newWord);
-    });
+      }
+
+   });
 
     
 
@@ -356,6 +364,7 @@ function handleGtx(e) {
 /* save in an object the values of the greek words given by the user */
 
 function handleGkwValues() {
+  console.log("objectArraygGkwWithValues",objectArraygGkwWithValues)
 
   
   

@@ -28,25 +28,29 @@ let lastIndex = 0
   
 
  
- let rowGText = inputGtx.value;
- let splittedGtext = rowGText.split(" "); // viene trasformato in un array con split, ogni spazio è un elemento
+ let rowGText = inputGtx.value; 
+ let rowGTextSplitted = rowGText.split(" ")
+ let splittedGtext =[]
+
+ /* this loop take every word individually from text-area and deletes numbers and parentesis. After this, it pushes the word in splittedGtext */
+ rowGTextSplitted.forEach((greekWord) => {
+      let cleanedNumber = greekWord.replace(/[1234567890]/, "");
+      let cleanedParagraphSign = cleanedNumber.replace(/\[\]/, "");
+      splittedGtext.push(cleanedParagraphSign);
+    });
 
 
-
-
-
-splittedGtext.forEach((gkw) => { // prendere gli elementi di arr1, ci mette un indce e le mette dentro arr2
+splittedGtext.forEach((gkw) => { 
+  /* this if statement deals with preventing empty string from to be considered as a word */
+  console.log("gkw", gkw)
+  if (gkw.trim() != ""){
   const gkwObj = {
     word: gkw.replace("\n", ""),
-    id: index,
-  };
-  
+    id: index,};
   cleanedGText.push(gkwObj);
-  
-  index++; // incrementa l'indice
-
+  index++;}
 });
-
+ 
 let allJsonFiles = []
 let indexJsonReturned =0
  
@@ -54,20 +58,23 @@ let indexJsonReturned =0
 console.log("cleanedGText", cleanedGText)
 
 cleanedGText.forEach((gkw) => {
- 
+  console.log(gkw)
+
+  try{
   fetch(
     `https://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc&word=${gkw.word}`  // viene fatta una richiesta per la flessione di una parola
   )
-    .then((response) => response.text())
-    .then((data) => {
-      const jsonFIle = JSON.parse(data);
-
-      console.log(jsonFIle)
-
-
-   
-
-
+  .then((response) => response.text())
+  .then((data) => {
+    const jsonFIle = JSON.parse(data);
+    
+  
+    console.log(jsonFIle)
+    
+    
+    
+    
+    
   /* variabile che contiene la lunghezza della chiave Body  */
    let objLenght = jsonFIle.RDF.Annotation.Body.length
 
@@ -265,7 +272,9 @@ cleanedGText.forEach((gkw) => {
 
 
 
-    });    
+    });
+  } /* qui si chiude il try prima di fetch */
+    catch (error){console.log(error)}  
   });
   
  
