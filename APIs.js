@@ -29,7 +29,9 @@ let lastIndex = 0
 
  
  let rowGText = inputGtx.value; 
- let rowGTextSplitted = rowGText.split(" ")
+ let noBreakLines = inputGtx.value.replaceAll("\n", " ")
+ let rowGTextSplitted = noBreakLines.split(" ")
+ 
  let splittedGtext =[]
 
  /* this loop take every word individually from text-area and deletes numbers and parentesis. After this, it pushes the word in splittedGtext */
