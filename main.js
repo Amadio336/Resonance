@@ -265,7 +265,7 @@ function handleGtx(e) {
     /* adding words in orange container of the phase 2 */
     arrayCleaned.forEach((greekWord) => {
       if (greekWord != ""){
-      let newWord = new GreekWord(greekWord);
+      let newWord = new GreekWord(greekWord.trim());
       newWord.createWordInserted();
       objectArraygGkwWithValues.push(newWord);
       }
@@ -321,7 +321,7 @@ function handleGtx(e) {
       
       arrPoetryCleaned.forEach((greekWord) => {
       
-      let newWord = new GreekWord(greekWord);
+      let newWord = new GreekWord(greekWord.trim());
       objectArraygGkwWithValues.push(newWord);
     });
 

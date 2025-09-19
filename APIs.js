@@ -38,15 +38,16 @@ let lastIndex = 0
  rowGTextSplitted.forEach((greekWord) => {
       let cleanedNumber = greekWord.replace(/[1234567890]/, "");
       let cleanedParagraphSign = cleanedNumber.replace(/\[\]/, "");
-      splittedGtext.push(cleanedParagraphSign);
+      splittedGtext.push(cleanedParagraphSign.trim());
     });
 
 
 splittedGtext.forEach((gkw) => { 
+  console.log("gkw", gkw)
   /* this if statement deals with preventing empty string from to be considered as a word */
   if (gkw.trim() != ""){
   const gkwObj = {
-    word: gkw.replace("\n", ""),
+    word: gkw.replace("\n", "").trim(),
     id: index,};
   cleanedGText.push(gkwObj);
   index++;}
@@ -76,6 +77,7 @@ cleanedGText.forEach((gkw) => {
     
     
   /* variabile che contiene la lunghezza della chiave Body  */
+  
    let objLenght = jsonFIle.RDF.Annotation.Body.length
 
 
@@ -312,7 +314,7 @@ resolveConflictButton.addEventListener("click", ()=>{
     word.setAttribute("data-index-word", index)
     index++
     
-    let wordWithUrns =  `urn:word:${word.textContent}`
+    let wordWithUrns =  `urn:word:${word.textContent.trim()}`
     wordsWithUrns.push(wordWithUrns)
   })
   
@@ -425,6 +427,7 @@ function handleClick(word) {
 
 
     const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+    
 
     
     
@@ -460,9 +463,11 @@ function handleClick(word) {
       try{
       finalArray.forEach(element =>{
 
+
         let URNCleaned;
         
         if (element.el == undefined) {
+          console.log("il problema è qui")
           return
         }else{
           URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
