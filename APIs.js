@@ -79,6 +79,7 @@ cleanedGText.forEach((gkw) => {
   /* variabile che contiene la lunghezza della chiave Body  */
   
    let objLenght = jsonFIle.RDF.Annotation.Body.length
+   console.log("objLenght",objLenght)
 
 
    /* cioè se il body non ha più array, quindi è un parola non omonima  */
@@ -432,7 +433,7 @@ function handleClick(word) {
     
     
 
-    if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC") && element.elId == word.getAttribute("data-index-word")) {
+    if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC").trim() && element.elId == word.getAttribute("data-index-word")) {
       
       const bodyLength = element.el.RDF.Annotation.Body.length
       
@@ -474,7 +475,7 @@ function handleClick(word) {
         }
       
         
-        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
+        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC").trim()  && element.elId == word.getAttribute("data-index-word")) {
           sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
           sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
 
