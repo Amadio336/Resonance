@@ -1547,5 +1547,960 @@
     "voice": "active",
     "person": "3rd",
     "number": "singular"
-  }
-]
+  },  
+  {
+    "word": "τοὐμὸν",
+    "SubVoce": "ὁ + ἐμός",
+    "category": "article + adjective (crasis)",
+    "case": "accusative",
+    "number": "singular",
+    "gend": "neuter",
+    "note": "Crasis per 'τὸ ἐμὸν'",
+    "id": 136
+    },
+    {
+        "word": "παρώσας",
+        "SubVoce": "παρωθέω",
+        "category": "verb",
+        "mood": "participle",
+        "tense": "aorist",
+        "voice": "active",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "masculine",
+        "id": 137
+    },
+    {
+        "word": "δεσπότης",
+        "SubVoce": "δεσπότης",
+        "category": "noun",
+        "decl": "1st",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "masculine",
+        "id": 138
+    },
+    {
+        "word": "δοῦλον",
+        "SubVoce": "δοῦλος",
+        "category": "adjective",
+        "decl": "1st/2nd",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "neuter",
+        "id": 139
+    },
+    {
+        "word": "λέχος,",
+        "SubVoce": "λέχος",
+        "category": "noun",
+        "decl": "3rd",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "neuter",
+        "id": 140
+    },
+    {
+        "word": "κακοῖς",
+        "SubVoce": "κακός",
+        "category": "adjective",
+        "decl": "1st/2nd",
+        "case": "dative",
+        "number": "plural",
+        "gend": "neuter",
+        "id": 141
+    },
+    {
+        "word": "πρὸς",
+        "SubVoce": "πρός",
+        "category": "preposition",
+        "id": 142
+    },
+    {
+        "word": "αὐτῆς",
+        "SubVoce": "αὐτός",
+        "category": "pronoun",
+        "case": "genitive",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 143
+    },
+    {
+        "word": "σχετλίοις",
+        "SubVoce": "σχέτλιος",
+        "category": "adjective",
+        "decl": "1st/2nd",
+        "case": "dative",
+        "number": "plural",
+        "gend": "neuter",
+        "id": 144
+    },
+    {
+        "word": "ἐλαύνομαι.",
+        "SubVoce": "ἐλαύνω",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "present",
+        "voice": "middle-passive",
+        "person": "1st",
+        "number": "singular",
+        "id": 145
+    },
+    {
+        "word": "λέγει",
+        "SubVoce": "λέγω",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "present",
+        "voice": "active",
+        "person": "3rd",
+        "number": "singular",
+        "id": 146
+    },
+    {
+        "word": "γὰρ",
+        "SubVoce": "γάρ",
+        "category": "particle",
+        "id": 147
+    },
+    {
+        "word": "ὥς",
+        "SubVoce": "ὡς",
+        "category": "conjunction",
+        "id": 148
+    },
+    {
+        "word": "νιν",
+        "SubVoce": "νιν (pronome personale)",
+        "category": "pronoun",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 149
+    },
+    {
+        "word": "φαρμάκοις",
+        "SubVoce": "φάρμακον",
+        "category": "noun",
+        "decl": "2nd",
+        "case": "dative",
+        "number": "plural",
+        "gend": "neuter",
+        "id": 150
+    },
+    {
+        "word": "κεκρυμμένοις",
+        "SubVoce": "κρύπτω",
+        "category": "verb",
+        "mood": "participle",
+        "tense": "perfect",
+        "voice": "middle-passive",
+        "case": "dative",
+        "number": "plural",
+        "gend": "neuter",
+        "id": 151
+    },
+    {
+        "word": "τίθημ᾽",
+        "SubVoce": "τίθημι",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "present",
+        "voice": "active",
+        "person": "1st",
+        "number": "singular",
+        "note": "Elisione per 'τίθημι'",
+        "id": 152
+    },
+    {
+        "word": "ἄπαιδα",
+        "SubVoce": "ἄπαις",
+        "category": "adjective",
+        "decl": "3rd",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 153
+    },
+    {
+        "word": "καὶ",
+        "SubVoce": "καί",
+        "category": "conjunction",
+        "id": 154
+    },
+    {
+        "word": "πόσει",
+        "SubVoce": "πόσις",
+        "category": "noun",
+        "decl": "3rd",
+        "case": "dative",
+        "number": "singular",
+        "gend": "masculine",
+        "id": 155
+    },
+    {
+        "word": "μισουμένην,",
+        "SubVoce": "μισέω",
+        "category": "verb",
+        "mood": "participle",
+        "tense": "present",
+        "voice": "middle-passive",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 156
+    },
+    {
+        "word": "αὐτὴ",
+        "SubVoce": "αὐτός",
+        "category": "pronoun",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 157
+    },
+    {
+        "word": "δὲ",
+        "SubVoce": "δέ",
+        "category": "particle",
+        "id": 158
+    },
+    {
+        "word": "ναίειν",
+        "SubVoce": "ναίω",
+        "category": "verb",
+        "mood": "infinitive",
+        "tense": "present",
+        "voice": "active",
+        "id": 159
+    },
+    {
+        "word": "οἶκον",
+        "SubVoce": "οἶκος",
+        "category": "noun",
+        "decl": "2nd",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "masculine",
+        "id": 160
+    },
+    {
+        "word": "ἀντ᾽",
+        "SubVoce": "ἀντί",
+        "category": "preposition",
+        "note": "Elisione per 'ἀντί'",
+        "id": 161
+    },
+    {
+        "word": "αὐτῆς",
+        "SubVoce": "αὐτός",
+        "category": "pronoun",
+        "case": "genitive",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 162
+    },
+    {
+        "word": "θέλω",
+        "SubVoce": "θέλω (o ἐθέλω)",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "present",
+        "voice": "active",
+        "person": "1st",
+        "number": "singular",
+        "id": 163
+    },
+    {
+        "word": "τόνδ᾽,",
+        "SubVoce": "ὅδε",
+        "category": "pronoun",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "masculine",
+        "note": "Elisione per 'τόνδε'",
+        "id": 164
+    },
+    {
+        "word": "ἐκβαλοῦσα",
+        "SubVoce": "ἐκβάλλω",
+        "category": "verb",
+        "mood": "participle",
+        "tense": "aorist",
+        "voice": "active",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 165
+    },
+    {
+        "word": "λέκτρα",
+        "SubVoce": "λέκτρον",
+        "category": "noun",
+        "decl": "2nd",
+        "case": "accusative",
+        "number": "plural",
+        "gend": "neuter",
+        "id": 166
+    },
+    {
+        "word": "τἀκείνης",
+        "SubVoce": "ὁ + ἐκεῖνος",
+        "category": "article + pronoun (crasis)",
+        "case": "genitive (pronoun) / accusative (article)",
+        "number": "singular (pronoun) / plural (article)",
+        "gend": "feminine (pronoun) / neuter (article)",
+        "note": "Crasis per 'τὰ ἐκείνης'",
+        "id": 167
+    },
+    {
+        "word": "βίᾳ:",
+        "SubVoce": "βία",
+        "category": "noun",
+        "decl": "1st",
+        "case": "dative",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 168
+    },
+    {
+        "word": "ἁγὼ",
+        "SubVoce": "ὅς + ἐγώ",
+        "category": "pronoun + pronoun (crasis)",
+        "case": "accusative (ὅς) / nominative (ἐγώ)",
+        "number": "plural (ὅς) / singular (ἐγώ)",
+        "gend": "neuter (ὅς)",
+        "note": "Crasis per 'ἃ ἐγὼ'",
+        "id": 169
+    },
+    {
+        "word": "τὸ",
+        "SubVoce": "ὁ",
+        "category": "article",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "neuter",
+        "note": "Uso avverbiale con 'πρῶτον'",
+        "id": 170
+    },
+    {
+        "word": "πρῶτον",
+        "SubVoce": "πρῶτος",
+        "category": "adjective",
+        "decl": "1st/2nd",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "neuter",
+        "note": "Uso avverbiale",
+        "id": 171
+    },
+    {
+        "word": "οὐχ",
+        "SubVoce": "οὐ",
+        "category": "particle",
+        "note": "Forma 'οὐκ' davanti a spirito aspro",
+        "id": 172
+    },
+    {
+        "word": "ἑκοῦσ᾽",
+        "SubVoce": "ἑκών",
+        "category": "adjective (participle)",
+        "decl": "3rd",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "feminine",
+        "note": "Elisione per 'ἑκοῦσα'",
+        "id": 173
+    },
+    {
+        "word": "ἐδεξάμην,",
+        "SubVoce": "δέχομαι",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "aorist",
+        "voice": "middle",
+        "person": "1st",
+        "number": "singular",
+        "id": 174
+    },
+    {
+        "word": "νῦν",
+        "SubVoce": "νῦν",
+        "category": "particle",
+        "note": "Avverbio di tempo",
+        "id": 175
+    },
+    {
+        "word": "δ᾽",
+        "SubVoce": "δέ",
+        "category": "particle",
+        "note": "Elisione per 'δέ'",
+        "id": 176
+    },
+    {
+        "word": "ἐκλέλοιπα:",
+        "SubVoce": "ἐκλείπω",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "perfect",
+        "voice": "active",
+        "person": "1st",
+        "number": "singular",
+        "id": 177
+    },
+    {
+        "word": "Ζεὺς",
+        "SubVoce": "Ζεύς",
+        "category": "noun",
+        "decl": "3rd",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "masculine",
+        "id": 178
+    },
+    {
+        "word": "τάδ᾽",
+        "SubVoce": "ὅδε",
+        "category": "pronoun",
+        "case": "accusative",
+        "number": "plural",
+        "gend": "neuter",
+        "note": "Elisione per 'τάδε'",
+        "id": 179
+    },
+    {
+        "word": "εἰδείη",
+        "SubVoce": "οἶδα",
+        "category": "verb",
+        "mood": "optative",
+        "tense": "perfect",
+        "voice": "active",
+        "person": "3rd",
+        "number": "singular",
+        "note": "Ottativo di desiderio",
+        "id": 180
+    },
+    {
+        "word": "μέγας,",
+        "SubVoce": "μέγας",
+        "category": "adjective",
+        "decl": "3rd",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "masculine",
+        "id": 181
+    },
+    {
+        "word": "ὡς",
+        "SubVoce": "ὡς",
+        "category": "conjunction",
+        "id": 182
+    },
+    {
+        "word": "οὐχ",
+        "SubVoce": "οὐ",
+        "category": "particle",
+        "note": "Forma 'οὐκ' davanti a spirito aspro",
+        "id": 183
+    },
+    {
+        "word": "ἑκοῦσα",
+        "SubVoce": "ἑκών",
+        "category": "adjective (participle)",
+        "decl": "3rd",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 184
+    },
+    {
+        "word": "τῷδ᾽",
+        "SubVoce": "ὅδε",
+        "category": "pronoun",
+        "case": "dative",
+        "number": "singular",
+        "gend": "neuter",
+        "note": "Elisione per 'τῷδε'",
+        "id": 185
+    },
+    {
+        "word": "ἐκοινώθην",
+        "SubVoce": "κοινόω",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "aorist",
+        "voice": "passive",
+        "person": "1st",
+        "number": "singular",
+        "id": 186
+    },
+    {
+        "word": "λέχει.",
+        "SubVoce": "λέχος",
+        "category": "noun",
+        "decl": "3rd",
+        "case": "dative",
+        "number": "singular",
+        "gend": "neuter",
+        "id": 187
+    },
+    {
+        "word": "ἀλλ᾽",
+        "SubVoce": "ἀλλά",
+        "category": "conjunction",
+        "note": "Elisione per 'ἀλλά'",
+        "id": 188
+    },
+    {
+        "word": "οὔ",
+        "SubVoce": "οὐ",
+        "category": "particle",
+        "id": 189
+    },
+    {
+        "word": "σφε",
+        "SubVoce": "σφε (pronome personale)",
+        "category": "pronoun",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 190
+    },
+    {
+        "word": "πείθω,",
+        "SubVoce": "πείθω",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "present",
+        "voice": "active",
+        "person": "1st",
+        "number": "singular",
+        "id": 191
+    },
+    {
+        "word": "βούλεται",
+        "SubVoce": "βούλομαι",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "present",
+        "voice": "middle-passive (deponent)",
+        "person": "3rd",
+        "number": "singular",
+        "id": 192
+    },
+    {
+        "word": "δέ",
+        "SubVoce": "δέ",
+        "category": "particle",
+        "id": 193
+    },
+    {
+        "word": "με",
+        "SubVoce": "ἐγώ",
+        "category": "pronoun",
+        "case": "accusative",
+        "number": "singular",
+        "id": 194
+    },
+    {
+        "word": "κτανεῖν,",
+        "SubVoce": "κτείνω",
+        "category": "verb",
+        "mood": "infinitive",
+        "tense": "aorist",
+        "voice": "active",
+        "id": 195
+    },
+    {
+        "word": "πατήρ",
+        "SubVoce": "πατήρ",
+        "category": "noun",
+        "decl": "3rd",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "masculine",
+        "id": 196
+    },
+    {
+        "word": "τε",
+        "SubVoce": "τε",
+        "category": "particle",
+        "id": 197
+    },
+    {
+        "word": "θυγατρὶ",
+        "SubVoce": "θυγάτηρ",
+        "category": "noun",
+        "decl": "3rd",
+        "case": "dative",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 198
+    },
+    {
+        "word": "Μενέλεως",
+        "SubVoce": "Μενέλεως (o Μενέλαος)",
+        "category": "noun",
+        "decl": "3rd (Attic)",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "masculine",
+        "id": 199
+    },
+    {
+        "word": "συνδρᾷ",
+        "SubVoce": "συνδράω",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "present",
+        "voice": "active",
+        "person": "3rd",
+        "number": "singular",
+        "id": 200
+    },
+    {
+        "word": "τάδε.",
+        "SubVoce": "ὅδε",
+        "category": "pronoun",
+        "case": "accusative",
+        "number": "plural",
+        "gend": "neuter",
+        "id": 201
+    },
+    {
+        "word": "καὶ",
+        "SubVoce": "καί",
+        "category": "conjunction",
+        "id": 202
+    },
+    {
+        "word": "νῦν",
+        "SubVoce": "νῦν",
+        "category": "particle",
+        "note": "Avverbio di tempo",
+        "id": 203
+    },
+    {
+        "word": "κατ᾽",
+        "SubVoce": "κατά",
+        "category": "preposition",
+        "note": "Elisione per 'κατά'",
+        "id": 204
+    },
+    {
+        "word": "οἴκους",
+        "SubVoce": "οἶκος",
+        "category": "noun",
+        "decl": "2nd",
+        "case": "accusative",
+        "number": "plural",
+        "gend": "masculine",
+        "id": 205
+    },
+    {
+        "word": "ἔστ᾽,",
+        "SubVoce": "εἰμί",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "present",
+        "voice": "active",
+        "person": "3rd",
+        "number": "singular",
+        "note": "Elisione per 'ἐστί'",
+        "id": 206
+    },
+    {
+        "word": "ἀπὸ",
+        "SubVoce": "ἀπό",
+        "category": "preposition",
+        "id": 207
+    },
+    {
+        "word": "Σπάρτης",
+        "SubVoce": "Σπάρτη",
+        "category": "noun",
+        "decl": "1st",
+        "case": "genitive",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 208
+    },
+    {
+        "word": "μολὼν",
+        "SubVoce": "βλώσκω",
+        "category": "verb",
+        "mood": "participle",
+        "tense": "aorist",
+        "voice": "active",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "masculine",
+        "id": 209
+    },
+    {
+        "word": "ἐπ᾽",
+        "SubVoce": "ἐπί",
+        "category": "preposition",
+        "note": "Elisione per 'ἐπί'",
+        "id": 210
+    },
+    {
+        "word": "αὐτὸ",
+        "SubVoce": "αὐτός",
+        "category": "pronoun",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "neuter",
+        "id": 211
+    },
+    {
+        "word": "τοῦτο:",
+        "SubVoce": "οὗτος",
+        "category": "pronoun",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "neuter",
+        "id": 212
+    },
+    {
+        "word": "δειματουμένη",
+        "SubVoce": "δειματόω",
+        "category": "verb",
+        "mood": "participle",
+        "tense": "present",
+        "voice": "middle-passive",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 213
+    },
+    {
+        "word": "δ᾽",
+        "SubVoce": "δέ",
+        "category": "particle",
+        "note": "Elisione per 'δέ'",
+        "id": 214
+    },
+    {
+        "word": "ἐγὼ",
+        "SubVoce": "ἐγώ",
+        "category": "pronoun",
+        "case": "nominative",
+        "number": "singular",
+        "id": 215
+    },
+    {
+        "word": "δόμων",
+        "SubVoce": "δόμος",
+        "category": "noun",
+        "decl": "2nd",
+        "case": "genitive",
+        "number": "plural",
+        "gend": "masculine",
+        "id": 216
+    },
+    {
+        "word": "πάροικον",
+        "SubVoce": "πάροικος",
+        "category": "adjective",
+        "decl": "2nd",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "neuter",
+        "id": 217
+    },
+    {
+        "word": "Θέτιδος",
+        "SubVoce": "Θέτις",
+        "category": "noun",
+        "decl": "3rd",
+        "case": "genitive",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 218
+    },
+    {
+        "word": "εἰς",
+        "SubVoce": "εἰς",
+        "category": "preposition",
+        "id": 219
+    },
+    {
+        "word": "ἀνάκτορον",
+        "SubVoce": "ἀνάκτορον",
+        "category": "noun",
+        "decl": "2nd",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "neuter",
+        "id": 220
+    },
+    {
+        "word": "θάσσω",
+        "SubVoce": "θάσσω",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "present",
+        "voice": "active",
+        "person": "1st",
+        "number": "singular",
+        "id": 221
+    },
+    {
+        "word": "τόδ᾽",
+        "SubVoce": "ὅδε",
+        "category": "pronoun",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "neuter",
+        "note": "Elisione per 'τόδε'",
+        "id": 222
+    },
+    {
+        "word": "ἐλθοῦσ᾽,",
+        "SubVoce": "ἔρχομαι",
+        "category": "verb",
+        "mood": "participle",
+        "tense": "aorist",
+        "voice": "active",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "feminine",
+        "note": "Elisione per 'ἐλθοῦσα'",
+        "id": 223
+    },
+    {
+        "word": "ἤν",
+        "SubVoce": "εἰ ἄν",
+        "category": "conjunction + particle",
+        "note": "Crasis per 'εἰ ἄν'",
+        "id": 224
+    },
+    {
+        "word": "με",
+        "SubVoce": "ἐγώ",
+        "category": "pronoun",
+        "case": "accusative",
+        "number": "singular",
+        "id": 225
+    },
+    {
+        "word": "κωλύσῃ",
+        "SubVoce": "κωλύω",
+        "category": "verb",
+        "mood": "subjunctive",
+        "tense": "aorist",
+        "voice": "active",
+        "person": "3rd",
+        "number": "singular",
+        "id": 226
+    },
+    {
+        "word": "θανεῖν.",
+        "SubVoce": "θνῄσκω",
+        "category": "verb",
+        "mood": "infinitive",
+        "tense": "aorist",
+        "voice": "active",
+        "id": 227
+    },
+    {
+        "word": "Πηλεύς",
+        "SubVoce": "Πηλεύς",
+        "category": "noun",
+        "decl": "3rd",
+        "case": "nominative",
+        "number": "singular",
+        "gend": "masculine",
+        "id": 228
+    },
+    {
+        "word": "τε",
+        "SubVoce": "τε",
+        "category": "particle",
+        "id": 229
+    },
+    {
+        "word": "γάρ",
+        "SubVoce": "γάρ",
+        "category": "particle",
+        "id": 230
+    },
+    {
+        "word": "νιν",
+        "SubVoce": "νιν (pronome personale)",
+        "category": "pronoun",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "neuter",
+        "id": 231
+    },
+    {
+        "word": "ἔκγονοί",
+        "SubVoce": "ἔκγονος",
+        "category": "noun",
+        "decl": "2nd",
+        "case": "nominative",
+        "number": "plural",
+        "gend": "masculine",
+        "id": 232
+    },
+    {
+        "word": "τε",
+        "SubVoce": "τε",
+        "category": "particle",
+        "id": 233
+    },
+    {
+        "word": "Πηλέως",
+        "SubVoce": "Πηλεύς",
+        "category": "noun",
+        "decl": "3rd",
+        "case": "genitive",
+        "number": "singular",
+        "gend": "masculine",
+        "id": 234
+    },
+    {
+        "word": "σέβουσιν,",
+        "SubVoce": "σέβω",
+        "category": "verb",
+        "mood": "indicative",
+        "tense": "present",
+        "voice": "active",
+        "person": "3rd",
+        "number": "plural",
+        "id": 235
+    },
+    {
+        "word": "ἑρμήνευμα",
+        "SubVoce": "ἑρμήνευμα",
+        "category": "noun",
+        "decl": "3rd",
+        "case": "accusative",
+        "number": "singular",
+        "gend": "neuter",
+        "id": 236
+    },
+    {
+        "word": "Νηρῇδος",
+        "SubVoce": "Νηρηΐς",
+        "category": "noun",
+        "decl": "3rd",
+        "case": "genitive",
+        "number": "singular",
+        "gend": "feminine",
+        "id": 237
+    },
+    {
+        "word": "γάμων.",
+        "SubVoce": "γάμος",
+        "category": "noun",
+        "decl": "2nd",
+        "case": "genitive",
+        "number": "plural",
+        "gend": "masculine",
+        "id": 238
+    }
+  
+  ]
