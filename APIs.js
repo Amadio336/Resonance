@@ -20,6 +20,17 @@ let lastIndex = 0
 
 
 
+function manageMorePossibilities(jsonFIle, shortPath) {
+  const total_possibilities = []
+
+  for (const el of shortPath){
+    total_possibilities.push(el)
+  }
+
+  return total_possibilities
+  
+}
+
 
 
 
@@ -82,11 +93,11 @@ cleanedGText.forEach((gkw) => {
    console.log("objLenght",objLenght)
 
 
-   /* cioè se il body non ha più array, quindi è un parola non omonima  */
+  /* that is, if Body is a one-element list. It means that word is not C */
    if (objLenght === undefined) {
-   
+       const shortPath =  jsonFIle.RDF.Annotation.Body.rest.entry.infl
 
-    /* se la parola non omonima è un nome */
+      /* if not omonymous word is a noun */
     if (jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "noun") {
   
       const notSortedObj = {
@@ -98,12 +109,19 @@ cleanedGText.forEach((gkw) => {
       };
 
 
+      if (shortPath.length == undefined){
+        notSortedObj.case = shortPath.case.$
+        notSortedObj.number = shortPath.num.$
+      }else if (shortPath.length > 1){
+        notSortedObj.c = "more infl"
+        notSortedObj.case = shortPath[0].case.$
+        notSortedObj.number = shortPath[0].num.$
+        notSortedObj.possibilities = manageMorePossibilities(jsonFIle, shortPath)
+      }
 
-
-
-   
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id);
+
     } else if (jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "verb"){  
 
       const notSortedObj = {
@@ -112,25 +130,38 @@ cleanedGText.forEach((gkw) => {
         id: gkw.id,
       };
 
-
-      /* these two lines manage the problem infl has more than only one object. If infl has only one object, it takes normally the value of verb.tense and verb.mood, otherwise it takes the first result */
-      jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.mood = jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$ : notSortedObj.mood = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].mood.$
-      jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl.tense.$ : notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].tense.$ 
-   
-
-      /* this two if statements add case and number to participles, both those with a infl.legnth >0 and those with inf.lengt = 1 or undefined */
-      /* infl.length > 1 or != undefined */
-       if (jsonFIle.RDF.Annotation.Body.rest.entry.infl.length != undefined && jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].mood.$ == "participle"){
-       notSortedObj.participleCase = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].case.$
-       notSortedObj.participleNumber = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].num.$
-        
+       if (shortPath.length == undefined){
+        notSortedObj.mood = shortPath.mood.$
+        notSortedObj.tense = shortPath.tense.$
       }
-      /* infl.length == 1 or == undefined */
-       if (jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined && jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$ == "participle"){
-       notSortedObj.participleCase = jsonFIle.RDF.Annotation.Body.rest.entry.infl.case.$
-       notSortedObj.participleNumber = jsonFIle.RDF.Annotation.Body.rest.entry.infl.num.$
-        
-      } 
+       else if (shortPath.length > 1){
+          notSortedObj.c = "more infl"
+          notSortedObj.mood = shortPath[0].mood.$
+          notSortedObj.tense = shortPath[0].tense.$
+          notSortedObj.possibilities = manageMorePossibilities(jsonFIle, shortPath)
+
+      }
+
+
+
+          /* these two lines manage the problem infl has more than only one object. If infl has only one object, it takes normally the value of verb.tense and verb.mood, otherwise it takes the first result */
+        /*   jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.mood = jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$ : notSortedObj.mood = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].mood.$
+          jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl.tense.$ : notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].tense.$ 
+       */
+
+          /* this two if statements add case and number to participles, both those with a infl.legnth >0 and those with inf.lengt = 1 or undefined */
+          /* infl.length > 1 or != undefined */
+          if (jsonFIle.RDF.Annotation.Body.rest.entry.infl.length != undefined && jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].mood.$ == "participle"){
+          notSortedObj.participleCase = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].case.$
+          notSortedObj.participleNumber = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].num.$
+            
+          }
+          /* infl.length == 1 or == undefined */
+          if (jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined && jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$ == "participle"){
+          notSortedObj.participleCase = jsonFIle.RDF.Annotation.Body.rest.entry.infl.case.$
+          notSortedObj.participleNumber = jsonFIle.RDF.Annotation.Body.rest.entry.infl.num.$
+            
+          } 
 
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id);
@@ -181,6 +212,19 @@ cleanedGText.forEach((gkw) => {
         decl: jsonFIle.RDF.Annotation.Body.rest.entry.dict.decl.$,
         id: gkw.id,
       };
+
+      if (shortPath.length == undefined){
+        notSortedObj.case = shortPath.case.$
+        notSortedObj.number = shortPath.num.$
+      }else if (shortPath.length > 1){
+        notSortedObj.c = "more infl"
+        notSortedObj.case = shortPath[0].case.$
+        notSortedObj.number = shortPath[0].num.$
+        notSortedObj.possibilities = manageMorePossibilities(jsonFIle, shortPath)
+
+      }
+
+
    
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id);
@@ -196,7 +240,7 @@ cleanedGText.forEach((gkw) => {
         category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
         id: gkw.id,
       };
-   
+
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id);
 
