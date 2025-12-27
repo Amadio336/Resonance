@@ -5,6 +5,14 @@ let words = []
 const showMoreButton = document.querySelector("#show-more-button")
 
 
+function takeWords() {
+     const highlightableWords = document.querySelectorAll(".highlightable")
+    
+     highlightableWords.forEach((element) =>{
+            words.push(element.textContent)
+        })
+}
+
 /* this function generates small stats on the toolbar of phase2 */
 function genSmStats() {
 
@@ -13,12 +21,13 @@ function genSmStats() {
         let statsLemmasContainer = document.getElementById("stats-lemmas-container")
         let statsWordsContainer = document.getElementById("stats-word-container")
         let genStatsButton = document.getElementById("generate-small-stats")
+        takeWords()
+     
 
-
-        const highlightableWords = document.querySelectorAll(".highlightable")
+       /*  const highlightableWords = document.querySelectorAll(".highlightable")
         highlightableWords.forEach((element) =>{
             words.push(element.textContent)
-        })
+        }) */
 
 
         /* LEMMAS */     
@@ -129,8 +138,9 @@ function  createBgStats() {
         delShowMoreButton.className = "button-beige mt-4"
         showMoreWrapper.appendChild(delShowMoreButton)
         delShowMoreButton.addEventListener("click", delBgStatsInterface)
+        takeWords()
 
-        console.log("il numero totale di parole è", words.length)
+        console.log(words)
 
 
 
