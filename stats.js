@@ -1,4 +1,5 @@
 import { sortedArr } from "./APIs.js"
+import { inputGtx } from "./main.js"
 
 
 let words = []
@@ -24,11 +25,7 @@ function genSmStats() {
         takeWords()
      
 
-       /*  const highlightableWords = document.querySelectorAll(".highlightable")
-        highlightableWords.forEach((element) =>{
-            words.push(element.textContent)
-        }) */
-
+      
 
         /* LEMMAS */     
         /* it stands for SortedArrCopy */
@@ -101,12 +98,15 @@ const showMoreWrapper = document.getElementById("show-more-wrapper")
 let isOpenShowMore = false
 let isHiddenShowMore = false
 
-/* this function is the beginning of the creation of Big Stats Interface */
 function activeShowMoreAnim(){
+    /* this function is the beginning of the creation of Big Stats Interface. When the Show More Button is pressed, this is 
+    the fist function called; it does nothing but enabling event listeners */
+
     /* clicking on the button Show More makes the animation start */
     showMoreButton.addEventListener("dblclick", animate)
 
     showMoreButton.addEventListener("dblclick", showAgain)
+
     /* at the end of animation, generates Big Stats Interface */
     showMoreButton.addEventListener("animationend", createBgStats)
 }
@@ -118,6 +118,19 @@ function animate(){
         showMoreButton.classList.add("animate")
     }
 }
+
+
+function populateBgStats(){
+    /* this function is the core of Bg Stats. It deals with calculating the stats and creating the HTML element in order to show them */
+
+    /* creating the buffer 100% */
+     showMoreWrapper.insertAdjacentHTML('beforeend',
+            ` <div class="wrapper-percentage"> 
+                <div class="twenty-five-bar"> 25%</div>
+            </div>
+           `)
+}
+
 
 /* this f generates Bg Stats Interface */
 function  createBgStats() {
@@ -140,15 +153,12 @@ function  createBgStats() {
         delShowMoreButton.addEventListener("click", delBgStatsInterface)
         takeWords()
 
-        console.log(words)
+        console.log("words", words)
+        console.log("SortedArr from stats.js", sortedArr)
+        console.log("testo", inputGtx.value)
 
 
-
-        showMoreWrapper.insertAdjacentHTML('beforeend',
-            ` <div class="wrapper-percentage"> 
-                <div class="twenty-five-bar"> 25%</div>
-            </div>
-           `)
+       
     }
 
 

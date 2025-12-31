@@ -216,11 +216,6 @@ function SortedArrSync(selectImportOrAutoInt){
    
   selectImportOrAutoInt.remove()  
   
-
-  console.log("sortedArr",sortedArr)
-
-
-
   handleGtx(e)
 
 
@@ -656,6 +651,8 @@ SearchBarTag.addEventListener("keyup", handleSearchByTag)
 
 
 
+ /* STATS SECTION */
+
  /* function that generates small stats in phase 2 */
 
  GenSmStatsButton.addEventListener("click", genSmStats)
@@ -1035,4 +1032,4 @@ URL.revokeObjectURL(link.href);
 
 
 
-export {handleGkwValues, buttonAutomaticResearch}
+export {handleGkwValues, buttonAutomaticResearch, inputGtx}
