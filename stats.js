@@ -134,6 +134,7 @@ function populateBgStats(){
 
 /* this f generates Bg Stats Interface */
 function  createBgStats() {
+    console.log("ciao")
     
     if(isHiddenShowMore == false){
 
@@ -153,9 +154,74 @@ function  createBgStats() {
         delShowMoreButton.addEventListener("click", delBgStatsInterface)
         takeWords()
 
-        console.log("words", words)
+       /*  console.log("words", words)
         console.log("SortedArr from stats.js", sortedArr)
-        console.log("testo", inputGtx.value)
+        console.log("testo", inputGtx.value) */
+
+        let mainCounter = {}
+
+        /* this loop calculates all the elements present in the text and their specs (for example how many verbs are there, how many aorist...)
+        and populates the mainCounter object */
+        sortedArr.forEach(element => {
+          let category = element["category"]
+          
+          if (!(category in mainCounter)){
+            mainCounter[category] = [1, {}]
+
+            if (category == "verb") {
+             mainCounter[category][1][element["tense"]] = 1
+             mainCounter[category][1][element["mood"]] = 1  
+            }
+            else if(category == "noun"){
+             mainCounter[category][1][element["case"]] = 1
+             mainCounter[category][1][element["decl"]] = 1  
+             mainCounter[category][1][element["gend"]] = 1  
+             mainCounter[category][1][element["number"]] = 1  
+
+            }else if(category == "adjective"){
+             mainCounter[category][1][element["case"]] = 1
+             mainCounter[category][1][element["decl"]] = 1  
+             mainCounter[category][1][element["gend"]] = 1  
+             mainCounter[category][1][element["number"]] = 1  
+            }else if(category == "adverb"){
+            /* adverbs haven't properties */
+            }else if(category == "article"){
+               /* decided to not count articles' case, gender... */
+            }else if(category == "particle"){
+             /* particle hanven't properties */
+            }else if(category == "preposition"){
+              /* prepositions haven't properties */
+            }
+
+
+          }else{
+            mainCounter[category][0]++ 
+            
+            if (category == "verb") {
+              !(mainCounter[category][1][element["tense"]])? mainCounter[category][1][element["tense"]] = 1 : mainCounter[category][1][element["tense"]]++ 
+              !(mainCounter[category][1][element["mood"]])? mainCounter[category][1][element["mood"]] = 1 : mainCounter[category][1][element["mood"]]++             
+            }else if (category == "noun"){
+              !(mainCounter[category][1][element["case"]])? mainCounter[category][1][element["case"]] = 1 : mainCounter[category][1][element["case"]]++ 
+              !(mainCounter[category][1][element["gend"]])? mainCounter[category][1][element["gend"]] = 1 : mainCounter[category][1][element["gend"]]++ 
+              !(mainCounter[category][1][element["number"]])? mainCounter[category][1][element["number"]] = 1 : mainCounter[category][1][element["number"]]++ 
+              !(mainCounter[category][1][element["decl"]])? mainCounter[category][1][element["decl"]] = 1 : mainCounter[category][1][element["decl"]]++ 
+            }else if(category == "adjective"){
+              !(mainCounter[category][1][element["case"]])? mainCounter[category][1][element["case"]] = 1 : mainCounter[category][1][element["case"]]++ 
+              !(mainCounter[category][1][element["gend"]])? mainCounter[category][1][element["gend"]] = 1 : mainCounter[category][1][element["gend"]]++ 
+              !(mainCounter[category][1][element["number"]])? mainCounter[category][1][element["number"]] = 1 : mainCounter[category][1][element["number"]]++ 
+              !(mainCounter[category][1][element["decl"]])? mainCounter[category][1][element["decl"]] = 1 : mainCounter[category][1][element["decl"]]++ 
+            }else if(category == "adverb"){
+              /* adverbs haven't properties */
+            }else if(category == "article"){
+              /* decided to not count articles' case, gender... */
+            }else if(category == "particle"){
+              /* particles hanven't properties */
+            }else if(category == "preposition"){
+              /* prepositions haven't properties */
+            }
+          }});
+
+        console.log(mainCounter)
 
 
        
