@@ -13,64 +13,97 @@
     <ul id="my-list"></ul>
 
     <script>
-      container = document.getElementById("container");
 
-      const paragraphs = document.querySelectorAll("p");
-      console.log(paragraphs);
+      async function caricaJson() {
+        const rawdata = await fetch("mini_sortedArr.json")
+        const data = await rawdata.json()
+        sortedArr = data
+        console.log(sortedArr)
 
-      paragraphs.forEach((element, index) => {
-        element.addEventListener("contextmenu", (e) => {
-          e.preventDefault();
-          console.log(index);
-        });
-      });
+        let mainCounter = {}
 
-      /* prova per realizzare statistiche sulle occorrenze delle parole */
 
-      stats = {};
+        sortedArr.forEach(element => {
+          let category = element["category"]
+          
+          if (!(category in mainCounter)){
+            mainCounter[category] = [1, {}]
 
-      arr1 = [
-        "ciao",
-        "ehi",
-        "come",
-        "ciao",
-        "come",
-        "come",
-        "ciao",
-        "come",
-        "come",
-        "ciao",
-        "ciao",
-        "ciao",
-        "ciao",
-      ];
+            if (category == "verb") {
+             mainCounter[category][1][element["tense"]] = 1
+             mainCounter[category][1][element["mood"]] = 1  
+            }
+            else if(category == "noun"){
+             mainCounter[category][1][element["case"]] = 1
+             mainCounter[category][1][element["decl"]] = 1  
+             mainCounter[category][1][element["gend"]] = 1  
+             mainCounter[category][1][element["number"]] = 1  
 
-      arr1.forEach((element) => {
-        if (!stats[element]) {
-          stats[element] = 0;
-        }
-        stats[element]++;
-      });
+            }else if(category == "adjective"){
+             mainCounter[category][1][element["case"]] = 1
+             mainCounter[category][1][element["decl"]] = 1  
+             mainCounter[category][1][element["gend"]] = 1  
+             mainCounter[category][1][element["number"]] = 1  
+            }else if(category == "adverb"){
+            /* adverbs haven't properties */
+            }else if(category == "article"){
+               /* decided to not count articles' case, gender... */
+            }else if(category == "particle"){
+             /* particle hanven't properties */
+            }else if(category == "preposition"){
+              /* prepositions haven't properties */
+            }
 
-      /* function that reorders decrescently stats and insert them in DOM */
-      function reoder() {
-        statsEntries = Object.entries(stats);
-        statsSorted = statsEntries.sort((a, b) => a[1] - b[1]);
-        console.log(statsSorted);
 
-        try {
-          for (i = 0; i < 5; i++) {
-            container.insertAdjacentHTML(
-              "afterbegin",
-              `<p> ${statsSorted[i][0]}: ${statsSorted[i][1]}`
-            );
+          }else{
+            mainCounter[category][0]++ 
+            
+            if (category == "verb") {
+              !(mainCounter[category][1][element["tense"]])? mainCounter[category][1][element["tense"]] = 1 : mainCounter[category][1][element["tense"]]++ 
+              !(mainCounter[category][1][element["mood"]])? mainCounter[category][1][element["mood"]] = 1 : mainCounter[category][1][element["mood"]]++             
+            }else if (category == "noun"){
+              !(mainCounter[category][1][element["case"]])? mainCounter[category][1][element["case"]] = 1 : mainCounter[category][1][element["case"]]++ 
+              !(mainCounter[category][1][element["gend"]])? mainCounter[category][1][element["gend"]] = 1 : mainCounter[category][1][element["gend"]]++ 
+              !(mainCounter[category][1][element["number"]])? mainCounter[category][1][element["number"]] = 1 : mainCounter[category][1][element["number"]]++ 
+              !(mainCounter[category][1][element["decl"]])? mainCounter[category][1][element["decl"]] = 1 : mainCounter[category][1][element["decl"]]++ 
+            }else if(category == "adjective"){
+              !(mainCounter[category][1][element["case"]])? mainCounter[category][1][element["case"]] = 1 : mainCounter[category][1][element["case"]]++ 
+              !(mainCounter[category][1][element["gend"]])? mainCounter[category][1][element["gend"]] = 1 : mainCounter[category][1][element["gend"]]++ 
+              !(mainCounter[category][1][element["number"]])? mainCounter[category][1][element["number"]] = 1 : mainCounter[category][1][element["number"]]++ 
+              !(mainCounter[category][1][element["decl"]])? mainCounter[category][1][element["decl"]] = 1 : mainCounter[category][1][element["decl"]]++ 
+            }else if(category == "adverb"){
+              /* adverbs haven't properties */
+            }else if(category == "article"){
+              /* decided to not count articles' case, gender... */
+            }else if(category == "particle"){
+              /* particles hanven't properties */
+            }else if(category == "preposition"){
+              /* prepositions haven't properties */
+            }
           }
-        } catch (e) {
-          console.log("i troppo grande", e);
-        }
+          
+          
+          
+        });
+
+        console.log(mainCounter)
+      
+      
+      
       }
 
-      reoder();
+
+      
+
+       
+        
+      
+
+      caricaJson()
+
+
+    
+  
 
 
   

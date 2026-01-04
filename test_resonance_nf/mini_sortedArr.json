@@ -1,0 +1,196 @@
+[
+     {
+    "word": "χρόνῳ",
+    "id": 26,
+    "SubVoce": "χρόνος",
+    "category": "noun",
+    "gend": "masculine",
+    "decl": "2nd",
+    "case": "dative",
+    "number": "singular"
+  },
+  {
+    "word": "νῦν",
+    "id": 0,
+    "SubVoce": "νῦν",
+    "category": "adverb",
+    "tras": "now at this very time"
+  },
+  {
+    "word": "δ’",
+    "id": 1,
+    "SubVoce": "δέ",
+    "category": "conjunction",
+    "tras": "but"
+  },
+  {
+    "word": "εἴ",
+    "id": 2,
+    "SubVoce": "εἰ",
+    "category": "conjunction",
+    "tras": "conj. if, whether; part. w/wishes, adv. w/imperatives"
+  },
+  {
+    "word": "τις",
+    "id": 3,
+    "SubVoce": "τις",
+    "category": "pronoun",
+    "gend": "feminine",
+    "decl": "3rd",
+    "case": "nominative",
+    "number": "singular",
+    "tras": "any one, any thing, some one, some thing;"
+  },
+  {
+    "word": "ἄλλη",
+    "id": 4,
+    "SubVoce": "ἄλλος",
+    "category": "adjective",
+    "gend": "feminine",
+    "decl": "1st",
+    "case": "nominative",
+    "number": "singular",
+    "tras": "other, another"
+  },
+  {
+    "word": "δυστυχεστάτη",
+    "id": 5,
+    "SubVoce": "δυστυχής",
+    "category": "adjective",
+    "gend": "feminine",
+    "decl": "1st",
+    "case": "nominative",
+    "number": "singular"
+  },
+  {
+    "word": "γυνή·",
+    "id": 6,
+    "SubVoce": "γυνή",
+    "category": "noun",
+    "gend": "feminine",
+    "decl": "3rd",
+    "case": "nominative",
+    "number": "singular"
+  },
+  {
+    "word": "ἐμοῦ",
+    "id": 7,
+    "SubVoce": "ἐγώ",
+    "category": "pronoun",
+    "case": "genitive",
+    "number": "singular",
+    "tras": "I (first person pronoun)"
+  },
+  {
+    "word": "πέφυκεν",
+    "id": 8,
+    "SubVoce": "φύω",
+    "category": "verb",
+    "mood": "indicative",
+    "tense": "perfect",
+    "voice": "active",
+    "person": "3rd",
+    "number": "singular"
+  },
+  {
+    "word": "ἢ",
+    "id": 9,
+    "SubVoce": "ἤ",
+    "category": "conjunction",
+    "tras": "either..or; than"
+  },
+  {
+    "word": "γενήσεταί",
+    "id": 10,
+    "SubVoce": "γίγνομαι",
+    "category": "verb",
+    "mood": "indicative",
+    "tense": "future",
+    "voice": "middle",
+    "person": "3rd",
+    "number": "singular",
+    "tras": "become, be born"
+  },
+  {
+    "word": "ποτε",
+    "id": 11,
+    "SubVoce": "ποτέ",
+    "category": "adverb"
+  },
+  {
+    "word": "ἥτις",
+    "id": 12,
+    "SubVoce": "ὅστις",
+    "category": "pronoun",
+    "gend": "feminine",
+    "decl": "3rd",
+    "case": "nominative",
+    "number": "singular"
+  },
+  {
+    "word": "πόσιν",
+    "id": 13,
+    "SubVoce": "πόσις",
+    "category": "noun",
+    "gend": "masculine",
+    "decl": "3rd",
+    "case": "accusative",
+    "number": "singular"
+  },
+  {
+    "word": "μὲν",
+    "id": 14,
+    "SubVoce": "μέν",
+    "category": "particle",
+    "tras": "on the one hand, on the other hand"
+  },
+  {
+    "word": "Ἕκτορ’",
+    "id": 15,
+    "SubVoce": "Ἕκτωρ",
+    "category": "noun",
+    "gend": "masculine",
+    "decl": "3rd",
+    "case": "accusative",
+    "number": "singular"
+  },
+  {
+    "word": "ἐξ",
+    "id": 16,
+    "SubVoce": "ἐκ",
+    "category": "preposition"
+  },
+  {
+    "word": "Ἀχιλλέως",
+    "id": 17,
+    "SubVoce": "Ἀχιλλεύς",
+    "category": "noun",
+    "gend": "masculine",
+    "decl": "3rd",
+    "case": "genitive",
+    "number": "singular"
+  },
+  {
+    "word": "θανόντ’",
+    "id": 18,
+    "SubVoce": "θνῄσκω",
+    "category": "verb",
+    "mood": "participle",
+    "tense": "aorist",
+    "voice": "active",
+    "gend": "masculine",
+    "case": "accusative",
+    "number": "singular"
+  },
+  {
+    "word": "ἐσεῖδον",
+    "id": 19,
+    "SubVoce": "εἴδω",
+    "category": "verb",
+    "mood": "indicative",
+    "tense": "aorist",
+    "voice": "active",
+    "person": "1st",
+    "number": "singular"
+  }
+]
