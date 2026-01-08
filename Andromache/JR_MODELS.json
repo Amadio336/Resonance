@@ -17,6 +17,7 @@
         "SubVoce": "ἀλήθεια",
         "decl": "1st",
         "num": "singular",
+        "case": "nominative", 
         "gend": "feminine",
         "tras": "truth",
         "id": 122
