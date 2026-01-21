@@ -5,6 +5,7 @@ const showMoreButton = document.querySelector("#show-more-button")
 const showMoreWrapper = document.getElementById("show-more-wrapper")
 const showMoreWrapperButtonWrapper = document.getElementById("button-wrapper")
 const showMoreWrapperBarWrapper = document.getElementById("bar-wrapper")
+const showMoreWrapperContentWrapper = document.getElementById("content-wrapper")
 
 let words = []
 
@@ -13,7 +14,9 @@ function takeWords() {
      const highlightableWords = document.querySelectorAll(".highlightable")
     
      highlightableWords.forEach((element) =>{
-            words.push(element.textContent)
+        /* TODO: here you have to clean better the words deleting point, points and commas, parentesis etc. */
+            let contetToClean = element.textContent.replaceAll(",", "")
+            words.push(contetToClean)
         })
 }
 
@@ -127,15 +130,54 @@ function animate(){
 }
 
 
-function populateBgStats(mainCounter){
+function populateBgStats(wordsOccCounter, mainCounter){
     /* this f deals with creating the HTML element on Bg Stats Interface */
 
     /* creating the buffer 100% */
      showMoreWrapperBarWrapper.insertAdjacentHTML('beforeend',
             ` <div class="wrapper-percentage"> 
-                <div class="twenty-five-bar">100%</div>
+                <div class="text-bar">100%</div>
             </div>
            `)
+
+     const wordsOcc = document.createElement("div")
+     wordsOcc.classList.add("d-flex", "align-items-start", "justify-content-top", "flex-column", "box-word-big")
+     wordsOcc.textContent = "Occorrenze parole declinate"
+     
+     const wordsOccContent = document.createElement("ul")
+     wordsOccContent.classList.add("words-occ-content")
+     wordsOcc.appendChild(wordsOccContent)
+
+     showMoreWrapperContentWrapper.appendChild(wordsOcc)
+
+
+    const lemmaOcc = document.createElement("div")
+    lemmaOcc.classList.add("d-flex", "align-items-start", "justify-content-top","flex-column","box-word-big")
+    lemmaOcc.textContent = "Occorrenze lemmi"
+
+    const lemmaOccContent = document.createElement("ul")
+    lemmaOccContent.classList.add("words-occ-content")
+    lemmaOcc.appendChild(lemmaOccContent)
+
+    showMoreWrapperContentWrapper.appendChild(lemmaOcc)
+     
+    /* appending words occ */
+    for (const [word, freq] of Object.entries(wordsOccCounter)) {
+        const bulletPoint = document.createElement('li');
+        bulletPoint.textContent = `${word}: ${freq}`;
+        wordsOccContent.appendChild(bulletPoint);
+    }
+
+     
+     function createGeneralElement(type, text = "", position) {
+      if (type == "div"){
+        const div = document.createElement("div")
+        
+        div.textContent = text
+        
+      }}
+
+
 }
 
 
@@ -170,9 +212,27 @@ function  createBgStats() {
         delShowMoreButton.addEventListener("click", delBgStatsInterface)
         takeWords()
 
-       /*  console.log("words", words)
+        console.log("words", words)
         console.log("SortedArr from stats.js", sortedArr)
-        console.log("testo", inputGtx.value) */
+        console.log("testo", inputGtx.value)
+
+        let wordsOccCounter = {}
+
+        for (const element of words) {
+            if (!(element in wordsOccCounter) ) {
+                wordsOccCounter[element] = 1}
+            else {
+                wordsOccCounter[element] ++
+            }
+        }
+        console.log("QUI ->",wordsOccCounter)
+
+
+
+
+
+
+
 
         let mainCounter = {}
 
@@ -293,7 +353,7 @@ function  createBgStats() {
 
         console.log(mainCounter)
 
-        populateBgStats(mainCounter)
+        populateBgStats(wordsOccCounter, mainCounter)
 
 
        
@@ -334,12 +394,7 @@ function delBgStatsInterface(){
     showMoreWrapperButtonWrapper.innerHTML = ""
     console.log(showMoreButton)
     isOpenShowMore = false
-    isHiddenShowMore = false
-    
-   
-    /* if (showMoreButton.firstElementChild.tagName !== 'SPAN'){
-        showMoreButton.insertAdjacentHTML("afterbegin", "<span class='mt-4'> Mostra di più</p>")
-    } */
+    isHiddenShowMore = false 
 }
 
 
