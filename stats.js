@@ -1,9 +1,12 @@
 import { sortedArr } from "./APIs.js"
 import { inputGtx } from "./main.js"
 
+const showMoreButton = document.querySelector("#show-more-button")
+const showMoreWrapper = document.getElementById("show-more-wrapper")
+const showMoreWrapperButtonWrapper = document.getElementById("button-wrapper")
+const showMoreWrapperBarWrapper = document.getElementById("bar-wrapper")
 
 let words = []
-const showMoreButton = document.querySelector("#show-more-button")
 
 
 function takeWords() {
@@ -93,12 +96,13 @@ function genSmStats() {
 
 }
 
-const showMoreWrapper = document.getElementById("show-more-wrapper")
+
 
 let isOpenShowMore = false
 let isHiddenShowMore = false
 
 function activeShowMoreAnim(){
+  try {
     /* this function is the beginning of the creation of Big Stats Interface. When the Show More Button is pressed, this is 
     the fist function called; it does nothing but enabling event listeners */
 
@@ -109,6 +113,9 @@ function activeShowMoreAnim(){
 
     /* at the end of animation, generates Big Stats Interface */
     showMoreButton.addEventListener("animationend", createBgStats)
+  } catch (error) {
+    console.log("error in BigStats creation", error)
+  }
 }
 
 /* this f manages the animation of show more button */
@@ -120,21 +127,30 @@ function animate(){
 }
 
 
-function populateBgStats(){
-    /* this function is the core of Bg Stats. It deals with calculating the stats and creating the HTML element in order to show them */
+function populateBgStats(mainCounter){
+    /* this f deals with creating the HTML element on Bg Stats Interface */
 
     /* creating the buffer 100% */
-     showMoreWrapper.insertAdjacentHTML('beforeend',
+     showMoreWrapperBarWrapper.insertAdjacentHTML('beforeend',
             ` <div class="wrapper-percentage"> 
-                <div class="twenty-five-bar"> 25%</div>
+                <div class="twenty-five-bar">100%</div>
             </div>
            `)
 }
 
 
-/* this f generates Bg Stats Interface */
+
+
+
+
+
 function  createBgStats() {
-    console.log("ciao")
+   /* this function is the core of Bg Stats. It:
+   1) generates and mananges the button "hide" and "close" on Bg Stats Interface 
+   2) calculates Main Counter
+   3) invokes populateBigStas function in order to create the HTML in Bg Stats Interface
+   
+   It deals with calculating the stats */
     
     if(isHiddenShowMore == false){
 
@@ -142,7 +158,7 @@ function  createBgStats() {
         const hideShowMoreButton = document.createElement("button")
         hideShowMoreButton.textContent = "Nascondi"
         hideShowMoreButton.className = "button-beige mt-4"
-        showMoreWrapper.appendChild(hideShowMoreButton)
+        showMoreWrapperButtonWrapper.appendChild(hideShowMoreButton)
         hideShowMoreButton.addEventListener("click", hideBgStatsInterface)
         
         
@@ -150,7 +166,7 @@ function  createBgStats() {
         const delShowMoreButton = document.createElement("button")
         delShowMoreButton.textContent = "Chiudi"
         delShowMoreButton.className = "button-beige mt-4"
-        showMoreWrapper.appendChild(delShowMoreButton)
+        showMoreWrapperButtonWrapper.appendChild(delShowMoreButton)
         delShowMoreButton.addEventListener("click", delBgStatsInterface)
         takeWords()
 
@@ -166,23 +182,33 @@ function  createBgStats() {
           let category = element["category"]
           
           if (!(category in mainCounter)){
-            mainCounter[category] = [1, {}]
+            /* = [n, {}, []] stands for number of the categories found, specs about that category, which are words of that category  */
+            mainCounter[category] = [1, {}, []]
+            mainCounter[category][2].push(element["word"])
+
 
             if (category == "verb") {
-             mainCounter[category][1][element["tense"]] = 1
-             mainCounter[category][1][element["mood"]] = 1  
+              /* = [n, []] stands for number of that specific spec founded, which are words belonging to that spec  (eg aorist: 3, [verb1, verb2...]) */
+             mainCounter[category][1][element["tense"]] = [1, []]
+             mainCounter[category][1][element["tense"]][1].push(element["word"])
+             mainCounter[category][1][element["mood"]] = [1, []]  
+             mainCounter[category][1][element["mood"]][1].push(element["word"])
             }
             else if(category == "noun"){
-             mainCounter[category][1][element["case"]] = 1
-             mainCounter[category][1][element["decl"]] = 1  
-             mainCounter[category][1][element["gend"]] = 1  
-             mainCounter[category][1][element["number"]] = 1  
+             mainCounter[category][1][element["case"]] = [1, []]
+             mainCounter[category][1][element["case"]][1].push(element["word"])
+             mainCounter[category][1][element["decl"]] = [1, []]
+             mainCounter[category][1][element["decl"]][1].push(element["word"])
+             mainCounter[category][1][element["gend"]] = [1, []] 
+             mainCounter[category][1][element["gend"]][1].push(element["word"]) 
+             mainCounter[category][1][element["number"]] = [1, []]  
+             mainCounter[category][1][element["number"]][1].push(element["word"]) 
 
             }else if(category == "adjective"){
              mainCounter[category][1][element["case"]] = 1
              mainCounter[category][1][element["decl"]] = 1  
              mainCounter[category][1][element["gend"]] = 1  
-             mainCounter[category][1][element["number"]] = 1  
+             mainCounter[category][1][element["number"]] = 1
             }else if(category == "adverb"){
             /* adverbs haven't properties */
             }else if(category == "article"){
@@ -198,14 +224,58 @@ function  createBgStats() {
             mainCounter[category][0]++ 
             
             if (category == "verb") {
-              !(mainCounter[category][1][element["tense"]])? mainCounter[category][1][element["tense"]] = 1 : mainCounter[category][1][element["tense"]]++ 
-              !(mainCounter[category][1][element["mood"]])? mainCounter[category][1][element["mood"]] = 1 : mainCounter[category][1][element["mood"]]++             
-            }else if (category == "noun"){
-              !(mainCounter[category][1][element["case"]])? mainCounter[category][1][element["case"]] = 1 : mainCounter[category][1][element["case"]]++ 
-              !(mainCounter[category][1][element["gend"]])? mainCounter[category][1][element["gend"]] = 1 : mainCounter[category][1][element["gend"]]++ 
-              !(mainCounter[category][1][element["number"]])? mainCounter[category][1][element["number"]] = 1 : mainCounter[category][1][element["number"]]++ 
-              !(mainCounter[category][1][element["decl"]])? mainCounter[category][1][element["decl"]] = 1 : mainCounter[category][1][element["decl"]]++ 
+              mainCounter[category][2].push(element["word"])
+              if (!(mainCounter[category][1][element["tense"]])) {
+                  mainCounter[category][1][element["tense"]] = [1, []]
+                  mainCounter[category][1][element["tense"]][1].push(element["word"]) 
+              }else{
+                  mainCounter[category][1][element["tense"]][0]++
+                  mainCounter[category][1][element["tense"]][1].push(element["word"]) 
+              }
+              if (!(mainCounter[category][1][element["mood"]])){
+                  mainCounter[category][1][element["mood"]] = [1, []]
+                  mainCounter[category][1][element["mood"]][1].push(element["word"]) 
+              }else{
+                  mainCounter[category][1][element["mood"]][0]++
+                  mainCounter[category][1][element["mood"]][1].push(element["word"]) 
+              }
+
+             }else if (category == "noun"){
+              mainCounter[category][2].push(element["word"])
+              if (!(mainCounter[category][1][element["case"]])){
+                mainCounter[category][1][element["case"]] = [1, []] 
+                mainCounter[category][1][element["case"]][1].push(element["word"])
+                
+              }else{
+                mainCounter[category][1][element["case"]][0]++
+                mainCounter[category][1][element["case"]][1].push(element["word"])
+              }
+              if (!(mainCounter[category][1][element["gend"]])){
+                mainCounter[category][1][element["gend"]] = [1, []] 
+                mainCounter[category][1][element["gend"]][1].push(element["word"])
+
+              }else{
+                mainCounter[category][1][element["gend"]][0]++
+                mainCounter[category][1][element["gend"]][1].push(element["word"])
+              }
+              if (!(mainCounter[category][1][element["number"]])){
+                mainCounter[category][1][element["number"]] = [1, []] 
+                mainCounter[category][1][element["number"]][1].push(element["word"])
+
+              }else{
+                mainCounter[category][1][element["number"]][0]++
+                mainCounter[category][1][element["number"]][1].push(element["word"])
+              }
+              if (!(mainCounter[category][1][element["decl"]])){
+                mainCounter[category][1][element["decl"]] = [1, []] 
+                mainCounter[category][1][element["decl"]][1].push(element["word"])
+
+              }else{
+                mainCounter[category][1][element["decl"]][0]++
+                mainCounter[category][1][element["decl"]][1].push(element["word"])
+              }
             }else if(category == "adjective"){
+              mainCounter[category][2].push(element["word"])
               !(mainCounter[category][1][element["case"]])? mainCounter[category][1][element["case"]] = 1 : mainCounter[category][1][element["case"]]++ 
               !(mainCounter[category][1][element["gend"]])? mainCounter[category][1][element["gend"]] = 1 : mainCounter[category][1][element["gend"]]++ 
               !(mainCounter[category][1][element["number"]])? mainCounter[category][1][element["number"]] = 1 : mainCounter[category][1][element["number"]]++ 
@@ -222,6 +292,8 @@ function  createBgStats() {
           }});
 
         console.log(mainCounter)
+
+        populateBgStats(mainCounter)
 
 
        
@@ -240,13 +312,8 @@ function hideBgStatsInterface(){
 
      const span = showMoreButton.querySelector('span.mt-4');
 if (span) {
-    span.remove();
-} 
-
-
-    
-   
-}
+    span.remove();}
+  }
 
 
 function showAgain(){
@@ -263,16 +330,16 @@ function showAgain(){
 
 function delBgStatsInterface(){
     showMoreButton.classList.remove("animate")
-    showMoreWrapper.innerHTML = ""
+    showMoreWrapperBarWrapper.innerHTML = ""
+    showMoreWrapperButtonWrapper.innerHTML = ""
     console.log(showMoreButton)
     isOpenShowMore = false
     isHiddenShowMore = false
-
-    if (showMoreButton.firstElementChild.tagName !== 'SPAN'){
+    
+   
+    /* if (showMoreButton.firstElementChild.tagName !== 'SPAN'){
         showMoreButton.insertAdjacentHTML("afterbegin", "<span class='mt-4'> Mostra di più</p>")
-    }
-
- 
+    } */
 }
 
 

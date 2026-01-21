@@ -493,8 +493,8 @@
      width: 500px;
      height: 50px;
     border-radius: 15px;
-    border: 2px solid black;
-    background: linear-gradient(to right, red 25%, blue 25%);
+    border: 2px solid red;
+    background: blue;
     margin-inline: auto;
     margin-top: 20px;
     display: flex;

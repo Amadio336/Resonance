@@ -7,7 +7,7 @@
         "SubVoce": "πᾶς",
         "decl": "3rd",
         "case": "nominative",
-        "num": "singular",
+        "number": "singular",
         "gend": "masculine",
         "tras": "all",
         "id": 120
@@ -16,7 +16,7 @@
         "category": "noun",
         "SubVoce": "ἀλήθεια",
         "decl": "1st",
-        "num": "singular",
+        "number": "singular",
         "case": "nominative", 
         "gend": "feminine",
         "tras": "truth",
@@ -28,7 +28,7 @@
         "mood": "indicative",
         "tense": "future",
         "person": "1st",
-        "num": "singular",
+        "number": "singular",
         "tras": "to hear",
         "id": 111
     },
@@ -43,7 +43,7 @@
         "SubVoce": "ὁ",
         "case": "nominative",
         "gend": "masculine",
-        "num": "singular",
+        "number": "singular",
         "tras": "the",
         "id": 8
     },
@@ -57,7 +57,7 @@
         "SubVoce": "οὗτος",
         "case": "nominative",
         "gend": "masculine",
-        "num":"singular",
+        "number":"singular",
         "id": 75
     }
 ]
