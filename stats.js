@@ -4,8 +4,8 @@ import { inputGtx } from "./main.js"
 const showMoreButton = document.querySelector("#show-more-button")
 const showMoreWrapper = document.getElementById("show-more-wrapper")
 const showMoreWrapperButtonWrapper = document.getElementById("button-wrapper")
-const showMoreWrapperBarWrapper = document.getElementById("bar-wrapper")
 const showMoreWrapperContentWrapper = document.getElementById("content-wrapper")
+const showMoreWrapperSubContentWrapper= document.getElementById("subcontent-wrapper")
 
 let words = []
 
@@ -130,16 +130,10 @@ function animate(){
 }
 
 
-function populateBgStats(wordsOccCounter, mainCounter){
+function populateBgStats(wordsOccCounter,lemmaOccCounter, mainCounter){
     /* this f deals with creating the HTML element on Bg Stats Interface */
 
-    /* creating the buffer 100% */
-     showMoreWrapperBarWrapper.insertAdjacentHTML('beforeend',
-            ` <div class="wrapper-percentage"> 
-                <div class="text-bar">100%</div>
-            </div>
-           `)
-
+  
      const wordsOcc = document.createElement("div")
      wordsOcc.classList.add("d-flex", "align-items-start", "justify-content-top", "flex-column", "box-word-big")
      wordsOcc.textContent = "Occorrenze parole declinate"
@@ -166,6 +160,13 @@ function populateBgStats(wordsOccCounter, mainCounter){
         const bulletPoint = document.createElement('li');
         bulletPoint.textContent = `${word}: ${freq}`;
         wordsOccContent.appendChild(bulletPoint);
+    }
+
+    /* appending lemmas occ */
+    for (const [word, freq] of Object.entries(lemmaOccCounter)) {
+        const bulletPoint = document.createElement('li');
+        bulletPoint.textContent = `${word}: ${freq}`;
+        lemmaOccContent.appendChild(bulletPoint);
     }
 
      
@@ -205,11 +206,13 @@ function  createBgStats() {
         
         
         /* button close */
-        const delShowMoreButton = document.createElement("button")
+      /*   const delShowMoreButton = document.createElement("button")
         delShowMoreButton.textContent = "Chiudi"
         delShowMoreButton.className = "button-beige mt-4"
         showMoreWrapperButtonWrapper.appendChild(delShowMoreButton)
-        delShowMoreButton.addEventListener("click", delBgStatsInterface)
+        delShowMoreButton.addEventListener("click", delBgStatsInterface) */
+      
+      
         takeWords()
 
         console.log("words", words)
@@ -225,14 +228,17 @@ function  createBgStats() {
                 wordsOccCounter[element] ++
             }
         }
-        console.log("QUI ->",wordsOccCounter)
 
 
+        let lemmaOccCounter = {}
 
-
-
-
-
+        for (const element of sortedArr){
+            if (!(element["SubVoce"] in lemmaOccCounter)){
+                lemmaOccCounter[element["SubVoce"]] = 1
+            }else{
+                lemmaOccCounter[element["SubVoce"]]++
+            }
+        }
 
         let mainCounter = {}
 
@@ -353,7 +359,7 @@ function  createBgStats() {
 
         console.log(mainCounter)
 
-        populateBgStats(wordsOccCounter, mainCounter)
+        populateBgStats(wordsOccCounter,lemmaOccCounter, mainCounter)
 
 
        
