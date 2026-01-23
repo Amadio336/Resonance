@@ -469,6 +469,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
+
+    max-height: 800px;
+    overflow: scroll;
+    
 }
 
 .show-more-button.animate{
@@ -510,7 +514,7 @@
 
 .box-word-big{
   width: 40%;
-  max-height: 400px;
+  max-height: 270px;
   overflow-y: scroll;
   padding: 5px;
   margin: 5px;

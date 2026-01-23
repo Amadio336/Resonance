@@ -6,6 +6,7 @@ const showMoreWrapper = document.getElementById("show-more-wrapper")
 const showMoreWrapperButtonWrapper = document.getElementById("button-wrapper")
 const showMoreWrapperContentWrapper = document.getElementById("content-wrapper")
 const showMoreWrapperSubContentWrapper= document.getElementById("subcontent-wrapper")
+const showMoreRow = document.getElementById("row-to-append")
 
 let words = []
 
@@ -169,15 +170,47 @@ function populateBgStats(wordsOccCounter,lemmaOccCounter, mainCounter){
         lemmaOccContent.appendChild(bulletPoint);
     }
 
-     
-     function createGeneralElement(type, text = "", position) {
-      if (type == "div"){
-        const div = document.createElement("div")
-        
-        div.textContent = text
-        
-      }}
 
+    function createHTLMStats(categoryName, occCategory, refToAppend) {
+      
+      refToAppend.insertAdjacentHTML("afterbegin", 
+        `
+            <div class="col-3">
+                   <p class="d-inline-flex gap-1">
+                      <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                          ${categoryName} : ${occCategory}
+                      </a>
+                  </p>
+                  <div class="collapse" id="collapseExample">
+                      <div class="card card-body">
+                        Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                      </div>
+                   </div>
+             </div>
+        
+        
+        
+        
+        
+        `) 
+      
+
+
+      
+    }
+
+
+    /* generating more detailed stats */
+
+     for (const values of Object.entries(mainCounter)){
+      const categoryName = values[0]
+      const occCategory = values[1][0]
+
+
+     createHTLMStats(categoryName, occCategory, showMoreRow) 
+    } 
+    
+   
 
 }
 
