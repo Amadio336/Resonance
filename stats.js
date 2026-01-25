@@ -171,28 +171,32 @@ function populateBgStats(wordsOccCounter,lemmaOccCounter, mainCounter){
     }
 
 
-    function createHTLMStats(categoryName, occCategory, refToAppend) {
+    function createHTLMStats(categoryName, occCategory, refToAppend, whichPerCateogry, c) {
       
       refToAppend.insertAdjacentHTML("afterbegin", 
         `
             <div class="col-3">
                    <p class="d-inline-flex gap-1">
-                      <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                      <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapse-stat-${c}" role="button" aria-expanded="false" aria-controls="collapse-stat-${c}">
                           ${categoryName} : ${occCategory}
                       </a>
                   </p>
-                  <div class="collapse" id="collapseExample">
+                  <div class="collapse" id="collapse-stat-${c}">
                       <div class="card card-body">
-                        Some placeholder content for the collapse component. This panel is hidden by default but revealed when the user activates the relevant trigger.
+                        <ul id=ul${c}>
+
+                        </ul>
                       </div>
                    </div>
-             </div>
-        
-        
-        
-        
-        
-        `) 
+             </div>`)
+             
+             const ulToPopulate = document.getElementById(`ul${c}`)
+             
+              for (const el of whichPerCateogry){
+                const liToAppend = document.createElement("li")
+                liToAppend.textContent = el
+                ulToPopulate.appendChild(liToAppend)
+             }
       
 
 
@@ -201,13 +205,15 @@ function populateBgStats(wordsOccCounter,lemmaOccCounter, mainCounter){
 
 
     /* generating more detailed stats */
-
+     let counter1 = 0
      for (const values of Object.entries(mainCounter)){
       const categoryName = values[0]
       const occCategory = values[1][0]
+      const whichPerCateogry = values[1][2]
 
 
-     createHTLMStats(categoryName, occCategory, showMoreRow) 
+    createHTLMStats(categoryName, occCategory, showMoreRow,whichPerCateogry, counter1)
+     counter1++ 
     } 
     
    
@@ -316,7 +322,12 @@ function  createBgStats() {
              /* particle hanven't properties */
             }else if(category == "preposition"){
               /* prepositions haven't properties */
+            }else if(category == "pronoun"){
+              /* pronouns haven't properties */
+            }else if(category == "conjunction"){
+                /*  conjunctions haven't properties */
             }
+
 
 
           }else{
@@ -380,13 +391,18 @@ function  createBgStats() {
               !(mainCounter[category][1][element["number"]])? mainCounter[category][1][element["number"]] = 1 : mainCounter[category][1][element["number"]]++ 
               !(mainCounter[category][1][element["decl"]])? mainCounter[category][1][element["decl"]] = 1 : mainCounter[category][1][element["decl"]]++ 
             }else if(category == "adverb"){
-              /* adverbs haven't properties */
+              mainCounter[category][2].push(element["word"])
+              
             }else if(category == "article"){
-              /* decided to not count articles' case, gender... */
+              mainCounter[category][2].push(element["word"])
             }else if(category == "particle"){
-              /* particles hanven't properties */
+              mainCounter[category][2].push(element["word"])
             }else if(category == "preposition"){
-              /* prepositions haven't properties */
+              mainCounter[category][2].push(element["word"])
+            }else if(category == "pronoun"){
+              mainCounter[category][2].push(element["word"])
+            }else if (category == "conjunction"){
+              mainCounter[category][2].push(element["word"])
             }
           }});
 
