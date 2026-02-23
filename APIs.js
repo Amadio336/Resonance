@@ -20,6 +20,17 @@ let lastIndex = 0
 
 
 
+function manageMorePossibilities(jsonFIle, shortPath) {
+  const total_possibilities = []
+
+  for (const el of shortPath){
+    total_possibilities.push(el)
+  }
+
+  return total_possibilities
+  
+}
+
 
 
 
@@ -28,25 +39,31 @@ let lastIndex = 0
   
 
  
- let rowGText = inputGtx.value;
- let splittedGtext = rowGText.split(" "); // viene trasformato in un array con split, ogni spazio è un elemento
+ let rowGText = inputGtx.value; 
+ let noBreakLines = inputGtx.value.replaceAll("\n", " ")
+ let rowGTextSplitted = noBreakLines.split(" ")
+ 
+ let splittedGtext =[]
+
+ /* this loop take every word individually from text-area and deletes numbers and parentesis. After this, it pushes the word in splittedGtext */
+ rowGTextSplitted.forEach((greekWord) => {
+      let cleanedNumber = greekWord.replace(/[1234567890]/, "");
+      let cleanedParagraphSign = cleanedNumber.replace(/\[\]/, "");
+      splittedGtext.push(cleanedParagraphSign.trim());
+    });
 
 
-
-
-
-splittedGtext.forEach((gkw) => { // prendere gli elementi di arr1, ci mette un indce e le mette dentro arr2
+splittedGtext.forEach((gkw) => { 
+  console.log("gkw", gkw)
+  /* this if statement deals with preventing empty string from to be considered as a word */
+  if (gkw.trim() != ""){
   const gkwObj = {
-    word: gkw.replace("\n", ""),
-    id: index,
-  };
-  
+    word: gkw.replace("\n", "").trim(),
+    id: index,};
   cleanedGText.push(gkwObj);
-  
-  index++; // incrementa l'indice
-
+  index++;}
 });
-
+ 
 let allJsonFiles = []
 let indexJsonReturned =0
  
@@ -54,29 +71,33 @@ let indexJsonReturned =0
 console.log("cleanedGText", cleanedGText)
 
 cleanedGText.forEach((gkw) => {
- 
+
+  try{
   fetch(
     `https://services.perseids.org/bsp/morphologyservice/analysis/word?lang=grc&engine=morpheusgrc&word=${gkw.word}`  // viene fatta una richiesta per la flessione di una parola
   )
-    .then((response) => response.text())
-    .then((data) => {
-      const jsonFIle = JSON.parse(data);
-
-      console.log(jsonFIle)
-
-
-   
-
-
+  .then((response) => response.text())
+  .then((data) => {
+    const jsonFIle = JSON.parse(data);
+    
+  
+    console.log(jsonFIle)
+    
+    
+    
+    
+    
   /* variabile che contiene la lunghezza della chiave Body  */
+  
    let objLenght = jsonFIle.RDF.Annotation.Body.length
+   console.log("objLenght",objLenght)
 
 
-   /* cioè se il body non ha più array, quindi è un parola non omonima  */
+  /* that is, if Body is a one-element list. It means that word is not C */
    if (objLenght === undefined) {
-   
+       const shortPath =  jsonFIle.RDF.Annotation.Body.rest.entry.infl
 
-    /* se la parola non omonima è un nome */
+      /* if not omonymous word is a noun */
     if (jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "noun") {
   
       const notSortedObj = {
@@ -86,24 +107,62 @@ cleanedGText.forEach((gkw) => {
         decl: jsonFIle.RDF.Annotation.Body.rest.entry.dict.decl.$,
         id: gkw.id,
       };
-   
+
+
+      if (shortPath.length == undefined){
+        notSortedObj.case = shortPath.case.$
+        notSortedObj.number = shortPath.num.$
+      }else if (shortPath.length > 1){
+        notSortedObj.c = "more infl"
+        notSortedObj.case = shortPath[0].case.$
+        notSortedObj.number = shortPath[0].num.$
+        notSortedObj.possibilities = manageMorePossibilities(jsonFIle, shortPath)
+      }
+
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id);
-    } else if (jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "verb"){  /* altrimenti, se la parola non omonima è un verbo */
+
+    } else if (jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$ == "verb"){  
 
       const notSortedObj = {
         SubVoce: jsonFIle.RDF.Annotation.Body.rest.entry.dict.hdwd.$ ,
         category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
-        tense : undefined, 
-        mood: undefined,
         id: gkw.id,
       };
 
+       if (shortPath.length == undefined){
+        notSortedObj.mood = shortPath.mood.$
+        notSortedObj.tense = shortPath.tense.$
+      }
+       else if (shortPath.length > 1){
+          notSortedObj.c = "more infl"
+          notSortedObj.mood = shortPath[0].mood.$
+          notSortedObj.tense = shortPath[0].tense.$
+          notSortedObj.possibilities = manageMorePossibilities(jsonFIle, shortPath)
 
-      /* these two lines manage the problem infl has more than only one object. If infl has only one object, it takes normally the value of verb.tense and verb.mood, otherwise it takes the first result */
-      jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl.tense.$ : notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].tense.$
-      jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.mood = jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$ : notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].mood.$
-   
+      }
+
+
+
+          /* these two lines manage the problem infl has more than only one object. If infl has only one object, it takes normally the value of verb.tense and verb.mood, otherwise it takes the first result */
+        /*   jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.mood = jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$ : notSortedObj.mood = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].mood.$
+          jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined ? notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl.tense.$ : notSortedObj.tense = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].tense.$ 
+       */
+
+          /* this two if statements add case and number to participles, both those with a infl.legnth >0 and those with inf.lengt = 1 or undefined */
+          /* infl.length > 1 or != undefined */
+          if (jsonFIle.RDF.Annotation.Body.rest.entry.infl.length != undefined && jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].mood.$ == "participle"){
+          notSortedObj.participleCase = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].case.$
+          notSortedObj.participleNumber = jsonFIle.RDF.Annotation.Body.rest.entry.infl[0].num.$
+            
+          }
+          /* infl.length == 1 or == undefined */
+          if (jsonFIle.RDF.Annotation.Body.rest.entry.infl.length == undefined && jsonFIle.RDF.Annotation.Body.rest.entry.infl.mood.$ == "participle"){
+          notSortedObj.participleCase = jsonFIle.RDF.Annotation.Body.rest.entry.infl.case.$
+          notSortedObj.participleNumber = jsonFIle.RDF.Annotation.Body.rest.entry.infl.num.$
+            
+          } 
+
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id);
 
@@ -153,6 +212,19 @@ cleanedGText.forEach((gkw) => {
         decl: jsonFIle.RDF.Annotation.Body.rest.entry.dict.decl.$,
         id: gkw.id,
       };
+
+      if (shortPath.length == undefined){
+        notSortedObj.case = shortPath.case.$
+        notSortedObj.number = shortPath.num.$
+      }else if (shortPath.length > 1){
+        notSortedObj.c = "more infl"
+        notSortedObj.case = shortPath[0].case.$
+        notSortedObj.number = shortPath[0].num.$
+        notSortedObj.possibilities = manageMorePossibilities(jsonFIle, shortPath)
+
+      }
+
+
    
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id);
@@ -168,7 +240,7 @@ cleanedGText.forEach((gkw) => {
         category: jsonFIle.RDF.Annotation.Body.rest.entry.dict.pofs.$,
         id: gkw.id,
       };
-   
+
       sortedArr.push(notSortedObj);
       sortedArr.sort((a, b) => a.id - b.id);
 
@@ -247,7 +319,9 @@ cleanedGText.forEach((gkw) => {
 
 
 
-    });    
+    });
+  } /* qui si chiude il try prima di fetch */
+    catch (error){console.log(error)}  
   });
   
  
@@ -285,7 +359,7 @@ resolveConflictButton.addEventListener("click", ()=>{
     word.setAttribute("data-index-word", index)
     index++
     
-    let wordWithUrns =  `urn:word:${word.textContent}`
+    let wordWithUrns =  `urn:word:${word.textContent.trim()}`
     wordsWithUrns.push(wordWithUrns)
   })
   
@@ -398,11 +472,12 @@ function handleClick(word) {
 
 
     const URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
+    
 
     
     
 
-    if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC") && element.elId == word.getAttribute("data-index-word")) {
+    if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC").trim() && element.elId == word.getAttribute("data-index-word")) {
       
       const bodyLength = element.el.RDF.Annotation.Body.length
       
@@ -433,16 +508,18 @@ function handleClick(word) {
       try{
       finalArray.forEach(element =>{
 
+
         let URNCleaned;
         
         if (element.el == undefined) {
+          console.log("il problema è qui")
           return
         }else{
           URNCleaned = element.el.RDF.Annotation.hasTarget.Description.about.replace("urn:word:", "")
         }
       
         
-        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC")  && element.elId == word.getAttribute("data-index-word")) {
+        if (URNCleaned.normalize("NFC") == word.textContent.normalize("NFC").trim()  && element.elId == word.getAttribute("data-index-word")) {
           sortedArr[indexWordConflicted[indexFinal]].SubVoce = element.el.RDF.Annotation.Body[indice].rest.entry.dict.hdwd.$
           sortedArr[indexWordConflicted[indexFinal]].category = element.el.RDF.Annotation.Body[indice].rest.entry.dict.pofs.$
 
@@ -450,10 +527,6 @@ function handleClick(word) {
             /* set gend, declension */
             sortedArr[indexWordConflicted[indexFinal]].gend = element.el.RDF.Annotation.Body[indice].rest.entry.dict.gend.$
             sortedArr[indexWordConflicted[indexFinal]].decl = element.el.RDF.Annotation.Body[indice].rest.entry.dict.decl.$
-
-            /* set case, number */
-            sortedArr[indexWordConflicted[indexFinal]].case = element.el.RDF.Annotation.Body[indice].rest.entry.infl.case.$
-            sortedArr[indexWordConflicted[indexFinal]].number = element.el.RDF.Annotation.Body[indice].rest.entry.infl.num.$
 
           }
 

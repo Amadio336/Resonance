@@ -410,17 +410,123 @@
 }
 
 
+
 @keyframes fadeIn {
     from {
         opacity: 0;
         transform: scale(0.98);
     }
-
+    
     to {
         opacity: 1;
         transform: scale(1);
     }
 }
+
+
+
+
+
+
+@keyframes show-more-anim {
+    0% {
+        width: 130px;
+        height: 40px;
+        position: absolute;
+        border-radius: 15px;
+    }
+    
+    50% {
+        width: 130px;
+        height: 40px;
+    }
+    
+    70% {
+        background-color: var(--primary-color);
+        width: 80%;
+        height: 80vh;
+    }
+    
+    100% {
+        transform: translateX(-80%);
+        background-color: var(--primary-color);
+        width: 80vw;
+        height: 80vh;
+        bottom:10%;
+        align-items: start;
+    }
+}
+
+
+/* show more stats */
+.show-more-button{
+    width: 130px;
+    height: 40px;
+    position: absolute;
+    border-radius: 15px;
+    left: 0%;
+    bottom: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    max-height: 800px;
+    overflow: scroll;
+    
+}
+
+.show-more-button.animate{
+    animation: show-more-anim 0.7s forwards ease-out;
+
+}
+
+.show-more-button:hover{
+    background-color: #d4b84a;
+    
+}
+
+#show-more-wrapper{
+    width: 100%;
+    padding: 20px;
+}
+
+
+.wrapper-percentage{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.text-bar{
+     width: 500px;
+     height: 50px;
+    border-radius: 15px;
+    border: 2px solid red;
+    background: var(--secondary-color);
+    margin-inline: auto;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 10px;
+}
+
+.box-word-big{
+  width: 40%;
+  max-height: 270px;
+  overflow-y: scroll;
+  padding: 5px;
+  margin: 5px;
+  border: 2px solid var(--third-color);
+  border-radius: 12px;
+  background: var(--secondary-color);
+}
+
+
+
+
+
 
 /*------------ end phase 2 ---------------------------- */
 
@@ -521,6 +627,7 @@ input{
     position: relative;
     background-color: white;
 }
+
 
 
 
