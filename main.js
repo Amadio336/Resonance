@@ -3,7 +3,8 @@ import { buttonAutomaticResearch, prova } from "./automatic-research.js";
 import { generateColours } from "./colour-generator.js";
 import { inputSoglia } from "./automatic-research.js";
 import { searchFlection } from "./APIs.js";
-
+import { genSmStats } from "./stats.js"
+import { activeShowMoreAnim } from "./stats.js";
 
 
 /* phase 1 */
@@ -32,6 +33,8 @@ const SearchBarTag = document.getElementById("search-by-tag")
 const wrapperGreekText = document.getElementById("wrapper-greek-text")
 const selectBgPhase2 = document.getElementById("wrapper-greek-text-bg")
 const inputChangeColorColumn = document.getElementById("column-color")
+const GenSmStatsButton = document.getElementById("generate-small-stats")
+const showMoreButton = document.getElementById("show-more-button")
 const jsonDwlBut = document.getElementById("Json")
 const makeDiagraph = document.getElementById("make-diagraph");
 
@@ -181,7 +184,7 @@ class GreekWord {
 }
 /* --------------------------- */
 
-export let arrayCleaned = [];
+let arrayCleaned = [];
 let objectArraygGkwWithValues = [];
 let arrPoetryCleaned = []
 
@@ -213,11 +216,6 @@ function SortedArrSync(selectImportOrAutoInt){
    
   selectImportOrAutoInt.remove()  
   
-
-  console.log("sortedArr",sortedArr)
-
-
-
   handleGtx(e)
 
 
@@ -245,21 +243,29 @@ function handleGtx(e) {
   if (poesiaValue == 0) {
     
     let arrayGtxImperfected = inputGtx.value.split("\n");
+  /*   console.log("arrayGtxImperfected",arrayGtxImperfected) */
     let GtxRecomposed = arrayGtxImperfected.join(" ");
+/*     console.log("GtxRecomposed",GtxRecomposed) */
     let arrayGtx = GtxRecomposed.split(" ");
+/*     console.log("arrayGtx",arrayGtx) */
     
     arrayGtx.forEach((greekWord) => {
       let cleanedNumber = greekWord.replace(/[1234567890]/, "");
       let cleanedParagraphSign = cleanedNumber.replace(/\[\]/, "");
       arrayCleaned.push(cleanedParagraphSign);
     });
+
+    console.log("arrayCleaned",arrayCleaned)
     
     /* adding words in orange container of the phase 2 */
     arrayCleaned.forEach((greekWord) => {
-      let newWord = new GreekWord(greekWord);
+      if (greekWord != ""){
+      let newWord = new GreekWord(greekWord.trim());
       newWord.createWordInserted();
       objectArraygGkwWithValues.push(newWord);
-    });
+      }
+
+   });
 
     
 
@@ -288,7 +294,7 @@ function handleGtx(e) {
       lineSpace.style.display = "block"
      
       const singleLines = line.split(" ") // array containing every word of a line 
-      console.log("singleLines", singleLines)
+   /*    console.log("singleLines", singleLines) */
       singleLines.forEach((singleLine)=>{ // creates an array in which every word is an element 
         arrPoetryCleaned.push(singleLine)
     
@@ -310,7 +316,7 @@ function handleGtx(e) {
       
       arrPoetryCleaned.forEach((greekWord) => {
       
-      let newWord = new GreekWord(greekWord);
+      let newWord = new GreekWord(greekWord.trim());
       objectArraygGkwWithValues.push(newWord);
     });
 
@@ -353,6 +359,7 @@ function handleGtx(e) {
 /* save in an object the values of the greek words given by the user */
 
 function handleGkwValues() {
+  console.log("objectArraygGkwWithValues",objectArraygGkwWithValues)
 
   
   
@@ -374,9 +381,8 @@ function handleGkwValues() {
        <p> Categoria: ${sortedArr[indexgkw].category} </p>
        <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
        <p> Declinazione: ${sortedArr[indexgkw].decl} </p>
-       <p> Caso: ${sortedArr[indexgkw].case} </p>
        <p> Genere:  ${sortedArr[indexgkw].gend} </p>
-       <p> Numero:  ${sortedArr[indexgkw].number}  </p>
+
 
        
        
@@ -388,7 +394,7 @@ function handleGkwValues() {
       
  /* if word's category is "verb" */
      
-  } else if(sortedArr[indexgkw].category == "verb"){
+  } else if(sortedArr[indexgkw].category == "verb" && sortedArr[indexgkw].mood != "participle"){
 
     beginningValues.insertAdjacentHTML(
       "beforeend",  
@@ -400,14 +406,37 @@ function handleGkwValues() {
       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
       <p> Modo:  ${sortedArr[indexgkw].mood} </p>
       <p> Tempo:  ${sortedArr[indexgkw].tense} </p>
-      <p> Persona: </p>
-      <p> Radice: </p>
-      
-      
+    
       </div>`
             
      );
-  } else if (sortedArr[indexgkw].category == "adjective"){  /* aggettivi */
+
+     /* TODO: remember to add person and root for the verb */
+
+
+
+
+  } else if(sortedArr[indexgkw].category == "verb" && sortedArr[indexgkw].mood == "participle"){
+
+     beginningValues.insertAdjacentHTML(
+      "beforeend",  
+      `<div class="values"> 
+      
+      <h5 class="title-text">  Parola: ${objectArraygGkwWithValues[indexgkw].word} </h5> </br>
+      <p> Descrizione: <input type="text" id="input-matrice" name="matrice" placeholder="scrivi qui" /> </p> </br>
+      <p> Categoria: ${sortedArr[indexgkw].category} </p>
+      <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
+      <p> Modo:  ${sortedArr[indexgkw].mood} </p>
+      <p> Tempo:  ${sortedArr[indexgkw].tense} </p>
+      <p> Caso: ${sortedArr[indexgkw].participleCase}  </p>
+      <p> Numero: ${sortedArr[indexgkw].participleNumber} </p>
+    
+      </div>`
+            
+     );
+
+
+  }else if (sortedArr[indexgkw].category == "adjective"){  /* adjectives */
 
     beginningValues.insertAdjacentHTML(
       "beforeend",  
@@ -418,11 +447,8 @@ function handleGkwValues() {
       <p> Categoria: ${sortedArr[indexgkw].category} </p>
       <p> Sub Voce: ${sortedArr[indexgkw].SubVoce} </p>
       <p> Declinazione: ${sortedArr[indexgkw].decl}  </p>
-      <p> Caso : </p>
-      <p> Genere: </p>
-      <p>: </p>
-      <p> : </p>
-      
+
+         
       
       </div>`)
 
@@ -549,11 +575,17 @@ function completeResearch() { // this function is fundamental, it associates to 
 /* adding values of infl*/
     sortedArr[syncIndex].mood != undefined ? objectArraygGkwWithValues[syncIndex].mood = sortedArr[syncIndex].mood : null
     sortedArr[syncIndex].tense != undefined ? objectArraygGkwWithValues[syncIndex].tense = sortedArr[syncIndex].tense : null
-
     sortedArr[syncIndex].decl != undefined ? objectArraygGkwWithValues[syncIndex].decl = sortedArr[syncIndex].decl : null
     sortedArr[syncIndex].gend != undefined ? objectArraygGkwWithValues[syncIndex].gend = sortedArr[syncIndex].gend : null
     sortedArr[syncIndex].number != undefined ? objectArraygGkwWithValues[syncIndex].number = sortedArr[syncIndex].number : null
     sortedArr[syncIndex].case != undefined ? objectArraygGkwWithValues[syncIndex].case = sortedArr[syncIndex].case : null
+
+    sortedArr[syncIndex].participleCase != undefined ? objectArraygGkwWithValues[syncIndex].participleCase = sortedArr[syncIndex].participleCase : null
+    sortedArr[syncIndex].participleNumber != undefined ? objectArraygGkwWithValues[syncIndex].participleNumber = sortedArr[syncIndex].participleNumber : null
+
+
+
+
     syncIndex++
   }
 )
@@ -616,6 +648,22 @@ SearchBarTag.addEventListener("keyup", handleSearchByTag)
 
 
  }
+
+
+
+ /* STATS SECTION */
+
+ /* function that generates small stats in phase 2 */
+
+ GenSmStatsButton.addEventListener("click", genSmStats)
+
+
+ /* function that make the animation of show more button */
+ showMoreButton.addEventListener("click", activeShowMoreAnim)
+
+
+
+
 
 
 
@@ -984,4 +1032,4 @@ URL.revokeObjectURL(link.href);
 
 
 
-export {handleGkwValues, buttonAutomaticResearch}
+export {handleGkwValues, buttonAutomaticResearch, inputGtx}
