@@ -26,7 +26,7 @@ Resonance's workflow is structured into **3** phases:
 - **Phase 1 or Input Phase**: Users provide their own Greek text, selecting either prose or poetry mode. The text is then cleaned and optimized, making it ready for analysis.
 - **Phase 2 or Selection Phase**: Resonance provides the following tools for a detailed analysis of the provided text:
     1. ⚙️ Automatic morphological recognition
-    2. ⚖️ Conflict resolution interface (*what is a conflict? Read here: [link]*)
+    2. ⚖️ Conflict resolution interface 
     3. 🔎 Ability to query the text and highlight morphological forms, recurrences, etc.
     4. 📈 Creation of detailed statistics on the text (**🚧 Currently in testing phase**)
     5. 🧠 Intelligent detection system via occurrence threshold
@@ -57,7 +57,7 @@ La logica di Resonance è articolata in **3** fasi:
 - **Prima fase o fase di input**: l'utente fornisce autonomamente il proprio testo greco, selezionando la modalità prosa o poesia. Il testo viene pulito e ottimizzato così da essere pronto per essere analizzato
 - **Seconda fase o fase di selezione**: Resonance fornisce i seguenti strumenti per l'analisi puntuale del testo fornito:
     1. ⚙️ riconoscimento morfologico automatico 
-    2. ⚖️ interfaccia di risoluzione dei conflitti (_cos'è un conflitto? Leggi qui: _!mettilink!_)
+    2. ⚖️ interfaccia di risoluzione dei conflitti
     3. 🔎 capacità di interrogare il testo ed evidenziare forme morfologiche, ricorrenze etc.
     4. 📈 creazione di statistiche dettagliate sul testo (**🚧 Attualmente in fase di test**)
     5. 🧠 sistema di rilevamento intelligente tramite soglia delle occorrenze 
